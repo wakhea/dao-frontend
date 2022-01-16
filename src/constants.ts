@@ -3,6 +3,7 @@ import { EnvHelper } from "./helpers/Environment";
 import ethereum from "./assets/tokens/wETH.svg";
 import arbitrum from "./assets/arbitrum.png";
 import avalanche from "./assets/tokens/AVAX.svg";
+import bsc from "./assets/bsc.svg";
 
 export const THE_GRAPH_URL = "https://api.thegraph.com/subgraphs/name/drondin/olympus-protocol-metrics";
 export const EPOCH_INTERVAL = 2200;
@@ -26,6 +27,10 @@ interface IAddresses {
 }
 
 export const addresses: IAddresses = {
+  97: {
+    PLUS_ADDRESS: "0x1D7f64e2Fb2Be8c1eac6914f49Ca4E897F5d7539",
+    PRESALE_ADDRESS: "0x932375cFCC0Db5F7e582bC2137364D728f252758",
+  },
   4: {
     DAI_ADDRESS: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C", // duplicate
     OHM_ADDRESS: "0xC0b491daBf3709Ee5Eb79E603D73289Ca6060932",
@@ -196,7 +201,7 @@ interface INetwork {
 
 // These networks will be available for users to select. Other networks may be functional
 // (e.g. testnets, or mainnets being prepared for launch) but need to be selected directly via the wallet.
-export const USER_SELECTABLE_NETWORKS = [1, 42161, 43114];
+export const USER_SELECTABLE_NETWORKS = [1, 97];
 
 // Set this to the chain number of the most recently added network in order to enable the 'Now supporting X network'
 // message in the UI. Set to -1 if we don't want to display the message at the current time.
@@ -230,6 +235,20 @@ export const NETWORKS: { [key: number]: INetwork } = {
     image: ethereum,
     imageAltText: "Ethereum Logo",
     uri: () => NodeHelper.getMainnetURI(4),
+  },
+  97: {
+    chainName: "Bsc testnet",
+    chainId: 97,
+    nativeCurrency: {
+      name: "BNB",
+      symbol: "BNB",
+      decimals: 18,
+    },
+    rpcUrls: [],
+    blockExplorerUrls: ["https://bscscan.com/"],
+    image: bsc,
+    imageAltText: "Binance logo",
+    uri: () => NodeHelper.getMainnetURI(97),
   },
   42161: {
     chainName: "Arbitrum",

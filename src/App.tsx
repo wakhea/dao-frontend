@@ -335,16 +335,12 @@ function App() {
               oldAssetsEnoughToMigrate && <CallToAction setMigrationModalOpen={setMigrationModalOpen} />}
 
             <Switch>
-              <Route exact path="/dashboard">
-                <TreasuryDashboard />
-              </Route>
-
               <Route exact path="/">
                 <Redirect to="/stake" />
               </Route>
 
-              <Route path="/stake">
-                {/* if newAssets or 0 assets */}
+              {/* <Route path="/stake">
+                { if newAssets or 0 assets
                 {newAssetsDetected || (!newAssetsDetected && !oldAssetsDetected) || !oldAssetsEnoughToMigrate ? (
                   <Stake />
                 ) : (
@@ -354,59 +350,13 @@ function App() {
                     setMigrationModalOpen={setMigrationModalOpen}
                   />
                 )}
-              </Route>
+              </Route> */}
 
-              <Route path="/v1-stake">
-                <V1Stake
-                  hasActiveV1Bonds={hasActiveV1Bonds}
-                  oldAssetsDetected={oldAssetsDetected}
-                  setMigrationModalOpen={setMigrationModalOpen}
-                />
-              </Route>
-
-              <Route exact path="/give">
-                <CausesDashboard />
-              </Route>
-              <Redirect from="/olympusgive" to="/give" />
-              <Redirect from="/tyche" to="/give" />
-              <Redirect from="/olygive" to="/give" />
-              <Redirect from="/olympusdaogive" to="/give" />
-              <Redirect from="/ohmgive" to="/give" />
-
-              <Route path="/give/projects">
-                {projects.map(project => {
-                  return (
-                    <Route exact key={project.slug} path={`/give/projects/${project.slug}`}>
-                      <ProjectInfo project={project} />
-                    </Route>
-                  );
-                })}
-              </Route>
-
-              <Route exact path="/give/donations">
-                <DepositYield />
-              </Route>
-
-              <Route exact path="/give/redeem">
-                <RedeemYield />
-              </Route>
-
-              <Route path="/wrap">
-                <Route exact path={`/wrap`}>
-                  <Wrap />
-                </Route>
-              </Route>
-
-              <Route path="/zap">
-                <Route exact path={`/zap`}>
-                  <Zap />
-                </Route>
-              </Route>
-
+              {/*
+ 
               {/* <Route path="/33-together">
               <PoolTogether />
-            </Route> */}
-
+            </Route> }
               <Route path="/bonds">
                 {(bonds as IAllBondData[]).map(bond => {
                   return (
@@ -416,17 +366,13 @@ function App() {
                   );
                 })}
                 <ChooseBond />
-              </Route>
-
+              </Route>*/}
               <Route path="/network">
                 <ChangeNetwork />
               </Route>
-
               <Route component={NotFound} />
             </Switch>
           </div>
-
-          <MigrationModal open={migrationModalOpen} handleClose={migModalClose} />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
