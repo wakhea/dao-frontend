@@ -31,6 +31,7 @@ import {
   CausesDashboard,
   DepositYield,
   RedeemYield,
+  Presale,
 } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
@@ -38,7 +39,6 @@ import CallToAction from "./components/CallToAction/CallToAction";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
 import Messages from "./components/Messages/Messages";
 import NotFound from "./views/404/NotFound";
-import MigrationModal from "src/components/Migration/MigrationModal";
 import ChangeNetwork from "./views/ChangeNetwork/ChangeNetwork";
 import { dark as darkTheme } from "./themes/dark.js";
 import { light as lightTheme } from "./themes/light.js";
@@ -336,9 +336,12 @@ function App() {
 
             <Switch>
               <Route exact path="/">
-                <Redirect to="/stake" />
+                <Redirect to="/presale" />
               </Route>
 
+              <Route path="/presale">
+                <Presale />
+              </Route>
               {/* <Route path="/stake">
                 { if newAssets or 0 assets
                 {newAssetsDetected || (!newAssetsDetected && !oldAssetsDetected) || !oldAssetsEnoughToMigrate ? (

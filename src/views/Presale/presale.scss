@@ -1,0 +1,11 @@
+#presale-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  .card-header {
+      text-align: center;
+  }
+}
