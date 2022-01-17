@@ -6,6 +6,30 @@
   overflow: hidden;
 
   .card-header {
+    text-align: center;
+  }
+
+  .presale-wallet-notification {
+    text-align: center;
+
+    .connect-button,
+    .buy-button {
+      max-width: 300px !important;
+      min-width: 240px !important;
+      margin-bottom: 15px;
+    }
+  }
+  .presale-buy-area {
+    text-align: center;
+    .buy-button {
       text-align: center;
+      max-width: 300px !important;
+      min-width: 240px !important;
+      margin-bottom: 15px;
+    }
+  }
+
+  .presale-data {
+    margin: 10px 40px 0 40px;
   }
 }
