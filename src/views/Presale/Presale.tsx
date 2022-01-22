@@ -1,11 +1,33 @@
 import { Paper, Grid, Typography, Button, Box } from "@material-ui/core";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
+import { useAppSelector } from "src/hooks";
+import { formatTimestamp } from "src/helpers";
 
 import "./presale.scss";
 
 const Presale = () => {
   const { provider, address, connect } = useWeb3Context();
+
+  const plusBalance = useAppSelector(state => {
+    return state.presale.info.plus;
+  });
+
+  const contribution = useAppSelector(state => {
+    return state.presale.info.contribution;
+  });
+
+  const contributionLimit = useAppSelector(state => {
+    return state.presale.info.contributionLimit;
+  });
+
+  const totalContribution = useAppSelector(state => {
+    return state.presale.info.totalContribution;
+  });
+
+  const closingDate = useAppSelector(state => {
+    return formatTimestamp(state.presale.info.closingDate, false);
+  });
 
   let modalButton = [];
 
@@ -29,7 +51,7 @@ const Presale = () => {
               <Metric
                 className="plus-bought"
                 label={`Total PLUS Bought`}
-                metric={"0"}
+                metric={totalContribution}
                 //isLoading={stakingAPY ? false : true}
               />
               <Metric
@@ -41,7 +63,7 @@ const Presale = () => {
               <Metric
                 className="presale-end"
                 label={`Presale End`}
-                metric={"January 26 2022"}
+                metric={closingDate}
                 //isLoading={currentIndex ? false : true}
               />
             </MetricCollection>
@@ -62,15 +84,15 @@ const Presale = () => {
                 <Box className="presale-data">
                   <div className="data-row">
                     <Typography>PLUS balance</Typography>
-                    <Typography className="price-data">0 PLUS</Typography>
+                    <Typography className="price-data">{plusBalance} PLUS</Typography>
                   </div>
                   <div className="data-row">
                     <Typography>Contribution</Typography>
-                    <Typography className="price-data">0 BNB</Typography>
+                    <Typography className="price-data">{contribution} BNB</Typography>
                   </div>
                   <div className="data-row">
                     <Typography>Max Contribution</Typography>
-                    <Typography className="price-data">2 BNB</Typography>
+                    <Typography className="price-data">{contributionLimit} BNB</Typography>
                   </div>
                 </Box>
               </div>

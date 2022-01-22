@@ -13,7 +13,7 @@ interface IPresaleData {
     contributionLimit: string;
     totalContribution: string;
     openingDate: string;
-    closingDate: string;
+    closingDate: number;
   };
 }
 
@@ -52,7 +52,7 @@ export const getPresaleInfo = createAsyncThunk(
         contributionLimit: ethers.utils.formatEther(contributionLimit),
         totalContribution: ethers.utils.formatEther(totalContribution),
         openingDate: await openingDate.toString(),
-        closingDate: await closingDate.toString(),
+        closingDate: await closingDate.toNumber(),
       },
     };
   },
@@ -66,7 +66,7 @@ export interface IPresaleSlice extends IPresaleData {
     contributionLimit: string;
     totalContribution: string;
     openingDate: string;
-    closingDate: string;
+    closingDate: number;
   };
 }
 
@@ -78,7 +78,7 @@ const initialState: IPresaleSlice = {
     contributionLimit: "",
     totalContribution: "",
     openingDate: "",
-    closingDate: "",
+    closingDate: 0,
   },
 };
 
