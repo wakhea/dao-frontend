@@ -52,6 +52,7 @@ import { Project } from "src/components/GiveProject/project.type";
 import ProjectInfo from "./views/Give/ProjectInfo";
 import projectData from "src/views/Give/projects.json";
 import Announcement from "./components/Announcement/Announcement";
+import { getPresaleInfo } from "./slices/PresaleSlice";
 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
@@ -171,6 +172,9 @@ function App() {
         bonds.map(bond => {
           dispatch(calcBondDetails({ bond, value: "", provider: loadProvider, networkID: networkId }));
         });
+      }
+      if (networkId == 97 || networkId === 56) {
+        dispatch(getPresaleInfo({ address, provider: loadProvider, networkID: networkId }));
       }
     },
     [networkId],
