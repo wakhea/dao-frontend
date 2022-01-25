@@ -14,12 +14,17 @@ import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
 import { formatTimestamp } from "src/helpers";
+import { error } from "../../slices/MessagesSlice";
+import { ethers } from "ethers";
+import { useDispatch } from "react-redux";
 
 import "./presale.scss";
+import { buyToken } from "src/slices/PresaleSlice";
 
 const Presale = () => {
+  const dispatch = useDispatch();
   const { provider, address, connect } = useWeb3Context();
-
+  const networkId = useAppSelector(state => state.network.networkId);
   const [quantity, setQuantity] = useState("");
 
   const bnbBalance = useAppSelector(state => {
@@ -52,6 +57,20 @@ const Presale = () => {
     setQuantity(balance.toFixed(4));
   };
 
+  const onBuyToken = async () => {
+    if (isNaN(Number(quantity)) || Number(quantity) === 0) {
+      // eslint-disable-next-line no-alert
+      return dispatch(error(`Please enter a value!`));
+    }
+
+    let weiValue = ethers.utils.parseEther(quantity.toString());
+    if (weiValue.gt(ethers.utils.parseEther(bnbBalance))) {
+      return dispatch(error(`You cannot stake more than your OHM balance.`));
+    }
+
+    await dispatch(buyToken({ address, value: await weiValue.toString(), provider, networkID: networkId }));
+  };
+
   let modalButton = [];
 
   modalButton.push(
@@ -75,19 +94,14 @@ const Presale = () => {
                 className="plus-bought"
                 label={`Total PLUS Bought`}
                 metric={totalContribution}
-                //isLoading={stakingAPY ? false : true}
+                isLoading={totalContribution ? false : true}
               />
-              <Metric
-                className="plus-price"
-                label={`Plus Token Price`}
-                metric={"0.01 BNB"}
-                //isLoading={stakingTVL ? false : true}
-              />
+              <Metric className="plus-price" label={`Plus Token Price`} metric={"0.01 BNB"} />
               <Metric
                 className="presale-end"
                 label={`Presale End`}
                 metric={closingDate}
-                //isLoading={currentIndex ? false : true}
+                isLoading={closingDate ? false : true}
               />
             </MetricCollection>
           </Grid>
@@ -111,7 +125,7 @@ const Presale = () => {
                         value={quantity}
                         onChange={e => setQuantity(e.target.value)}
                         // startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                        labelWidth={55}
+                        labelWidth={86}
                         className="bnb-quantity-input"
                         endAdornment={
                           <InputAdornment position="end">
@@ -124,7 +138,7 @@ const Presale = () => {
                     </FormControl>
                   </Grid>
                   <Grid item xs={4}>
-                    <Button variant="contained" color="primary" className="buy-button" onClick={connect} key={1}>
+                    <Button variant="contained" color="primary" className="buy-button" onClick={onBuyToken} key={1}>
                       Buy Token
                     </Button>
                   </Grid>

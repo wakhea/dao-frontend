@@ -1,10 +1,11 @@
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addresses } from "../constants";
-import { IBaseAddressAsyncThunk } from "./interfaces";
+import { IBaseAddressAsyncThunk, IValueAsyncThunk } from "./interfaces";
 import { PlutusERC20Token__factory } from "src/typechain/factories/PlutusERC20Token__factory";
 import { handleContractError, setAll } from "src/helpers";
 import { PlutusPresale__factory } from "src/typechain";
+import { getBalances } from "./AccountSlice";
 
 interface IPresaleData {
   info: {
@@ -55,6 +56,23 @@ export const getPresaleInfo = createAsyncThunk(
         closingDate: await closingDate.toNumber(),
       },
     };
+  },
+);
+
+export const buyToken = createAsyncThunk(
+  "presale/buyToken",
+  async ({ address, value, provider, networkID }: IValueAsyncThunk, { dispatch }) => {
+    try {
+      const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
+      console.log(presale);
+
+      await presale.buyTokens(address, { value });
+    } catch (e) {
+      console.log(e);
+
+      handleContractError(e);
+    }
+    dispatch(getBalances({ address, networkID, provider }));
   },
 );
 

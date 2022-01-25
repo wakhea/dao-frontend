@@ -284,6 +284,10 @@ export const getGohmBalFromSohm = async ({ provider, networkID, sOHMbalance }: I
 };
 
 export const formatTimestamp = (timestamp: number, includeTime: boolean): string => {
+  if (timestamp === 0) {
+    return "";
+  }
+
   let date = new Date(timestamp * 1000);
   let dateString = date.toLocaleDateString("en-US");
   if (!includeTime) {
