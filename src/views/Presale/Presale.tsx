@@ -1,4 +1,15 @@
-import { Paper, Grid, Typography, Button, Box } from "@material-ui/core";
+import { useState } from "react";
+import {
+  Paper,
+  Grid,
+  Typography,
+  Button,
+  Box,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+} from "@material-ui/core";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
@@ -8,6 +19,12 @@ import "./presale.scss";
 
 const Presale = () => {
   const { provider, address, connect } = useWeb3Context();
+
+  const [quantity, setQuantity] = useState("");
+
+  const bnbBalance = useAppSelector(state => {
+    return state.account.balances.bnb;
+  });
 
   const plusBalance = useAppSelector(state => {
     return state.presale.info.plus;
@@ -28,6 +45,12 @@ const Presale = () => {
   const closingDate = useAppSelector(state => {
     return formatTimestamp(state.presale.info.closingDate, false);
   });
+
+  const setMax = () => {
+    let balance: number = parseFloat(bnbBalance);
+
+    setQuantity(balance.toFixed(4));
+  };
 
   let modalButton = [];
 
@@ -78,9 +101,34 @@ const Presale = () => {
               </div>
             ) : (
               <div className="presale-buy-area">
-                <Button variant="contained" color="primary" className="buy-button" onClick={connect} key={1}>
-                  Buy Token
-                </Button>
+                <Grid container direction="row" justifyContent="center" alignItems="center">
+                  <Grid item xs={5}>
+                    <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
+                      <InputLabel htmlFor="outlined-adornment-amount">BNB Amount</InputLabel>
+                      <OutlinedInput
+                        id="outlined-adornment-amount"
+                        type="number"
+                        value={quantity}
+                        onChange={e => setQuantity(e.target.value)}
+                        // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                        labelWidth={55}
+                        className="bnb-quantity-input"
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <Button variant="text" onClick={setMax}>
+                              Max
+                            </Button>
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <Button variant="contained" color="primary" className="buy-button" onClick={connect} key={1}>
+                      Buy Token
+                    </Button>
+                  </Grid>
+                </Grid>
                 <Box className="presale-data">
                   <div className="data-row">
                     <Typography>PLUS balance</Typography>

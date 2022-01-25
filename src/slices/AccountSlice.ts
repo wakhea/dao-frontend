@@ -32,6 +32,7 @@ import { EnvHelper } from "src/helpers/Environment";
 
 interface IUserBalances {
   balances: {
+    bnb: string;
     gohm: string;
     gOhmAsSohmBal: string;
     ohm: string;
@@ -70,6 +71,7 @@ interface IUserRecipientInfo {
 export const getBalances = createAsyncThunk(
   "account/getBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk): Promise<IUserBalances> => {
+    //let bnbBalance = BigNumber.from("0");
     let gOhmBalance = BigNumber.from("0");
     let gOhmBalAsSohmBal = BigNumber.from("0");
     let ohmBalance = BigNumber.from("0");
@@ -191,6 +193,7 @@ export const getBalances = createAsyncThunk(
 
     return {
       balances: {
+        bnb: ethers.utils.formatEther(await provider.getBalance(address)),
         gohm: ethers.utils.formatEther(gOhmBalance),
         gOhmAsSohmBal: ethers.utils.formatUnits(gOhmBalAsSohmBal, "gwei"),
         ohmV1: ethers.utils.formatUnits(ohmBalance, "gwei"),
@@ -236,7 +239,7 @@ export const getDonationBalances = createAsyncThunk(
           // Store as a formatted string
           donationInfo[allDeposits[0][i]] = ethers.utils.formatUnits(allDeposits[1][i], "gwei");
         }
-      } catch (e: unknown) {
+      } catch (e) {
         console.log(
           "If the following error contains 'user is not donating', then it is an expected error. No need to report it!",
         );
@@ -286,7 +289,7 @@ export const getMockDonationBalances = createAsyncThunk(
             donationInfo[allDeposits[0][i]] = ethers.utils.formatUnits(allDeposits[1][i], "gwei");
           }
         }
-      } catch (e: unknown) {
+      } catch (e) {
         console.log(
           "If the following error contains 'user is not donating', then it is an expected error. No need to report it!",
         );
@@ -518,6 +521,7 @@ export interface IAccountSlice extends IUserAccountDetails, IUserBalances {
   mockRedeeming: { sohmRedeemable: string; recipientInfo: IUserRecipientInfo };
   bonds: { [key: string]: IUserBondDetails };
   balances: {
+    bnb: string;
     gohm: string;
     gOhmAsSohmBal: string;
     ohmV1: string;
@@ -557,6 +561,7 @@ const initialState: IAccountSlice = {
   loading: false,
   bonds: {},
   balances: {
+    bnb: "",
     gohm: "",
     gOhmAsSohmBal: "",
     ohmV1: "",
