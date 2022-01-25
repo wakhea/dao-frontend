@@ -10,6 +10,7 @@ import {
   OutlinedInput,
   InputAdornment,
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
@@ -26,6 +27,8 @@ const Presale = () => {
   const { provider, address, connect } = useWeb3Context();
   const networkId = useAppSelector(state => state.network.networkId);
   const [quantity, setQuantity] = useState("");
+
+  const isAppLoading = useAppSelector(state => state.app.loading);
 
   const bnbBalance = useAppSelector(state => {
     return state.account.balances.bnb;
@@ -146,15 +149,21 @@ const Presale = () => {
                 <Box className="presale-data">
                   <div className="data-row">
                     <Typography>PLUS balance</Typography>
-                    <Typography className="price-data">{plusBalance} PLUS</Typography>
+                    <Typography className="price-data">
+                      {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusBalance} PLUS</>}
+                    </Typography>
                   </div>
                   <div className="data-row">
                     <Typography>Contribution</Typography>
-                    <Typography className="price-data">{contribution} BNB</Typography>
+                    <Typography className="price-data">
+                      {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BNB</>}
+                    </Typography>
                   </div>
                   <div className="data-row">
                     <Typography>Max Contribution</Typography>
-                    <Typography className="price-data">{contributionLimit} BNB</Typography>
+                    <Typography className="price-data">
+                      {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BNB</>}
+                    </Typography>
                   </div>
                 </Box>
               </div>
