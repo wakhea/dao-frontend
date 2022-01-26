@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 
 import "./presale.scss";
 import { buyToken } from "src/slices/PresaleSlice";
+import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 
 const Presale = () => {
   const dispatch = useDispatch();
@@ -52,6 +53,10 @@ const Presale = () => {
 
   const closingDate = useAppSelector(state => {
     return formatTimestamp(state.presale.info.closingDate, false);
+  });
+
+  const pendingTransactions = useAppSelector(state => {
+    return state.pendingTransactions;
   });
 
   const setMax = () => {
@@ -141,8 +146,15 @@ const Presale = () => {
                     </FormControl>
                   </Grid>
                   <Grid item xs={4}>
-                    <Button variant="contained" color="primary" className="buy-button" onClick={onBuyToken} key={1}>
-                      Buy Token
+                    <Button
+                      variant="contained"
+                      disabled={isPendingTxn(pendingTransactions, "buyToken")}
+                      color="primary"
+                      className="buy-button"
+                      onClick={onBuyToken}
+                      key={1}
+                    >
+                      {txnButtonText(pendingTransactions, "buyToken", "Buy Token")}
                     </Button>
                   </Grid>
                 </Grid>

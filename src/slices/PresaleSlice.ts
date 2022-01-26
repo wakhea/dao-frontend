@@ -1,4 +1,4 @@
-import { BigNumber, BigNumberish, ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addresses } from "../constants";
 import { IBaseAddressAsyncThunk, IValueAsyncThunk } from "./interfaces";
@@ -6,7 +6,7 @@ import { PlutusERC20Token__factory } from "src/typechain/factories/PlutusERC20To
 import { handleContractError, setAll } from "src/helpers";
 import { PlutusPresale__factory } from "src/typechain";
 import { getBalances } from "./AccountSlice";
-
+import { clearPendingTxn, fetchPendingTxns } from "./PendingTxnsSlice";
 interface IPresaleData {
   info: {
     plus: string;
@@ -62,17 +62,24 @@ export const getPresaleInfo = createAsyncThunk(
 export const buyToken = createAsyncThunk(
   "presale/buyToken",
   async ({ address, value, provider, networkID }: IValueAsyncThunk, { dispatch }) => {
+    let buyTokenTx;
     try {
       const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
       console.log(presale);
 
-      await presale.buyTokens(address, { value });
-    } catch (e) {
-      console.log(e);
+      buyTokenTx = await presale.buyTokens(address, { value });
+      dispatch(fetchPendingTxns({ txnHash: buyTokenTx.hash, text: "Buying token", type: "buyToken" }));
 
+      await buyTokenTx.wait();
+    } catch (e) {
       handleContractError(e);
+      return;
+    } finally {
+      if (buyTokenTx) {
+        dispatch(clearPendingTxn(buyTokenTx.hash));
+      }
     }
-    dispatch(getBalances({ address, networkID, provider }));
+    dispatch(getPresaleInfo({ address, networkID, provider }));
   },
 );
 
