@@ -3,6 +3,7 @@ import accountReducer from "./slices/AccountSlice";
 import networkReducer from "./slices/NetworkSlice";
 import bondingReducer from "./slices/BondSlice";
 import appReducer from "./slices/AppSlice";
+import presaleReducer from "./slices/PresaleSlice";
 import pendingTransactionsReducer from "./slices/PendingTxnsSlice";
 import poolDataReducer from "./slices/PoolThunk";
 import messagesReducer from "./slices/MessagesSlice";
@@ -22,6 +23,7 @@ const store = configureStore({
     poolData: poolDataReducer,
     messages: messagesReducer,
     zap: zapReducer,
+    presale: presaleReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
 });

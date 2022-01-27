@@ -1,8 +1,8 @@
 {
-  "short_name": "OlympusDAO",
+  "short_name": "Plutus Protocol",
   "start_url": ".",
   "homepage": "./",
-  "name": "OlympusDAO",
+  "name": "Plutus protocol",
   "launch_path": "/public/index.html",
   "icons": [
     {

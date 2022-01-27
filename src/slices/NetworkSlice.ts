@@ -29,8 +29,8 @@ export const initializeNetwork = createAsyncThunk(
           networkName = "Rinkeby Testnet";
           uri = NodeHelper.getMainnetURI(id);
           break;
-        case 42161:
-          networkName = "Arbitrum";
+        case 97:
+          networkName = "Bsc Tesnet";
           uri = NodeHelper.getMainnetURI(id);
           break;
         case 421611:

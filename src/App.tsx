@@ -31,6 +31,7 @@ import {
   CausesDashboard,
   DepositYield,
   RedeemYield,
+  Presale,
 } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
@@ -38,7 +39,6 @@ import CallToAction from "./components/CallToAction/CallToAction";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
 import Messages from "./components/Messages/Messages";
 import NotFound from "./views/404/NotFound";
-import MigrationModal from "src/components/Migration/MigrationModal";
 import ChangeNetwork from "./views/ChangeNetwork/ChangeNetwork";
 import { dark as darkTheme } from "./themes/dark.js";
 import { light as lightTheme } from "./themes/light.js";
@@ -52,6 +52,7 @@ import { Project } from "src/components/GiveProject/project.type";
 import ProjectInfo from "./views/Give/ProjectInfo";
 import projectData from "src/views/Give/projects.json";
 import Announcement from "./components/Announcement/Announcement";
+import { getPresaleInfo } from "./slices/PresaleSlice";
 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
@@ -171,6 +172,9 @@ function App() {
         bonds.map(bond => {
           dispatch(calcBondDetails({ bond, value: "", provider: loadProvider, networkID: networkId }));
         });
+      }
+      if (networkId == 97 || networkId === 56) {
+        dispatch(getPresaleInfo({ address, provider: loadProvider, networkID: networkId }));
       }
     },
     [networkId],
@@ -319,7 +323,7 @@ function App() {
         <div className={`app ${isSmallerScreen && "tablet"} ${isSmallScreen && "mobile"} ${theme}`}>
           <Messages />
           <TopBar theme={theme} toggleTheme={toggleTheme} handleDrawerToggle={handleDrawerToggle} />
-          <Announcement />
+
           <nav className={classes.drawer}>
             {isSmallerScreen ? (
               <NavDrawer mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
@@ -335,16 +339,15 @@ function App() {
               oldAssetsEnoughToMigrate && <CallToAction setMigrationModalOpen={setMigrationModalOpen} />}
 
             <Switch>
-              <Route exact path="/dashboard">
-                <TreasuryDashboard />
-              </Route>
-
               <Route exact path="/">
-                <Redirect to="/stake" />
+                <Redirect to="/presale" />
               </Route>
 
-              <Route path="/stake">
-                {/* if newAssets or 0 assets */}
+              <Route path="/presale">
+                <Presale />
+              </Route>
+              {/* <Route path="/stake">
+                { if newAssets or 0 assets
                 {newAssetsDetected || (!newAssetsDetected && !oldAssetsDetected) || !oldAssetsEnoughToMigrate ? (
                   <Stake />
                 ) : (
@@ -354,59 +357,13 @@ function App() {
                     setMigrationModalOpen={setMigrationModalOpen}
                   />
                 )}
-              </Route>
+              </Route> */}
 
-              <Route path="/v1-stake">
-                <V1Stake
-                  hasActiveV1Bonds={hasActiveV1Bonds}
-                  oldAssetsDetected={oldAssetsDetected}
-                  setMigrationModalOpen={setMigrationModalOpen}
-                />
-              </Route>
-
-              <Route exact path="/give">
-                <CausesDashboard />
-              </Route>
-              <Redirect from="/olympusgive" to="/give" />
-              <Redirect from="/tyche" to="/give" />
-              <Redirect from="/olygive" to="/give" />
-              <Redirect from="/olympusdaogive" to="/give" />
-              <Redirect from="/ohmgive" to="/give" />
-
-              <Route path="/give/projects">
-                {projects.map(project => {
-                  return (
-                    <Route exact key={project.slug} path={`/give/projects/${project.slug}`}>
-                      <ProjectInfo project={project} />
-                    </Route>
-                  );
-                })}
-              </Route>
-
-              <Route exact path="/give/donations">
-                <DepositYield />
-              </Route>
-
-              <Route exact path="/give/redeem">
-                <RedeemYield />
-              </Route>
-
-              <Route path="/wrap">
-                <Route exact path={`/wrap`}>
-                  <Wrap />
-                </Route>
-              </Route>
-
-              <Route path="/zap">
-                <Route exact path={`/zap`}>
-                  <Zap />
-                </Route>
-              </Route>
-
+              {/*
+ 
               {/* <Route path="/33-together">
               <PoolTogether />
-            </Route> */}
-
+            </Route> }
               <Route path="/bonds">
                 {(bonds as IAllBondData[]).map(bond => {
                   return (
@@ -416,17 +373,13 @@ function App() {
                   );
                 })}
                 <ChooseBond />
-              </Route>
-
+              </Route>*/}
               <Route path="/network">
                 <ChangeNetwork />
               </Route>
-
               <Route component={NotFound} />
             </Switch>
           </div>
-
-          <MigrationModal open={migrationModalOpen} handleClose={migModalClose} />
         </div>
       </ThemeProvider>
     </QueryClientProvider>

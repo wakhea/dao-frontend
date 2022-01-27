@@ -218,11 +218,6 @@ export class EnvHelper {
    * @returns
    */
   static isGiveEnabled(url: string): boolean {
-    const giveEnabled = EnvHelper.env.REACT_APP_GIVE_ENABLED;
-    const giveEnabledParameter = url && url.includes("give_enabled");
-
-    if (giveEnabled || giveEnabledParameter) return true;
-
     return false;
   }
 

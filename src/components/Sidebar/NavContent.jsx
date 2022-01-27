@@ -6,14 +6,10 @@ import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
 import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
-import { ReactComponent as PoolTogetherIcon } from "../../assets/icons/33-together.svg";
 import { ReactComponent as GiveIcon } from "../../assets/icons/give.svg";
-import { ReactComponent as ZapIcon } from "../../assets/icons/zap.svg";
 import { ReactComponent as NewIcon } from "../../assets/icons/new-icon.svg";
-import { ReactComponent as WrapIcon } from "../../assets/icons/wrap.svg";
-import { ReactComponent as BridgeIcon } from "../../assets/icons/bridge.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
-import { ReactComponent as ProIcon } from "../../assets/Olympus Logo.svg";
+import { ReactComponent as PresaleIcon } from "../../assets/icons/clock.svg";
 import { Trans } from "@lingui/macro";
 import { trim, shorten } from "../../helpers";
 import { useAddress } from "src/hooks/web3Context";
@@ -84,7 +80,7 @@ function NavContent() {
       <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
         <div className="dapp-menu-top">
           <Box className="branding-header">
-            <Link href="https://olympusdao.finance" target="_blank">
+            <Link href="/" target="_blank">
               <SvgIcon
                 color="primary"
                 component={OlympusIcon}
@@ -95,7 +91,7 @@ function NavContent() {
 
             {address && (
               <div className="wallet-link">
-                <Link href={`https://etherscan.io/address/${address}`} target="_blank">
+                <Link href={`https://bscscan.com/address/${address}`} target="_blank">
                   {ensName || shorten(address)}
                 </Link>
               </div>
@@ -104,7 +100,7 @@ function NavContent() {
 
           <div className="dapp-menu-links">
             <div className="dapp-nav" id="navbarNav">
-              {networkId === 1 || networkId === 4 ? (
+              {networkId === -1 ? (
                 <>
                   <Link
                     component={NavLink}
@@ -201,22 +197,6 @@ function NavContent() {
                     </Typography>
                   </Link>
 
-                  <Link
-                    component={NavLink}
-                    id="zap-nav"
-                    to="/zap"
-                    isActive={(match, location) => {
-                      return checkPage(match, location, "zap");
-                    }}
-                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
-                  >
-                    <Box display="flex" alignItems="center">
-                      <SvgIcon component={ZapIcon} color="primary" />
-                      <Typography variant="h6">OlyZaps</Typography>
-                      {/* <SvgIcon component={NewIcon} viewBox="21 -2 20 20" style={{ width: "80px" }} /> */}
-                    </Box>
-                  </Link>
-
                   {EnvHelper.isGiveEnabled(location.search) ? (
                     <>
                       <Link
@@ -239,50 +219,9 @@ function NavContent() {
                     <></>
                   )}
 
-                  <Link
-                    component={NavLink}
-                    id="wrap-nav"
-                    to="/wrap"
-                    isActive={(match, location) => {
-                      return checkPage(match, location, "wrap");
-                    }}
-                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
-                  >
-                    <Box display="flex" alignItems="center">
-                      <SvgIcon component={WrapIcon} color="primary" viewBox="1 0 20 22" />
-                      {/* <WrapIcon /> */}
-                      <Typography variant="h6">Wrap</Typography>
-                      {/* <SvgIcon component={WrapIcon} viewBox="21 -2 20 20" style={{ width: "80px" }} /> */}
-                    </Box>
-                  </Link>
-
-                  <Link
-                    href={"https://synapseprotocol.com/?inputCurrency=gOHM&outputCurrency=gOHM&outputChain=43114"}
-                    target="_blank"
-                    className="external-site-link"
-                  >
-                    <Typography variant="h6">
-                      <BridgeIcon />
-                      <Trans>Bridge</Trans>
-                      <SvgIcon
-                        style={{ marginLeft: "5px" }}
-                        component={ArrowUpIcon}
-                        className="external-site-link-icon"
-                      />
-                    </Typography>
-                  </Link>
-
                   <Box className="menu-divider">
                     <Divider />
                   </Box>
-
-                  <Link href="https://pro.olympusdao.finance/" target="_blank" className="external-site-link">
-                    <Box display="flex" alignItems="center">
-                      <SvgIcon component={ProIcon} color="primary" color="primary" viewBox="0 0 50 50" />
-                      <Typography variant="h6">Olympus Pro</Typography>
-                      <SvgIcon component={ArrowUpIcon} className="external-site-link-icon" />
-                    </Box>
-                  </Link>
 
                   {/* <Link
                     component={NavLink}
@@ -303,35 +242,25 @@ function NavContent() {
                   </Box>
                 </>
               ) : (
-                <>
-                  <Link
-                    component={NavLink}
-                    id="wrap-nav"
-                    to="/wrap"
-                    isActive={(match, location) => {
-                      return checkPage(match, location, "wrap");
-                    }}
-                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
-                  >
-                    <Box display="flex" alignItems="center">
-                      <SvgIcon component={WrapIcon} color="primary" viewBox="1 0 20 22" />
-                      {/* <WrapIcon /> */}
-                      <Typography variant="h6">Wrap</Typography>
-                      {/* <SvgIcon component={WrapIcon} viewBox="21 -2 20 20" style={{ width: "80px" }} /> */}
-                    </Box>
-                  </Link>
-
-                  <Link
-                    href={"https://synapseprotocol.com/?inputCurrency=gOHM&outputCurrency=gOHM&outputChain=43114"}
-                    target="_blank"
-                  >
-                    <Typography variant="h6">
-                      <BridgeIcon />
-                      <Trans>Bridge</Trans>
-                      <SvgIcon style={{ marginLeft: "5px" }} component={ArrowUpIcon} />
-                    </Typography>
-                  </Link>
-                </>
+                <></>
+              )}
+              {networkId == 97 ? (
+                <Link
+                  component={NavLink}
+                  id="presale-nav"
+                  to="/presale"
+                  isActive={(match, location) => {
+                    return checkPage(match, location, "presale");
+                  }}
+                  className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                >
+                  <Typography variant="h6">
+                    <SvgIcon color="primary" component={PresaleIcon} />
+                    <Trans>Presale</Trans>
+                  </Typography>
+                </Link>
+              ) : (
+                <></>
               )}
             </div>
           </div>
