@@ -59,10 +59,18 @@ const Presale = () => {
     return state.pendingTransactions;
   });
 
+  const busdAllowance = useAppSelector(state => {
+    return state.account.presale || 0;
+  });
+
   const setMax = () => {
     let balance: number = parseFloat(bnbBalance);
 
     setQuantity(balance.toFixed(4));
+  };
+
+  const onSeekApproval = async (token: string) => {
+    //await dispatch(changeApproval({ address, token, provider, networkID: networkId, version2: true }));
   };
 
   const onBuyToken = async () => {
@@ -100,11 +108,11 @@ const Presale = () => {
             <MetricCollection>
               <Metric
                 className="plus-bought"
-                label={`Total PLUS Bought`}
+                label={`Total BUSD Raised`}
                 metric={totalContribution}
                 isLoading={totalContribution ? false : true}
               />
-              <Metric className="plus-price" label={`Plus Token Price`} metric={"0.01 BNB"} />
+              <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
               <Metric
                 className="presale-end"
                 label={`Presale End`}
@@ -123,41 +131,62 @@ const Presale = () => {
               </div>
             ) : (
               <div className="presale-buy-area">
-                <Grid container direction="row" justifyContent="center" alignItems="center">
-                  <Grid item xs={5}>
-                    <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
-                      <InputLabel htmlFor="outlined-adornment-amount">BNB Amount</InputLabel>
-                      <OutlinedInput
-                        id="outlined-adornment-amount"
-                        type="number"
-                        value={quantity}
-                        onChange={e => setQuantity(e.target.value)}
-                        // startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                        labelWidth={86}
-                        className="bnb-quantity-input"
-                        endAdornment={
-                          <InputAdornment position="end">
-                            <Button variant="text" onClick={setMax}>
-                              Max
-                            </Button>
-                          </InputAdornment>
-                        }
-                      />
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={4}>
+                {busdAllowance != 0 ? (
+                  <>
+                    <Typography variant="body1" className="stake-note" color="textSecondary">
+                      First time buying <b>PLUS</b>?
+                      <br />
+                      Please approve Plutus Protocol to use your<b>BUSD</b> for the presale.
+                    </Typography>
                     <Button
+                      className="stake-button"
                       variant="contained"
-                      disabled={isPendingTxn(pendingTransactions, "buyToken")}
                       color="primary"
-                      className="buy-button"
-                      onClick={onBuyToken}
-                      key={1}
+                      disabled={isPendingTxn(pendingTransactions, "approve_staking")}
+                      onClick={() => {
+                        onSeekApproval("ohm");
+                      }}
                     >
-                      {txnButtonText(pendingTransactions, "buyToken", "Buy Token")}
+                      {txnButtonText(pendingTransactions, "approve_staking", `Approve`)}
                     </Button>
+                  </>
+                ) : (
+                  <Grid container direction="row" justifyContent="center" alignItems="center">
+                    <Grid item xs={5}>
+                      <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
+                        <InputLabel htmlFor="outlined-adornment-amount">BUSD Amount</InputLabel>
+                        <OutlinedInput
+                          id="outlined-adornment-amount"
+                          type="number"
+                          value={quantity}
+                          onChange={e => setQuantity(e.target.value)}
+                          // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                          labelWidth={92}
+                          className="bnb-quantity-input"
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <Button variant="text" onClick={setMax}>
+                                Max
+                              </Button>
+                            </InputAdornment>
+                          }
+                        />
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <Button
+                        variant="contained"
+                        disabled={isPendingTxn(pendingTransactions, "buyToken")}
+                        color="primary"
+                        className="buy-button"
+                        onClick={onBuyToken}
+                        key={1}
+                      >
+                        {txnButtonText(pendingTransactions, "buyToken", "Buy Token")}
+                      </Button>
+                    </Grid>
                   </Grid>
-                </Grid>
+                )}
                 <Box className="presale-data">
                   <div className="data-row">
                     <Typography>PLUS balance</Typography>
@@ -168,13 +197,13 @@ const Presale = () => {
                   <div className="data-row">
                     <Typography>Contribution</Typography>
                     <Typography className="price-data">
-                      {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BNB</>}
+                      {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BUSD</>}
                     </Typography>
                   </div>
                   <div className="data-row">
                     <Typography>Max Contribution</Typography>
                     <Typography className="price-data">
-                      {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BNB</>}
+                      {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
                     </Typography>
                   </div>
                 </Box>
