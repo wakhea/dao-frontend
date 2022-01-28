@@ -71,7 +71,6 @@ interface IUserRecipientInfo {
 export const getBalances = createAsyncThunk(
   "account/getBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk): Promise<IUserBalances> => {
-    //let bnbBalance = BigNumber.from("0");
     let gOhmBalance = BigNumber.from("0");
     let gOhmBalAsSohmBal = BigNumber.from("0");
     let ohmBalance = BigNumber.from("0");
@@ -402,6 +401,19 @@ export const loadAccountDetails = createAsyncThunk(
     let poolAllowance = BigNumber.from("0");
     let ohmToGohmAllowance = BigNumber.from("0");
     let wsOhmMigrateAllowance = BigNumber.from("0");
+    let busdAllowance = BigNumber.from("0");
+
+    try {
+      const busdContract = new ethers.Contract(
+        addresses[networkID].BUSD_ADDRESS as string,
+        ierc20Abi,
+        provider,
+      ) as IERC20;
+
+      busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_ADDRESS);
+    } catch (e) {
+      handleContractError(e);
+    }
 
     try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
@@ -441,6 +453,7 @@ export const loadAccountDetails = createAsyncThunk(
     }
 
     return {
+      presale: +busdAllowance,
       staking: {
         ohmStakeV1: +stakeAllowance,
         ohmUnstakeV1: +unstakeAllowance,
@@ -539,6 +552,7 @@ export interface IAccountSlice extends IUserAccountDetails, IUserBalances {
     mockSohm: string;
   };
   loading: boolean;
+  presale: number;
   staking: {
     ohmStakeV1: number;
     ohmUnstakeV1: number;
@@ -598,6 +612,7 @@ const initialState: IAccountSlice = {
       indexAtLastChange: "",
     },
   },
+  presale: 0,
   staking: { ohmStakeV1: 0, ohmUnstakeV1: 0, ohmStake: 0, ohmUnstake: 0 },
   wrapping: { sohmWrap: 0, wsohmUnwrap: 0, gOhmUnwrap: 0, wsOhmMigrate: 0 },
   pooling: { sohmPool: 0 },
