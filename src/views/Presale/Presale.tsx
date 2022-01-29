@@ -31,8 +31,8 @@ const Presale = () => {
 
   const isAppLoading = useAppSelector(state => state.app.loading);
 
-  const bnbBalance = useAppSelector(state => {
-    return state.account.balances.bnb;
+  const busdBalance = useAppSelector(state => {
+    return state.account.balances.busd;
   });
 
   const plusBalance = useAppSelector(state => {
@@ -66,9 +66,9 @@ const Presale = () => {
   const isAllowanceDataLoading = busdAllowance == null;
 
   const setMax = () => {
-    let balance: number = parseFloat(bnbBalance);
+    let balance: number = parseFloat(busdBalance);
 
-    setQuantity(balance.toFixed(4));
+    setQuantity(balance.toFixed(2));
   };
 
   const onSeekApproval = async () => {
@@ -82,8 +82,8 @@ const Presale = () => {
     }
 
     let weiValue = ethers.utils.parseEther(quantity.toString());
-    if (weiValue.gt(ethers.utils.parseEther(bnbBalance))) {
-      return dispatch(error(`You cannot stake more than your OHM balance.`));
+    if (weiValue.gt(ethers.utils.parseEther(busdBalance))) {
+      return dispatch(error(`You cannot stake more than your BUSD balance.`));
     }
 
     await dispatch(buyToken({ address, value: await weiValue.toString(), provider, networkID: networkId }));

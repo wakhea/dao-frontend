@@ -76,11 +76,12 @@ export const buyToken = createAsyncThunk(
     try {
       const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
 
-      buyTokenTx = await presale.buyTokens(address, { value });
+      buyTokenTx = await presale.buyTokens(value, address);
       dispatch(fetchPendingTxns({ txnHash: buyTokenTx.hash, text: "Buying token", type: "buyToken" }));
 
       await buyTokenTx.wait();
     } catch (e) {
+      console.log(e);
       handleContractError(e);
       return;
     } finally {
