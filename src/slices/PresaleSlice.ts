@@ -1,12 +1,22 @@
 import { BigNumber, ethers } from "ethers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addresses } from "../constants";
-import { IBaseAddressAsyncThunk, IValueAsyncThunk } from "./interfaces";
+import {
+  IBaseAddressAsyncThunk,
+  IChangeApprovalAsyncThunk,
+  IChangeApprovalWithVersionAsyncThunk,
+  IJsonRPCError,
+  IValueAsyncThunk,
+} from "./interfaces";
+import { abi as ierc20Abi } from "../abi/IERC20.json";
 import { PlutusERC20Token__factory } from "src/typechain/factories/PlutusERC20Token__factory";
 import { handleContractError, setAll } from "src/helpers";
 import { PlutusPresale__factory } from "src/typechain";
-import { getBalances } from "./AccountSlice";
 import { clearPendingTxn, fetchPendingTxns } from "./PendingTxnsSlice";
+import { error } from "./MessagesSlice";
+import { IERC20 } from "src/typechain";
+import { fetchAccountSuccess } from "./AccountSlice";
+
 interface IPresaleData {
   info: {
     plus: string;
@@ -80,6 +90,63 @@ export const buyToken = createAsyncThunk(
       }
     }
     dispatch(getPresaleInfo({ address, networkID, provider }));
+  },
+);
+
+export const changeApproval = createAsyncThunk(
+  "presale/changeApproval",
+  async ({ provider, address, networkID }: IChangeApprovalAsyncThunk, { dispatch }) => {
+    if (!provider) {
+      dispatch(error("Please connect your wallet!"));
+      return;
+    }
+
+    let approveTx;
+    const busdContract = new ethers.Contract(
+      addresses[networkID].BUSD_ADDRESS as string,
+      ierc20Abi,
+      provider,
+    ) as IERC20;
+
+    let busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_CONTRACT);
+
+    if (busdAllowance.gt(BigNumber.from("0"))) {
+      return dispatch(
+        fetchAccountSuccess({
+          presale: +busdAllowance,
+        }),
+      );
+    }
+
+    try {
+      approveTx = await busdContract.approve(
+        addresses[networkID].PRESALE_ADDRESS,
+        ethers.utils.parseUnits("1000000000", "ether").toString(),
+      );
+
+      const text = "Approve Presale";
+      const pendingTxnType = "approve_presale";
+      if (approveTx) {
+        dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
+
+        await approveTx.wait();
+      }
+    } catch (e) {
+      dispatch(error((e as IJsonRPCError).message));
+      return;
+    } finally {
+      if (approveTx) {
+        dispatch(clearPendingTxn(approveTx.hash));
+      }
+    }
+
+    busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_CONTRACT);
+
+    return dispatch(
+      fetchAccountSuccess({
+        presale: +busdAllowance,
+      }),
+    );
   },
 );
 
