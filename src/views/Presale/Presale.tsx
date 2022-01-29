@@ -20,7 +20,7 @@ import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
 
 import "./presale.scss";
-import { buyToken } from "src/slices/PresaleSlice";
+import { buyToken, changeApproval } from "src/slices/PresaleSlice";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 
 const Presale = () => {
@@ -70,7 +70,7 @@ const Presale = () => {
   };
 
   const onSeekApproval = async (token: string) => {
-    //await dispatch(changeApproval({ address, token, provider, networkID: networkId, version2: true }));
+    await dispatch(changeApproval({ address, token, provider, networkID: networkId }));
   };
 
   const onBuyToken = async () => {
@@ -133,22 +133,28 @@ const Presale = () => {
               <div className="presale-buy-area">
                 {busdAllowance != 0 ? (
                   <>
-                    <Typography variant="body1" className="stake-note" color="textSecondary">
-                      First time buying <b>PLUS</b>?
-                      <br />
-                      Please approve Plutus Protocol to use your<b>BUSD</b> for the presale.
-                    </Typography>
-                    <Button
-                      className="stake-button"
-                      variant="contained"
-                      color="primary"
-                      disabled={isPendingTxn(pendingTransactions, "approve_staking")}
-                      onClick={() => {
-                        onSeekApproval("ohm");
-                      }}
-                    >
-                      {txnButtonText(pendingTransactions, "approve_staking", `Approve`)}
-                    </Button>
+                    <Grid container direction="row" justifyContent="space-around" alignItems="center">
+                      <Grid item xs={7}>
+                        <Typography variant="body1" className="stake-note" color="textSecondary">
+                          First time buying <b>PLUS</b>?
+                          <br />
+                          Please approve Plutus Protocol to use your <b>BUSD</b> for the presale.
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={4}>
+                        <Button
+                          className="stake-button"
+                          variant="contained"
+                          color="primary"
+                          disabled={isPendingTxn(pendingTransactions, "approve_presale")}
+                          onClick={() => {
+                            onSeekApproval("ohm");
+                          }}
+                        >
+                          {txnButtonText(pendingTransactions, "approve_presale", `Approve`)}
+                        </Button>
+                      </Grid>
+                    </Grid>
                   </>
                 ) : (
                   <Grid container direction="row" justifyContent="center" alignItems="center">
