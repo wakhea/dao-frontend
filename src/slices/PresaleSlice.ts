@@ -81,7 +81,6 @@ export const buyToken = createAsyncThunk(
 
       await buyTokenTx.wait();
     } catch (e) {
-      console.log(e);
       handleContractError(e);
       return;
     } finally {
@@ -120,7 +119,7 @@ export const changeApproval = createAsyncThunk(
     try {
       approveTx = await busdContract.approve(
         addresses[networkID].PRESALE_ADDRESS,
-        ethers.utils.parseUnits("1", "ether").toString(),
+        ethers.utils.parseUnits("1000000000", "ether").toString(),
       );
 
       const text = "Approve Presale";
@@ -131,7 +130,7 @@ export const changeApproval = createAsyncThunk(
         await approveTx.wait();
       }
     } catch (e) {
-      dispatch(error((e as IJsonRPCError).message));
+      handleContractError(e);
       return;
     } finally {
       if (approveTx) {

@@ -5,7 +5,7 @@ import externalUrls from "./externalUrls";
 import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
-import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
+import { ReactComponent as PlutusIcon } from "../../assets/icons/plutus-nav-header.svg";
 import { ReactComponent as GiveIcon } from "../../assets/icons/give.svg";
 import { ReactComponent as NewIcon } from "../../assets/icons/new-icon.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
@@ -83,9 +83,9 @@ function NavContent() {
             <Link href="/" target="_blank">
               <SvgIcon
                 color="primary"
-                component={OlympusIcon}
-                viewBox="0 0 151 100"
-                style={{ minWdth: "151px", minHeight: "98px", width: "151px" }}
+                component={PlutusIcon}
+                viewBox="0 0 215.76 305.52"
+                style={{ minWdth: "120px", minHeight: "170px", width: "120px" }}
               />
             </Link>
 
