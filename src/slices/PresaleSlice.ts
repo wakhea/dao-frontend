@@ -75,7 +75,6 @@ export const buyToken = createAsyncThunk(
     let buyTokenTx;
     try {
       const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
-      console.log(presale);
 
       buyTokenTx = await presale.buyTokens(address, { value });
       dispatch(fetchPendingTxns({ txnHash: buyTokenTx.hash, text: "Buying token", type: "buyToken" }));
@@ -101,15 +100,14 @@ export const changeApproval = createAsyncThunk(
       return;
     }
 
-    let approveTx;
     const busdContract = new ethers.Contract(
       addresses[networkID].BUSD_ADDRESS as string,
       ierc20Abi,
-      provider,
+      provider.getSigner(),
     ) as IERC20;
 
-    let busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_CONTRACT);
-
+    let busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_ADDRESS);
+    let approveTx;
     if (busdAllowance.gt(BigNumber.from("0"))) {
       return dispatch(
         fetchAccountSuccess({
@@ -121,7 +119,7 @@ export const changeApproval = createAsyncThunk(
     try {
       approveTx = await busdContract.approve(
         addresses[networkID].PRESALE_ADDRESS,
-        ethers.utils.parseUnits("1000000000", "ether").toString(),
+        ethers.utils.parseUnits("1", "ether").toString(),
       );
 
       const text = "Approve Presale";

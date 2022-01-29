@@ -63,14 +63,16 @@ const Presale = () => {
     return state.account.presale || 0;
   });
 
+  const isAllowanceDataLoading = busdAllowance == null;
+
   const setMax = () => {
     let balance: number = parseFloat(bnbBalance);
 
     setQuantity(balance.toFixed(4));
   };
 
-  const onSeekApproval = async (token: string) => {
-    await dispatch(changeApproval({ address, token, provider, networkID: networkId }));
+  const onSeekApproval = async () => {
+    await dispatch(changeApproval({ address, provider, networkID: networkId, token: "busd" }));
   };
 
   const onBuyToken = async () => {
@@ -131,66 +133,70 @@ const Presale = () => {
               </div>
             ) : (
               <div className="presale-buy-area">
-                {busdAllowance != 0 ? (
-                  <>
-                    <Grid container direction="row" justifyContent="space-around" alignItems="center">
-                      <Grid item xs={7}>
-                        <Typography variant="body1" className="stake-note" color="textSecondary">
-                          First time buying <b>PLUS</b>?
-                          <br />
-                          Please approve Plutus Protocol to use your <b>BUSD</b> for the presale.
-                        </Typography>
+                {address && !isAllowanceDataLoading ? (
+                  busdAllowance == 0 ? (
+                    <>
+                      <Grid container direction="row" justifyContent="space-around" alignItems="center">
+                        <Grid item xs={7}>
+                          <Typography variant="body1" className="stake-note" color="textSecondary">
+                            First time buying <b>PLUS</b>?
+                            <br />
+                            Please approve Plutus Protocol to use your <b>BUSD</b> for the presale.
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                          <Button
+                            className="stake-button"
+                            variant="contained"
+                            color="primary"
+                            disabled={isPendingTxn(pendingTransactions, "approve_presale")}
+                            onClick={onSeekApproval}
+                          >
+                            {txnButtonText(pendingTransactions, "approve_presale", `Approve`)}
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </>
+                  ) : (
+                    <Grid container direction="row" justifyContent="center" alignItems="center">
+                      <Grid item xs={5}>
+                        <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
+                          <InputLabel htmlFor="outlined-adornment-amount">BUSD Amount</InputLabel>
+                          <OutlinedInput
+                            id="outlined-adornment-amount"
+                            type="number"
+                            value={quantity}
+                            onChange={e => setQuantity(e.target.value)}
+                            // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                            labelWidth={92}
+                            className="bnb-quantity-input"
+                            endAdornment={
+                              <InputAdornment position="end">
+                                <Button variant="text" onClick={setMax}>
+                                  Max
+                                </Button>
+                              </InputAdornment>
+                            }
+                          />
+                        </FormControl>
                       </Grid>
                       <Grid item xs={4}>
                         <Button
-                          className="stake-button"
                           variant="contained"
+                          disabled={isPendingTxn(pendingTransactions, "buyToken")}
                           color="primary"
-                          disabled={isPendingTxn(pendingTransactions, "approve_presale")}
-                          onClick={() => {
-                            onSeekApproval("ohm");
-                          }}
+                          className="buy-button"
+                          onClick={onBuyToken}
+                          key={1}
                         >
-                          {txnButtonText(pendingTransactions, "approve_presale", `Approve`)}
+                          {txnButtonText(pendingTransactions, "buyToken", "Buy Token")}
                         </Button>
                       </Grid>
                     </Grid>
-                  </>
+                  )
                 ) : (
-                  <Grid container direction="row" justifyContent="center" alignItems="center">
-                    <Grid item xs={5}>
-                      <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
-                        <InputLabel htmlFor="outlined-adornment-amount">BUSD Amount</InputLabel>
-                        <OutlinedInput
-                          id="outlined-adornment-amount"
-                          type="number"
-                          value={quantity}
-                          onChange={e => setQuantity(e.target.value)}
-                          // startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                          labelWidth={92}
-                          className="bnb-quantity-input"
-                          endAdornment={
-                            <InputAdornment position="end">
-                              <Button variant="text" onClick={setMax}>
-                                Max
-                              </Button>
-                            </InputAdornment>
-                          }
-                        />
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={4}>
-                      <Button
-                        variant="contained"
-                        disabled={isPendingTxn(pendingTransactions, "buyToken")}
-                        color="primary"
-                        className="buy-button"
-                        onClick={onBuyToken}
-                        key={1}
-                      >
-                        {txnButtonText(pendingTransactions, "buyToken", "Buy Token")}
-                      </Button>
-                    </Grid>
+                  <Grid item alignItems="center" xs={4} id="allowance-skeleton">
+                    <Skeleton width="250px" height="40px" />
                   </Grid>
                 )}
                 <Box className="presale-data">
