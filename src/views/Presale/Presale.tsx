@@ -184,14 +184,14 @@ const Presale = () => {
                   busdAllowance == 0 ? (
                     <>
                       <Grid container direction="row" justifyContent="space-around" alignItems="center">
-                        <Grid item xs={7}>
+                        <Grid item xl={7}>
                           <Typography variant="body1" className="stake-note" color="textSecondary">
                             First time buying <b>PLUS</b>?
                             <br />
                             Please approve Plutus Protocol to use your <b>BUSD</b> for the presale.
                           </Typography>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xl={4}>
                           <Button
                             className="stake-button"
                             variant="contained"
@@ -206,7 +206,7 @@ const Presale = () => {
                     </>
                   ) : (
                     <Grid container direction="row" justifyContent="center" alignItems="center">
-                      <Grid item xs={5}>
+                      <Grid item sm={5}>
                         <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
                           <InputLabel htmlFor="outlined-adornment-amount">BUSD Amount</InputLabel>
                           <OutlinedInput
@@ -227,7 +227,7 @@ const Presale = () => {
                           />
                         </FormControl>
                       </Grid>
-                      <Grid item xs={4}>
+                      <Grid item sm={4}>
                         <Button
                           variant="contained"
                           disabled={isPendingTxn(pendingTransactions, "buyToken")}
