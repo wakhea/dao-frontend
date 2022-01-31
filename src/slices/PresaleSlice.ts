@@ -23,6 +23,7 @@ interface IPresaleData {
     contribution: string;
     contributionLimit: string;
     totalContribution: string;
+    cap: string;
     openingDate: string;
     closingDate: number;
   };
@@ -35,6 +36,7 @@ export const getPresaleInfo = createAsyncThunk(
     let contribution = BigNumber.from("0");
     let contributionLimit = BigNumber.from("0");
     let totalContribution = BigNumber.from("0");
+    let cap = BigNumber.from("0");
     let openingDate = BigNumber.from("0");
     let closingDate = BigNumber.from("0");
 
@@ -50,6 +52,7 @@ export const getPresaleInfo = createAsyncThunk(
       contribution = await presaleContract.contributions(address);
       contributionLimit = await presaleContract.individualCap();
       totalContribution = await presaleContract.weiRaised();
+      cap = await presaleContract.cap();
       openingDate = await presaleContract.openingTime();
       closingDate = await presaleContract.closingTime();
     } catch (e) {
@@ -62,6 +65,7 @@ export const getPresaleInfo = createAsyncThunk(
         contribution: ethers.utils.formatEther(contribution),
         contributionLimit: ethers.utils.formatEther(contributionLimit),
         totalContribution: ethers.utils.formatEther(totalContribution),
+        cap: ethers.utils.formatEther(cap),
         openingDate: await openingDate.toString(),
         closingDate: await closingDate.toNumber(),
       },
@@ -155,6 +159,7 @@ export interface IPresaleSlice extends IPresaleData {
     contribution: string;
     contributionLimit: string;
     totalContribution: string;
+    cap: string;
     openingDate: string;
     closingDate: number;
   };
@@ -167,6 +172,7 @@ const initialState: IPresaleSlice = {
     contribution: "",
     contributionLimit: "",
     totalContribution: "",
+    cap: "",
     openingDate: "",
     closingDate: 0,
   },

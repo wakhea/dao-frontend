@@ -7,9 +7,9 @@ import { SwipeableDrawer, SvgIcon, Button, Typography, useTheme, withStyles } fr
 import { t } from "@lingui/macro";
 
 const WalletButton = ({ openWallet }: { openWallet: () => void }) => {
-  const { connect, connected } = useWeb3Context();
-  const onClick = connected ? openWallet : connect;
-  const label = connected ? t`Wallet` : t`Connect Wallet`;
+  const { connect, connected, disconnect } = useWeb3Context();
+  const onClick = connected ? disconnect : connect;
+  const label = connected ? t`Disconnect Wallet` : t`Connect Wallet`;
   const theme = useTheme();
   return (
     <Button id="ohm-menu-button" variant="contained" color="secondary" onClick={onClick}>

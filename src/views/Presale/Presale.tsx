@@ -51,6 +51,10 @@ const Presale = () => {
     return state.presale.info.totalContribution;
   });
 
+  const cap = useAppSelector(state => {
+    return state.presale.info.cap;
+  });
+
   const closingDate = useAppSelector(state => {
     return formatTimestamp(state.presale.info.closingDate, false);
   });
@@ -76,9 +80,15 @@ const Presale = () => {
   };
 
   const onBuyToken = async () => {
-    if (isNaN(Number(quantity)) || Number(quantity) === 0) {
+    let qty = Number(quantity);
+
+    if (isNaN(qty) || qty === 0) {
       // eslint-disable-next-line no-alert
       return dispatch(error(`Please enter a value!`));
+    } else if (qty + Number(contribution) >= Number(contributionLimit)) {
+      return dispatch(error(`Can't exceed your maximum contribution !`));
+    } else if (qty + Number(totalContribution) > Number(cap)) {
+      return dispatch(error("Can't exceed presale total contribution cap"));
     }
 
     let weiValue = ethers.utils.parseEther(quantity.toString());
