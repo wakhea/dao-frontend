@@ -91,7 +91,7 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
 
-    /*try {
+    try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
       gOhmBalance = await gOhmContract.balanceOf(address);
       gOhmBalAsSohmBal = await gOhmContract.balanceFrom(gOhmBalance.toString());
@@ -267,44 +267,7 @@ export const getDonationBalances = createAsyncThunk(
 export const getMockDonationBalances = createAsyncThunk(
   "account/getMockDonationBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
-    let giveAllowance = 0;
-    let donationInfo: IUserDonationInfo = {};
-
-    if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
-      const mockSohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm, provider);
-      giveAllowance = await mockSohmContract._allowedValue(address, addresses[networkID].MOCK_GIVING_ADDRESS);
-      const givingContract = new ethers.Contract(
-        addresses[networkID].MOCK_GIVING_ADDRESS as string,
-        OlympusMockGiving,
-        provider,
-      );
-
-      try {
-        // NOTE: The BigNumber here is from ethers, and is a different implementation of BigNumber used in the rest of the frontend. For that reason, we convert to string in the interim.
-        let allDeposits: [string[], BigNumber[]] = await givingContract.getAllDeposits(address);
-        for (let i = 0; i < allDeposits[0].length; i++) {
-          if (allDeposits[1][i] !== BigNumber.from(0)) {
-            // Store as a formatted string
-            donationInfo[allDeposits[0][i]] = ethers.utils.formatUnits(allDeposits[1][i], "gwei");
-          }
-        }
-      } catch (e) {
-        console.log(
-          "If the following error contains 'user is not donating', then it is an expected error. No need to report it!",
-        );
-        console.log(e);
-      }
-    } else {
-      console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
-    }
-
-    return {
-      mockGiving: {
-        sohmGive: +giveAllowance,
-        donationInfo: donationInfo,
-        loading: false,
-      },
-    };
+    return {};
   },
 );
 

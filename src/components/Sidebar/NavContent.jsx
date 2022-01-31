@@ -269,10 +269,19 @@ function NavContent() {
           <div className="dapp-menu-external-links">
             {Object.keys(externalUrls).map((link, i) => {
               return (
-                <Link key={i} href={`${externalUrls[link].url}`} target="_blank" className="external-site-link">
+                <Link
+                  key={i}
+                  href={`${externalUrls[link].url}`}
+                  className={`external-site-link ${externalUrls[link].url === "#null" ? "no-link" : ""}`}
+                  target={externalUrls[link].url !== "#null" ? "_blank" : "_self"}
+                >
                   <Typography variant="h6">{externalUrls[link].icon}</Typography>
                   <Typography variant="h6">{externalUrls[link].title}</Typography>
-                  <SvgIcon component={ArrowUpIcon} className="external-site-link-icon" />
+                  {externalUrls[link].url !== "#null" ? (
+                    <SvgIcon component={ArrowUpIcon} className="external-site-link-icon" />
+                  ) : (
+                    <></>
+                  )}
                 </Link>
               );
             })}
