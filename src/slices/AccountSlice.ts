@@ -91,7 +91,7 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
 
-    try {
+    /*try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
       gOhmBalance = await gOhmContract.balanceOf(address);
       gOhmBalAsSohmBal = await gOhmContract.balanceFrom(gOhmBalance.toString());
@@ -185,33 +185,33 @@ export const getBalances = createAsyncThunk(
       Needed a sOHM contract on testnet that could easily 
       be manually rebased to test redeem features
     */
-    if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
-      const mockSohmContract = new ethers.Contract(
-        addresses[networkID].MOCK_SOHM as string,
-        MockSohm,
-        provider,
-      ) as IERC20;
-      mockSohmBalance = await mockSohmContract.balanceOf(address);
-    } else {
-      console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
-    }
+    // if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
+    //   const mockSohmContract = new ethers.Contract(
+    //     addresses[networkID].MOCK_SOHM as string,
+    //     MockSohm,
+    //     provider,
+    //   ) as IERC20;
+    //   mockSohmBalance = await mockSohmContract.balanceOf(address);
+    // } else {
+    //   console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
+    // }
 
     return {
       balances: {
         busd: ethers.utils.formatEther(busdBalance),
-        gohm: ethers.utils.formatEther(gOhmBalance),
-        gOhmAsSohmBal: ethers.utils.formatUnits(gOhmBalAsSohmBal, "gwei"),
-        ohmV1: ethers.utils.formatUnits(ohmBalance, "gwei"),
-        sohmV1: ethers.utils.formatUnits(sohmBalance, "gwei"),
-        fsohm: ethers.utils.formatUnits(fsohmBalance, "gwei"),
-        fgohm: ethers.utils.formatEther(fgohmBalance),
-        fgOHMAsfsOHM: ethers.utils.formatUnits(fgOHMAsfsOHMBalance, "gwei"),
-        wsohm: ethers.utils.formatEther(wsohmBalance),
-        fiatDaowsohm: ethers.utils.formatEther(fiatDaowsohmBalance),
-        pool: ethers.utils.formatUnits(poolBalance, "gwei"),
-        ohm: ethers.utils.formatUnits(ohmV2Balance, "gwei"),
-        sohm: ethers.utils.formatUnits(sohmV2Balance, "gwei"),
-        mockSohm: ethers.utils.formatUnits(mockSohmBalance, "gwei"),
+        gohm: "0", //ethers.utils.formatEther(gOhmBalance),
+        gOhmAsSohmBal: "0", // ethers.utils.formatUnits(gOhmBalAsSohmBal, "gwei"),
+        ohmV1: "0", // ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sohmV1: "0", // ethers.utils.formatUnits(sohmBalance, "gwei"),
+        fsohm: "0", // ethers.utils.formatUnits(fsohmBalance, "gwei"),
+        fgohm: "0", // ethers.utils.formatEther(fgohmBalance),
+        fgOHMAsfsOHM: "0", // ethers.utils.formatUnits(fgOHMAsfsOHMBalance, "gwei"),
+        wsohm: "0", // ethers.utils.formatEther(wsohmBalance),
+        fiatDaowsohm: "0", // ethers.utils.formatEther(fiatDaowsohmBalance),
+        pool: "0", // ethers.utils.formatUnits(poolBalance, "gwei"),
+        ohm: "0", // ethers.utils.formatUnits(ohmV2Balance, "gwei"),
+        sohm: "0", // ethers.utils.formatUnits(sohmV2Balance, "gwei"),
+        mockSohm: "0", // ethers.utils.formatUnits(mockSohmBalance, "gwei"),
       },
     };
   },
@@ -223,7 +223,7 @@ export const getBalances = createAsyncThunk(
 export const getDonationBalances = createAsyncThunk(
   "account/getDonationBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
-    let giveAllowance = 0;
+    /*let giveAllowance = 0;
     let donationInfo: IUserDonationInfo = {};
 
     if (addresses[networkID] && addresses[networkID].GIVING_ADDRESS) {
@@ -252,15 +252,9 @@ export const getDonationBalances = createAsyncThunk(
       }
     } else {
       console.log("Unable to find GIVING_ADDRESS contract on chain ID " + networkID);
-    }
+    }*/
 
-    return {
-      giving: {
-        sohmGive: +giveAllowance,
-        donationInfo: donationInfo,
-        loading: false,
-      },
-    };
+    return {};
   },
 );
 
