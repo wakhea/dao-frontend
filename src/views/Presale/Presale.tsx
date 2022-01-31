@@ -9,6 +9,7 @@ import {
   InputLabel,
   OutlinedInput,
   InputAdornment,
+  Divider,
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
@@ -18,16 +19,22 @@ import { formatTimestamp } from "src/helpers";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
+import { NETWORKS } from "../../constants";
 
 import "./presale.scss";
 import { buyToken, changeApproval } from "src/slices/PresaleSlice";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
+import { switchNetwork } from "src/slices/NetworkSlice";
+import { loadAccountDetails } from "src/slices/AccountSlice";
 
 const Presale = () => {
   const dispatch = useDispatch();
   const { provider, address, connect } = useWeb3Context();
   const networkId = useAppSelector(state => state.network.networkId);
   const [quantity, setQuantity] = useState("");
+
+  // TODO: Change to MAINNET
+  const bsc = NETWORKS[97];
 
   const isAppLoading = useAppSelector(state => state.app.loading);
 
@@ -67,6 +74,9 @@ const Presale = () => {
     return state.account.presale || 0;
   });
 
+  const isSupportedNetwork = () => {
+    return networkId === 97 || networkId === 56;
+  };
   const isAllowanceDataLoading = busdAllowance == null;
 
   const setMax = () => {
@@ -99,6 +109,13 @@ const Presale = () => {
     await dispatch(buyToken({ address, value: await weiValue.toString(), provider, networkID: networkId }));
   };
 
+  const handleSwitchChain = (id: any) => {
+    return () => {
+      dispatch(switchNetwork({ provider, networkId: id }));
+      dispatch(loadAccountDetails({ address, provider, networkID: id }));
+    };
+  };
+
   let modalButton = [];
 
   modalButton.push(
@@ -117,21 +134,25 @@ const Presale = () => {
             </div>
           </Grid>
           <Grid item>
-            <MetricCollection>
-              <Metric
-                className="plus-bought"
-                label={`Total BUSD Raised`}
-                metric={totalContribution}
-                isLoading={totalContribution ? false : true}
-              />
-              <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
-              <Metric
-                className="presale-end"
-                label={`Presale End`}
-                metric={closingDate}
-                isLoading={closingDate ? false : true}
-              />
-            </MetricCollection>
+            {isSupportedNetwork() ? (
+              <MetricCollection>
+                <Metric
+                  className="plus-bought"
+                  label={`Total BUSD Raised`}
+                  metric={totalContribution}
+                  isLoading={totalContribution ? false : true}
+                />
+                <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
+                <Metric
+                  className="presale-end"
+                  label={`Presale End`}
+                  metric={closingDate}
+                  isLoading={closingDate ? false : true}
+                />
+              </MetricCollection>
+            ) : (
+              <> </>
+            )}
           </Grid>
           <div className="presale-area">
             {!address ? (
@@ -143,7 +164,23 @@ const Presale = () => {
               </div>
             ) : (
               <div className="presale-buy-area">
-                {address && !isAllowanceDataLoading ? (
+                {!isSupportedNetwork() ? (
+                  <Box width="100%" alignItems={"center"} display="flex" flexDirection="column" p={1}>
+                    <Typography variant="h4" style={{ margin: "0 0 10px 0" }}>
+                      Please switch to a supported network
+                    </Typography>
+                    <Divider />
+                    <Typography variant="h6" style={{ margin: "15px 0 10px 0" }}>
+                      Back to BSC Mainnet
+                    </Typography>
+                    <Button onClick={handleSwitchChain(97)} variant="outlined">
+                      <img height="28px" width="28px" src={String(bsc.image)} alt={bsc.imageAltText} />
+                      <Typography variant="h6" style={{ marginLeft: "8px" }}>
+                        {bsc.chainName}
+                      </Typography>
+                    </Button>
+                  </Box>
+                ) : address && !isAllowanceDataLoading ? (
                   busdAllowance == 0 ? (
                     <>
                       <Grid container direction="row" justifyContent="space-around" alignItems="center">
@@ -209,26 +246,30 @@ const Presale = () => {
                     <Skeleton width="250px" height="40px" />
                   </Grid>
                 )}
-                <Box className="presale-data">
-                  <div className="data-row">
-                    <Typography>PLUS balance</Typography>
-                    <Typography className="price-data">
-                      {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusBalance} PLUS</>}
-                    </Typography>
-                  </div>
-                  <div className="data-row">
-                    <Typography>Contribution</Typography>
-                    <Typography className="price-data">
-                      {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BUSD</>}
-                    </Typography>
-                  </div>
-                  <div className="data-row">
-                    <Typography>Max Contribution</Typography>
-                    <Typography className="price-data">
-                      {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
-                    </Typography>
-                  </div>
-                </Box>
+                {isSupportedNetwork() ? (
+                  <Box className="presale-data">
+                    <div className="data-row">
+                      <Typography>PLUS balance</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusBalance} PLUS</>}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>Contribution</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BUSD</>}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>Max Contribution</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
+                      </Typography>
+                    </div>
+                  </Box>
+                ) : (
+                  <> </>
+                )}
               </div>
             )}
           </div>
