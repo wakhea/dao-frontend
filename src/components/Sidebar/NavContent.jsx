@@ -245,20 +245,44 @@ function NavContent() {
                 <></>
               )}
               {networkId == 97 ? (
-                <Link
-                  component={NavLink}
-                  id="presale-nav"
-                  to="/presale"
-                  isActive={(match, location) => {
-                    return checkPage(match, location, "presale");
-                  }}
-                  className={`button-dapp-menu ${isActive ? "active" : ""}`}
-                >
-                  <Typography variant="h6">
-                    <SvgIcon color="primary" component={PresaleIcon} />
-                    <Trans>Presale</Trans>
-                  </Typography>
-                </Link>
+                <>
+                  <Link
+                    component={NavLink}
+                    id="presale-nav"
+                    to="/presale"
+                    isActive={(match, location) => {
+                      return checkPage(match, location, "presale");
+                    }}
+                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                  >
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={PresaleIcon} />
+                      <Trans>Presale</Trans>
+                    </Typography>
+                  </Link>
+
+                  <Link className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}>
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={StakeIcon} />
+                      Stake (Coming soon)
+                    </Typography>
+                  </Link>
+
+                  <Link
+                    component={NavLink}
+                    id="bond-nav"
+                    to="/bonds"
+                    isActive={(match, location) => {
+                      return checkPage(match, location, "bonds");
+                    }}
+                    className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}
+                  >
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={BondIcon} />
+                      <Trans>Bond (Coming soon)</Trans>
+                    </Typography>
+                  </Link>
+                </>
               ) : (
                 <></>
               )}
