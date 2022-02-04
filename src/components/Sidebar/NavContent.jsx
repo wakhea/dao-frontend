@@ -268,15 +268,7 @@ function NavContent() {
                     </Typography>
                   </Link>
 
-                  <Link
-                    component={NavLink}
-                    id="bond-nav"
-                    to="/bonds"
-                    isActive={(match, location) => {
-                      return checkPage(match, location, "bonds");
-                    }}
-                    className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}
-                  >
+                  <Link className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}>
                     <Typography variant="h6">
                       <SvgIcon color="primary" component={BondIcon} />
                       <Trans>Bond (Coming soon)</Trans>
