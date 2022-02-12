@@ -32,6 +32,7 @@ import {
   DepositYield,
   RedeemYield,
   Presale,
+  Landing,
 } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
@@ -376,6 +377,9 @@ function App() {
               </Route>*/}
               <Route path="/network">
                 <ChangeNetwork />
+              </Route>
+              <Route path="/landing">
+                <Landing />
               </Route>
               <Route component={NotFound} />
             </Switch>

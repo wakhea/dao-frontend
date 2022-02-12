@@ -11,3 +11,4 @@ export { default as RedeemYield } from "./Give/RedeemYield";
 export { default as Give } from "./Give/Give";
 export { default as Zap } from "./Zap/Zap";
 export { default as Presale } from "./Presale/Presale";
+export { default as Landing } from "./Landing/Landing";
