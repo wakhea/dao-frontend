@@ -84,8 +84,8 @@ function NavContent() {
               <SvgIcon
                 color="primary"
                 component={PlutusIcon}
-                viewBox="0 0 215.76 305.52"
-                style={{ minWdth: "120px", minHeight: "170px", width: "120px" }}
+                viewBox="0 0 414 414"
+                style={{ minWdth: "200px", minHeight: "200px", width: "200px" }}
               />
             </Link>
 
