@@ -1,25 +1,18 @@
-import { ReactComponent as ForumIcon } from "../../assets/icons/forum.svg";
-import { ReactComponent as GovIcon } from "../../assets/icons/governance.svg";
 import { ReactComponent as DocsIcon } from "../../assets/icons/docs.svg";
-import { ReactComponent as BridgeIcon } from "../../assets/icons/bridge.svg";
+import { ReactComponent as VoteIcon } from "../../assets/icons/balance.svg";
 import { SvgIcon } from "@material-ui/core";
 import { Trans } from "@lingui/macro";
 
 const externalUrls = [
   {
-    title: <Trans>Forum</Trans>,
-    url: "https://forum.olympusdao.finance/",
-    icon: <SvgIcon color="primary" component={ForumIcon} />,
-  },
-  {
-    title: <Trans>Governance</Trans>,
-    url: "https://vote.olympusdao.finance/",
-    icon: <SvgIcon color="primary" component={GovIcon} />,
-  },
-  {
     title: <Trans>Docs</Trans>,
     url: "https://docs.olympusdao.finance/",
     icon: <SvgIcon color="primary" component={DocsIcon} />,
+  },
+  {
+    title: <Trans>Vote (Coming soon)</Trans>,
+    url: "#null",
+    icon: <SvgIcon color="primary" component={VoteIcon} viewBox="0 0 490 490" />,
   },
   // {
   //   title: "Feedback",

@@ -186,14 +186,14 @@ function App() {
         return;
       }
       dispatch(loadAccountDetails({ networkID: networkId, address, provider: loadProvider }));
-      dispatch(getMigrationAllowances({ address, provider: loadProvider, networkID: networkId }));
+
       bonds.map(bond => {
         // NOTE: get any Claimable bonds, they may not be bondable
         if (bond.getClaimability(networkId)) {
           dispatch(calculateUserBondDetails({ address, bond, provider: loadProvider, networkID: networkId }));
         }
       });
-      dispatch(getZapTokenBalances({ address, networkID: networkId, provider: loadProvider }));
+
       expiredBonds.map(bond => {
         if (bond.getClaimability(networkId)) {
           dispatch(calculateUserBondDetails({ address, bond, provider: loadProvider, networkID: networkId }));
@@ -259,7 +259,7 @@ function App() {
       setWalletChecked(true);
     }
     if (shouldTriggerSafetyCheck()) {
-      dispatch(info("Safety Check: Always verify you're on app.olympusdao.finance!"));
+      dispatch(info("Safety Check: Always verify you're on plutusprotocol.io !"));
     }
   }, []);
 

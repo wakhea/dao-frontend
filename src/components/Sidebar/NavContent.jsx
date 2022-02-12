@@ -5,7 +5,7 @@ import externalUrls from "./externalUrls";
 import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
-import { ReactComponent as OlympusIcon } from "../../assets/icons/olympus-nav-header.svg";
+import { ReactComponent as PlutusIcon } from "../../assets/icons/plutus-nav-header.svg";
 import { ReactComponent as GiveIcon } from "../../assets/icons/give.svg";
 import { ReactComponent as NewIcon } from "../../assets/icons/new-icon.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
@@ -83,9 +83,9 @@ function NavContent() {
             <Link href="/" target="_blank">
               <SvgIcon
                 color="primary"
-                component={OlympusIcon}
-                viewBox="0 0 151 100"
-                style={{ minWdth: "151px", minHeight: "98px", width: "151px" }}
+                component={PlutusIcon}
+                viewBox="0 0 414 414"
+                style={{ minWdth: "200px", minHeight: "200px", width: "200px" }}
               />
             </Link>
 
@@ -100,7 +100,7 @@ function NavContent() {
 
           <div className="dapp-menu-links">
             <div className="dapp-nav" id="navbarNav">
-              {networkId === -1 ? (
+              {networkId === -2 ? (
                 <>
                   <Link
                     component={NavLink}
@@ -245,20 +245,36 @@ function NavContent() {
                 <></>
               )}
               {networkId == 97 ? (
-                <Link
-                  component={NavLink}
-                  id="presale-nav"
-                  to="/presale"
-                  isActive={(match, location) => {
-                    return checkPage(match, location, "presale");
-                  }}
-                  className={`button-dapp-menu ${isActive ? "active" : ""}`}
-                >
-                  <Typography variant="h6">
-                    <SvgIcon color="primary" component={PresaleIcon} />
-                    <Trans>Presale</Trans>
-                  </Typography>
-                </Link>
+                <>
+                  <Link
+                    component={NavLink}
+                    id="presale-nav"
+                    to="/presale"
+                    isActive={(match, location) => {
+                      return checkPage(match, location, "presale");
+                    }}
+                    className={`button-dapp-menu ${isActive ? "active" : ""}`}
+                  >
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={PresaleIcon} />
+                      <Trans>Presale</Trans>
+                    </Typography>
+                  </Link>
+
+                  <Link className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}>
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={StakeIcon} />
+                      Stake (Coming soon)
+                    </Typography>
+                  </Link>
+
+                  <Link className={`button-dapp-menu no-link ${isActive ? "active" : ""}`}>
+                    <Typography variant="h6">
+                      <SvgIcon color="primary" component={BondIcon} />
+                      <Trans>Bond (Coming soon)</Trans>
+                    </Typography>
+                  </Link>
+                </>
               ) : (
                 <></>
               )}
@@ -269,10 +285,19 @@ function NavContent() {
           <div className="dapp-menu-external-links">
             {Object.keys(externalUrls).map((link, i) => {
               return (
-                <Link key={i} href={`${externalUrls[link].url}`} target="_blank" className="external-site-link">
+                <Link
+                  key={i}
+                  href={`${externalUrls[link].url}`}
+                  className={`external-site-link ${externalUrls[link].url === "#null" ? "no-link" : ""}`}
+                  target={externalUrls[link].url !== "#null" ? "_blank" : "_self"}
+                >
                   <Typography variant="h6">{externalUrls[link].icon}</Typography>
                   <Typography variant="h6">{externalUrls[link].title}</Typography>
-                  <SvgIcon component={ArrowUpIcon} className="external-site-link-icon" />
+                  {externalUrls[link].url !== "#null" ? (
+                    <SvgIcon component={ArrowUpIcon} className="external-site-link-icon" />
+                  ) : (
+                    <></>
+                  )}
                 </Link>
               );
             })}

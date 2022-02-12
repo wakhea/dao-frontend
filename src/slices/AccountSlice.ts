@@ -17,22 +17,20 @@ import { createAsyncThunk, createSelector, createSlice } from "@reduxjs/toolkit"
 import { RootState } from "src/store";
 import { IBaseAddressAsyncThunk, ICalcUserBondDetailsAsyncThunk, IJsonRPCError } from "./interfaces";
 import {
+  ExpandedIERC20__factory,
   FiatDAOContract,
   FuseProxy,
   IERC20,
   IERC20__factory,
   SOhmv2,
   WsOHM,
-  OlympusStakingv2__factory,
 } from "src/typechain";
 import { GOHM__factory } from "src/typechain/factories/GOHM__factory";
-import { NetworkID } from "src/lib/Bond";
-import { useLocation } from "react-router-dom";
 import { EnvHelper } from "src/helpers/Environment";
 
 interface IUserBalances {
   balances: {
-    bnb: string;
+    busd: string;
     gohm: string;
     gOhmAsSohmBal: string;
     ohm: string;
@@ -71,7 +69,7 @@ interface IUserRecipientInfo {
 export const getBalances = createAsyncThunk(
   "account/getBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk): Promise<IUserBalances> => {
-    //let bnbBalance = BigNumber.from("0");
+    let busdBalance = BigNumber.from("0");
     let gOhmBalance = BigNumber.from("0");
     let gOhmBalAsSohmBal = BigNumber.from("0");
     let ohmBalance = BigNumber.from("0");
@@ -85,6 +83,13 @@ export const getBalances = createAsyncThunk(
     let fgohmBalance = BigNumber.from(0);
     let fgOHMAsfsOHMBalance = BigNumber.from(0);
     let fiatDaowsohmBalance = BigNumber.from("0");
+
+    try {
+      const busdContract = ExpandedIERC20__factory.connect(addresses[networkID].BUSD_ADDRESS, provider);
+      busdBalance = await busdContract.balanceOf(address);
+    } catch (e) {
+      handleContractError(e);
+    }
 
     try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
@@ -180,33 +185,33 @@ export const getBalances = createAsyncThunk(
       Needed a sOHM contract on testnet that could easily 
       be manually rebased to test redeem features
     */
-    if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
-      const mockSohmContract = new ethers.Contract(
-        addresses[networkID].MOCK_SOHM as string,
-        MockSohm,
-        provider,
-      ) as IERC20;
-      mockSohmBalance = await mockSohmContract.balanceOf(address);
-    } else {
-      console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
-    }
+    // if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
+    //   const mockSohmContract = new ethers.Contract(
+    //     addresses[networkID].MOCK_SOHM as string,
+    //     MockSohm,
+    //     provider,
+    //   ) as IERC20;
+    //   mockSohmBalance = await mockSohmContract.balanceOf(address);
+    // } else {
+    //   console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
+    // }
 
     return {
       balances: {
-        bnb: ethers.utils.formatEther(await provider.getBalance(address)),
-        gohm: ethers.utils.formatEther(gOhmBalance),
-        gOhmAsSohmBal: ethers.utils.formatUnits(gOhmBalAsSohmBal, "gwei"),
-        ohmV1: ethers.utils.formatUnits(ohmBalance, "gwei"),
-        sohmV1: ethers.utils.formatUnits(sohmBalance, "gwei"),
-        fsohm: ethers.utils.formatUnits(fsohmBalance, "gwei"),
-        fgohm: ethers.utils.formatEther(fgohmBalance),
-        fgOHMAsfsOHM: ethers.utils.formatUnits(fgOHMAsfsOHMBalance, "gwei"),
-        wsohm: ethers.utils.formatEther(wsohmBalance),
-        fiatDaowsohm: ethers.utils.formatEther(fiatDaowsohmBalance),
-        pool: ethers.utils.formatUnits(poolBalance, "gwei"),
-        ohm: ethers.utils.formatUnits(ohmV2Balance, "gwei"),
-        sohm: ethers.utils.formatUnits(sohmV2Balance, "gwei"),
-        mockSohm: ethers.utils.formatUnits(mockSohmBalance, "gwei"),
+        busd: ethers.utils.formatEther(busdBalance),
+        gohm: "0", //ethers.utils.formatEther(gOhmBalance),
+        gOhmAsSohmBal: "0", // ethers.utils.formatUnits(gOhmBalAsSohmBal, "gwei"),
+        ohmV1: "0", // ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sohmV1: "0", // ethers.utils.formatUnits(sohmBalance, "gwei"),
+        fsohm: "0", // ethers.utils.formatUnits(fsohmBalance, "gwei"),
+        fgohm: "0", // ethers.utils.formatEther(fgohmBalance),
+        fgOHMAsfsOHM: "0", // ethers.utils.formatUnits(fgOHMAsfsOHMBalance, "gwei"),
+        wsohm: "0", // ethers.utils.formatEther(wsohmBalance),
+        fiatDaowsohm: "0", // ethers.utils.formatEther(fiatDaowsohmBalance),
+        pool: "0", // ethers.utils.formatUnits(poolBalance, "gwei"),
+        ohm: "0", // ethers.utils.formatUnits(ohmV2Balance, "gwei"),
+        sohm: "0", // ethers.utils.formatUnits(sohmV2Balance, "gwei"),
+        mockSohm: "0", // ethers.utils.formatUnits(mockSohmBalance, "gwei"),
       },
     };
   },
@@ -218,7 +223,7 @@ export const getBalances = createAsyncThunk(
 export const getDonationBalances = createAsyncThunk(
   "account/getDonationBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
-    let giveAllowance = 0;
+    /*let giveAllowance = 0;
     let donationInfo: IUserDonationInfo = {};
 
     if (addresses[networkID] && addresses[networkID].GIVING_ADDRESS) {
@@ -247,15 +252,9 @@ export const getDonationBalances = createAsyncThunk(
       }
     } else {
       console.log("Unable to find GIVING_ADDRESS contract on chain ID " + networkID);
-    }
+    }*/
 
-    return {
-      giving: {
-        sohmGive: +giveAllowance,
-        donationInfo: donationInfo,
-        loading: false,
-      },
-    };
+    return {};
   },
 );
 
@@ -268,44 +267,7 @@ export const getDonationBalances = createAsyncThunk(
 export const getMockDonationBalances = createAsyncThunk(
   "account/getMockDonationBalances",
   async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
-    let giveAllowance = 0;
-    let donationInfo: IUserDonationInfo = {};
-
-    if (addresses[networkID] && addresses[networkID].MOCK_SOHM) {
-      const mockSohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm, provider);
-      giveAllowance = await mockSohmContract._allowedValue(address, addresses[networkID].MOCK_GIVING_ADDRESS);
-      const givingContract = new ethers.Contract(
-        addresses[networkID].MOCK_GIVING_ADDRESS as string,
-        OlympusMockGiving,
-        provider,
-      );
-
-      try {
-        // NOTE: The BigNumber here is from ethers, and is a different implementation of BigNumber used in the rest of the frontend. For that reason, we convert to string in the interim.
-        let allDeposits: [string[], BigNumber[]] = await givingContract.getAllDeposits(address);
-        for (let i = 0; i < allDeposits[0].length; i++) {
-          if (allDeposits[1][i] !== BigNumber.from(0)) {
-            // Store as a formatted string
-            donationInfo[allDeposits[0][i]] = ethers.utils.formatUnits(allDeposits[1][i], "gwei");
-          }
-        }
-      } catch (e) {
-        console.log(
-          "If the following error contains 'user is not donating', then it is an expected error. No need to report it!",
-        );
-        console.log(e);
-      }
-    } else {
-      console.debug("Unable to find MOCK_SOHM contract on chain ID " + networkID);
-    }
-
-    return {
-      mockGiving: {
-        sohmGive: +giveAllowance,
-        donationInfo: donationInfo,
-        loading: false,
-      },
-    };
+    return {};
   },
 );
 
@@ -402,6 +364,19 @@ export const loadAccountDetails = createAsyncThunk(
     let poolAllowance = BigNumber.from("0");
     let ohmToGohmAllowance = BigNumber.from("0");
     let wsOhmMigrateAllowance = BigNumber.from("0");
+    let busdAllowance = BigNumber.from("0");
+
+    try {
+      const busdContract = new ethers.Contract(
+        addresses[networkID].BUSD_ADDRESS as string,
+        ierc20Abi,
+        provider,
+      ) as IERC20;
+
+      busdAllowance = await busdContract.allowance(address, addresses[networkID].PRESALE_ADDRESS);
+    } catch (e) {
+      handleContractError(e);
+    }
 
     try {
       const gOhmContract = GOHM__factory.connect(addresses[networkID].GOHM_ADDRESS, provider);
@@ -441,6 +416,7 @@ export const loadAccountDetails = createAsyncThunk(
     }
 
     return {
+      presale: +busdAllowance,
       staking: {
         ohmStakeV1: +stakeAllowance,
         ohmUnstakeV1: +unstakeAllowance,
@@ -521,7 +497,7 @@ export interface IAccountSlice extends IUserAccountDetails, IUserBalances {
   mockRedeeming: { sohmRedeemable: string; recipientInfo: IUserRecipientInfo };
   bonds: { [key: string]: IUserBondDetails };
   balances: {
-    bnb: string;
+    busd: string;
     gohm: string;
     gOhmAsSohmBal: string;
     ohmV1: string;
@@ -539,6 +515,7 @@ export interface IAccountSlice extends IUserAccountDetails, IUserBalances {
     mockSohm: string;
   };
   loading: boolean;
+  presale: number;
   staking: {
     ohmStakeV1: number;
     ohmUnstakeV1: number;
@@ -561,7 +538,7 @@ const initialState: IAccountSlice = {
   loading: false,
   bonds: {},
   balances: {
-    bnb: "",
+    busd: "",
     gohm: "",
     gOhmAsSohmBal: "",
     ohmV1: "",
@@ -598,6 +575,7 @@ const initialState: IAccountSlice = {
       indexAtLastChange: "",
     },
   },
+  presale: 0,
   staking: { ohmStakeV1: 0, ohmUnstakeV1: 0, ohmStake: 0, ohmUnstake: 0 },
   wrapping: { sohmWrap: 0, wsohmUnwrap: 0, gOhmUnwrap: 0, wsOhmMigrate: 0 },
   pooling: { sohmPool: 0 },

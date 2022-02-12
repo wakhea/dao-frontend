@@ -3,15 +3,15 @@ import fonts from "./fonts";
 import commonSettings, { handleBackdropFilter } from "./global.js";
 
 const lightTheme = {
-  color: "#253449",
+  color: "#13296C",
   gold: "#F8CC82",
-  gray: "#A3A3A3",
-  blueish_gray: "#768299",
+  gray: "#13296C",
+  blueish_gray: "#0B1A45",
   textHighlightColor: "#93AEBC", // "#F4D092",
-  backgroundColor: "#AFCDE9",
+  backgroundColor: "#AFC2E9",
   // background:
   // "radial-gradient(circle at 25% 0%, rgba(227,255,240,.5), rgba(227,255,240,0) 50%), radial-gradient(circle at 80% 80%, rgba(131,165,203,.5), rgba(131,165,203,0) 50%)",
-  background: "linear-gradient(180deg, #AFCDE9 1%, #F7FBE7 100%)",
+  background: "linear-gradient(180deg, #AFC2E9 1%, #F7FBE7 100%)",
   paperBg: "rgba(255, 255, 255, 0.6)",
   modalBg: "#FAFAFAEF",
   popoverBg: "rgba(255, 255, 255, 0.95)",
