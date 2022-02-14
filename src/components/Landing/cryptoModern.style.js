@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
     background:#03103b;
   }
   .reuseModalParentWrapper,
@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   h5,
   h6,
   p {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Readex Pro', sans-serif;
   }
   section {
     position: relative;

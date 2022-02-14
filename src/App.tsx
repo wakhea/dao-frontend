@@ -378,9 +378,7 @@ function App() {
               <Route path="/network">
                 <ChangeNetwork />
               </Route>
-              <Route path="/landing">
-                <Landing />
-              </Route>
+
               <Route component={NotFound} />
             </Switch>
           </div>

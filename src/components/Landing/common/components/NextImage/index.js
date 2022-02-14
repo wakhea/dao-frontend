@@ -1,7 +1,7 @@
-import Image from 'next/image';
+
 
 const NextImage = ({ ...props }) => {
-  return <Image {...props} layout="fill"/>;
+  return <img {...props} />;
 };
 
 export default NextImage;
