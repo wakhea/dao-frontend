@@ -71,7 +71,7 @@ export const dark = responsiveFontSizes(
         highlight: darkTheme.textHighlightColor,
       },
       typography: {
-        fontFamily: "Square",
+        fontFamily: "Readex Pro",
       },
       overrides: {
         MuiCssBaseline: {

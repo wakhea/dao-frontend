@@ -63,7 +63,7 @@ export const light = responsiveFontSizes(
         graphStrokeColor: lightTheme.graphStrokeColor,
       },
       typography: {
-        fontFamily: "Square",
+        fontFamily: "ReadexPro",
       },
       overrides: {
         MuiCssBaseline: {
