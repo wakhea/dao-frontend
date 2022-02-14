@@ -14,7 +14,7 @@ import useOnClickOutside from '../common/hooks/useOnClickOutside';
 import NavbarWrapper, { MenuArea, MobileMenu, Search } from './navbar.style';
 import LogoImage from '../common/assets/image/logo.png';
 import LogoImageAlt from '../common/assets/image/logo.png';
-
+import { Link } from "@material-ui/core";
 import { navbar } from '../common/data/';
 
 const Navbar = () => {
@@ -104,27 +104,12 @@ const Navbar = () => {
           <ScrollSpyMenu className="menu" menuItems={navMenu} offset={-84} />
           {/* end of main menu */}
 
-          <Search className="search" ref={searchRef}>
-            <form onSubmit={handleSearchForm}>
-              <input
-                type="text"
-                value={state.search}
-                placeholder="Enter your keyword"
-                onChange={handleOnChange}
-              />
-            </form>
-            <Button
-              className="text"
-              variant="textButton"
-              icon={<Icon icon={state.searchToggle ? x : search} />}
-              onClick={() => toggleHandler('search')}
-            />
-          </Search>
+
           {/* end of search */}
 
-          <AnchorLink href="#trail" offset={84}>
-            <Button className="trail" title="Try for Free" />
-          </AnchorLink>
+          <Link href="/#/presale" offset={84}>
+            <Button className="trail" title="Enter DApp" />
+          </Link>
 
           <Button
             className="menubar"

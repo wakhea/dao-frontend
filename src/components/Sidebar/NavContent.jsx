@@ -80,7 +80,7 @@ function NavContent() {
       <Box className="dapp-sidebar-inner" display="flex" justifyContent="space-between" flexDirection="column">
         <div className="dapp-menu-top">
           <Box className="branding-header">
-            <Link href="/" target="_blank">
+            <Link href="/landing" target="_blank">
               <SvgIcon
                 color="primary"
                 component={PlutusIcon}
