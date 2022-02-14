@@ -23,13 +23,9 @@ const CryptoModern = () => {
     <ThemeProvider theme={theme}>
       <>
         <Head>
-          <title>Crypto Modern | A next js landing page</title>
-          <meta name="Description" content="React next landing page" />
+          <title>Plutus Protocol</title>
+          <meta name="Description" content="Plutus Protocol official website" />
           <meta name="theme-color" content="#2563FF" />
-          <meta
-            name="keywords"
-            content="React, React js, Next, Next js, Super fast next js landing, Modren landing, Next js landing"
-          />
           <link
             href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
             rel="stylesheet"

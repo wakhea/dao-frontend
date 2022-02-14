@@ -12,7 +12,7 @@ import Button from '../common/components/Button';
 import Container from '../common/components/UI/Container';
 import useOnClickOutside from '../common/hooks/useOnClickOutside';
 import NavbarWrapper, { MenuArea, MobileMenu, Search } from './navbar.style';
-import LogoImage from '../common/assets/image/logo-white.png';
+import LogoImage from '../common/assets/image/logo.png';
 import LogoImageAlt from '../common/assets/image/logo.png';
 
 import { navbar } from '../common/data/';
@@ -87,15 +87,15 @@ const Navbar = () => {
     <NavbarWrapper className="navbar">
       <Container>
         <Logo
-          href="/cryptoModern"
+          href="/landing"
           logoSrc={LogoImage}
-          title="Crypto Modern"
+          title="Plutus Protocol"
           className="main-logo"
         />
         <Logo
-          href="/cryptoModern"
+          href="/landing"
           logoSrc={LogoImageAlt}
-          title="Crypto Modern"
+          title="PlutusProtocol"
           className="logo-alt"
         />
         {/* end of logo */}
