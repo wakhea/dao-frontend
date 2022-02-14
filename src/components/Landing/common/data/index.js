@@ -14,7 +14,7 @@ export const navbar = {
     },
     {
       id: 2,
-      label: 'Key Features',
+      label: 'Key features',
       path: '#key-features',
       offset: '81',
     },
@@ -22,18 +22,6 @@ export const navbar = {
       id: 3,
       label: 'Fund Raising',
       path: '#fund',
-      offset: '81',
-    },
-    {
-      id: 4,
-      label: 'Locations',
-      path: '#map',
-      offset: '81',
-    },
-    {
-      id: 5,
-      label: 'FAQ',
-      path: '#faqSection',
       offset: '81',
     },
   ],

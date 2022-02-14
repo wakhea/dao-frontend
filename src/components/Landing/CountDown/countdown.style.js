@@ -72,11 +72,12 @@ export const ContentWrapper = styled.div`
           align-items: center;
           display: flex;
           justify-content: center;
+          height: 100%;
           span {
             font-size: 60px;
             letter-spacing: -1px;
             color: #ffffff;
-            font-family: 'Roboto';
+            font-family: 'Readex Pro';
             font-weight: 300;
             text-align: center;
             @media (max-width: 480px) {
@@ -88,8 +89,9 @@ export const ContentWrapper = styled.div`
           font-size: 14px;
           letter-spacing: 3px;
           color: #8ec7ff;
-          font-family: 'Roboto';
+          font-family: 'Readex Pro';
           font-weight: 500;
+          text-transform: uppercase;
           text-align: center;
           margin-top: 12px;
           @media (max-width: 480px) {
@@ -101,7 +103,7 @@ export const ContentWrapper = styled.div`
         font-size: 36px;
         line-height: 48px;
         color: #fff;
-        font-family: 'Roboto';
+        font-family: 'Readex Pro';
         font-weight: 700;
         text-align: center;
         @media (max-width: 480px) {
