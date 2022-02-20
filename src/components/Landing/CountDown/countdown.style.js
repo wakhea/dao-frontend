@@ -4,6 +4,8 @@ import { themeGet } from '@styled-system/theme-get';
 const SectionWrapper = styled.div`
   padding: 75px 0;
   overflow: hidden;
+  
+  background: ${themeGet("colors.secondaryBackground", "#13296C")};
 
   @media only screen and (max-width: 1440px) {
     padding: 100px 0 50px;
@@ -123,7 +125,8 @@ export const ContentWrapper = styled.div`
     margin-top: 30px;
 
     &.primary {
-      background-image: linear-gradient(to right, #4ba1d8, #4464bd 95%);
+      background-color: ${themeGet("colors.secondaryButton", "#13296C")};
+      color: ${themeGet("colors.primary", "#FFF")}
       &:hover {
         box-shadow: rgba(75, 109, 235, 0.78) 0px 9px 20px -10px;
       }
