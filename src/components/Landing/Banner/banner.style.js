@@ -123,7 +123,7 @@ export const ButtonGroup = styled.div`
     text-transform: uppercase;
 
     &.primary {
-      background-image: linear-gradient(to right, #4ba1d8, #4464bd 95%);
+      background-image: ${themeGet("colors.primaryButton", "#13296C")};
       &:hover {
         box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
       }
@@ -131,8 +131,8 @@ export const ButtonGroup = styled.div`
 
     &.text {
       margin-left: 15px;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.302);
+      color: ${themeGet("colors.primary", "#13296C")};
+      border: 1px solid rgba(19, 41, 154, 0.302);
     }
   }
 `;

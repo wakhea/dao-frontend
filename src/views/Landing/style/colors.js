@@ -15,7 +15,7 @@ const colors = {
   white: "#ffffff",
   light: "#FAFBFF",
   gray: "#E4E4E4",
-  primary: "#d1397c",
+  primary: "#13296C",
   headingColor: "#0F2137",
   quoteText: "#343D48",
   menu: "#13296C",
@@ -24,6 +24,7 @@ const colors = {
   shadow: "rgba(38, 78, 118, 0.1)",
   background: "#fff",
   paragraph: "#13296C",
+  primaryButton: "linear-gradient(to right, #13296C ,#2345AB 95%)",
 };
 
 export default colors;
