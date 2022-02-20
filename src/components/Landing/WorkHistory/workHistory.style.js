@@ -31,7 +31,7 @@ const WorkHistoryWrapper = styled.section`
       line-height: 1.2;
       font-family: 'Roboto', sans-serif;
       font-weight: 300;
-      color: #fff;
+      color: ${themeGet('colors.primary', '#13296C')};;
       max-width: 270px;
       @media only screen and (max-width: 1440px) {
         font-size: 38px;
@@ -86,7 +86,7 @@ const CounterUpArea = styled.div`
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    background-color: #152149;
+    background-color: ${themeGet("colors.primary", "#13296C")};
     cursor: pointer;
     @media (max-width: 767px) {
       width: calc(50% - 13px);
