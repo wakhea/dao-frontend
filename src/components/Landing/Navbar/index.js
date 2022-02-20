@@ -104,7 +104,7 @@ const Navbar = () => {
           <ScrollSpyMenu className="menu" menuItems={navMenu} offset={-84} />
           {/* end of main menu */}
 
-          <Link href="/#/presale" offset={84}>
+          <Link href="/presale" offset={84}>
             <Button className="trail" title="Enter DApp" />
           </Link>
 

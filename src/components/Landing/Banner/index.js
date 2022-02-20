@@ -5,9 +5,10 @@ import NextImage from '../common/components/NextImage';
 import Button from '../common/components/Button';
 import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
+import { Link } from "@material-ui/core";
+
 import BannerWrapper, {
   BannerContent,
-  DiscountLabel,
   BannerImage,
   ButtonGroup,
 } from './banner.style';
@@ -22,18 +23,19 @@ const Banner = () => {
           <Fade up delay={100}>
             <Heading
               as="h1"
-              content="Welcome next level  cryptocurrency token with faster transfer"
+              content="WELCOME TO TOMMOROW'S DECENTRALIZED VC FUND"
             />
           </Fade>
           <Fade up delay={200}>
             <Text
-              content="Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiusmod tempor incididunt labore dolore magna
-          ipsum dolor sit amet consectetur."
+              content="PlutusProtocol is a DAO-governed VC fund. You decide on your Gains. ."
             />
           </Fade>
           <Fade up delay={300}>
             <ButtonGroup>
-              <Button className="primary" title="GET TOKEN" />
+              <Link href="/presale">
+                <Button className="primary" title="GET TOKEN" />
+              </Link>
               <Button
                 className="text"
                 variant="textButton"
