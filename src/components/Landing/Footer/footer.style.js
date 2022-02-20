@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import FooterImage from '../common/assets/image/footer-bg.png';
+import { themeGet } from '@styled-system/theme-get';
 
 const FooterWrapper = styled.footer`
   position: relative;
@@ -43,7 +44,7 @@ const List = styled.ul``;
 
 const ListItem = styled.li`
   a {
-    color: #8ec7ff;
+    color: ${themeGet("colors.primary", "#13296C")};
     font-size: 14px;
     line-height: 36px;
     transition: all 0.2s ease;
@@ -52,7 +53,7 @@ const ListItem = styled.li`
     &:focus {
       outline: 0;
       text-decoration: none;
-      color: #fff;
+      color: #2345AB
     }
   }
 `;

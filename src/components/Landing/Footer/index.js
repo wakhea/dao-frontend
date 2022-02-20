@@ -102,7 +102,7 @@ Footer.defaultProps = {
   },
   // widget title default style
   titleStyle: {
-    color: '#fff',
+    color: '#13296C',
     fontSize: '16px',
     fontWeight: '700',
     mb: '30px',
@@ -114,7 +114,7 @@ Footer.defaultProps = {
   },
   // widget text default style
   textStyle: {
-    color: '#8ec7ff',
+    color: '#13296C',
     fontSize: '16px',
     mb: '10px',
     fontWeight: '300',
