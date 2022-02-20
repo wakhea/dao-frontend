@@ -8,7 +8,7 @@ const BannerWrapper = styled.div`
   background-image: linear-gradient(
     135deg,
     rgba(64, 219, 216, 0.15) 0%,
-    rgba(3, 16, 59, 0.15) 35%
+    rgba(255, 255, 255, 0.15) 35%
   );
   @media only screen and (min-width: 1201px) and (max-width: 1440px) {
     min-height: 100%;
@@ -51,7 +51,7 @@ export const BannerContent = styled.div`
     font-size: 48px;
     line-height: 1.25;
     font-weight: 400;
-    color: ${themeGet('colors.menu', '#0D233E')};
+    color: ${themeGet('colors.menu', "#13296C")};
     margin-bottom: 24px;
     letter-spacing: -0.025em;
     @media only screen and (max-width: 1440px) {
@@ -61,7 +61,7 @@ export const BannerContent = styled.div`
   }
 
   p {
-    color: ${themeGet('colors.paragraph', '#496b96')};
+    color: ${themeGet('colors.paragraph', 'red')};
     font-size: 16px;
     line-height: 33px;
     font-weight: 400;

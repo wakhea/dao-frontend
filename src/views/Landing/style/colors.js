@@ -18,10 +18,12 @@ const colors = {
   primary: "#d1397c",
   headingColor: "#0F2137",
   quoteText: "#343D48",
-  menu: "#fff",
+  menu: "#13296C",
   textColor: "rgba(52, 61, 72, 0.8)",
   linkColor: "#2b9eff",
   shadow: "rgba(38, 78, 118, 0.1)",
+  background: "#fff",
+  paragraph: "#13296C",
 };
 
 export default colors;

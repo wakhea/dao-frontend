@@ -4,7 +4,7 @@ import { themeGet } from '@styled-system/theme-get';
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Readex Pro', sans-serif;
-    background:#03103b;
+    background: ${themeGet('colors.background', '#ffffff')};
   }
   .reuseModalParentWrapper,
   .reuseModalOverlay {
