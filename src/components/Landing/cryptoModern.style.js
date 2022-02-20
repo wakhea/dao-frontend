@@ -74,7 +74,7 @@ export const CryptoWrapper = styled.div`
       ul {
         li {
           a {
-            color: ${themeGet('colors.secondary', '#000')};
+            color: ${themeGet('colors.primary', '#000')};
             font-size: 16px;
             font-weight: 400;
             transition: all 0.3s ease;
