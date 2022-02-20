@@ -29,7 +29,7 @@ const FeatureSectionWrapper = styled.section`
       background-image: linear-gradient(
         to bottom,
         transparent 50%,
-        rgba(255, 255, 255, 0.031)
+        rgba(19, 41, 108, 0.031)
       );
     }
     @media (max-width: 500px) {

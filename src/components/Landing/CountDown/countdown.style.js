@@ -126,7 +126,7 @@ export const ContentWrapper = styled.div`
 
     &.primary {
       background-color: ${themeGet("colors.secondaryButton", "#13296C")};
-      color: ${themeGet("colors.primary", "#FFF")}
+      color: ${themeGet("colors.primary", "#13296C")};
       &:hover {
         box-shadow: rgba(75, 109, 235, 0.78) 0px 9px 20px -10px;
       }

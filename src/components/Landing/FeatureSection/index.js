@@ -68,6 +68,7 @@ FeatureSection.defaultProps = {
     mb: ['40px', '40px', '40px', '80px'],
     display: 'flex',
     width: '100%',
+    color: "red"
   },
   // sub section default style
   sectionSubTitle: {
@@ -77,7 +78,7 @@ FeatureSection.defaultProps = {
     fontSize: ['30px', '40px'],
     fontWeight: '300',
     letterSpacing: '-0.025em',
-    color: '#fff',
+    color: '#13296C',
     mb: '15px',
   },
   // section title default style
@@ -85,7 +86,7 @@ FeatureSection.defaultProps = {
     textAlign: 'center',
     fontSize: ['14px', '16px'],
     fontWeight: '400',
-    color: '#496b96',
+    color: '#13296C',
     mb: '0',
     maxWidth: '420px',
     lineHeight: '1.5',
@@ -112,7 +113,7 @@ FeatureSection.defaultProps = {
   featureTitle: {
     fontSize: ['18px', '20px'],
     fontWeight: '400',
-    color: '#fff',
+    color: '#13296C',
     lineHeight: '1.5',
     mb: ['10px', '10px', '10px', '15px'],
     letterSpacing: '-0.025em',
@@ -122,7 +123,7 @@ FeatureSection.defaultProps = {
   featureDescription: {
     fontSize: '15px',
     lineHeight: '1.6',
-    color: 'rgba(142, 199, 255, 0.502)',
+    color: 'rgba(19, 41, 108, 0.502)',
   },
 };
 
