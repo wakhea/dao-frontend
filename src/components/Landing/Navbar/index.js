@@ -6,7 +6,6 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Icon } from 'react-icons-kit';
 import { menu } from 'react-icons-kit/feather/menu';
 import { x } from 'react-icons-kit/feather/x';
-import { search } from 'react-icons-kit/feather/search';
 import Logo from '../common/components/UIElements/Logo';
 import Button from '../common/components/Button';
 import Container from '../common/components/UI/Container';

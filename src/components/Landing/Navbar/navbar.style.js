@@ -130,7 +130,8 @@ export const MenuArea = styled.div`
     }
     &.trail {
       border-radius: 4px;
-      background-image: linear-gradient(to right, #4ba1d8, #4464bd 95%);
+      background-image: ${themeGet("colors.primaryButton", "#13296C")};
+      margin-left: 19px;
       &:hover {
         box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
       }
@@ -238,21 +239,7 @@ export const MobileMenu = styled.div`
     .reusecore__button {
       width: 100%;
       border-radius: 4px;
-      background-image: -moz-linear-gradient(
-        -31deg,
-        rgb(64, 219, 216) 0%,
-        rgb(44, 31, 132) 100%
-      );
-      background-image: -webkit-linear-gradient(
-        -31deg,
-        rgb(64, 219, 216) 0%,
-        rgb(44, 31, 132) 100%
-      );
-      background-image: -ms-linear-gradient(
-        -31deg,
-        rgb(64, 219, 216) 0%,
-        rgb(44, 31, 132) 100%
-      );
+      background-image: ${themeGet("colors.primaryButton", "#13296C")}
       @media only screen and (max-width: 480px) {
         margin-top: 20px;
       }
