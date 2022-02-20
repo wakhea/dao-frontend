@@ -7,6 +7,7 @@ import FeatureBlock from '../common/components/FeatureBlock';
 import { Features } from '../common/data';
 import Container from '../common/components/UI/Container';
 import FeatureSectionWrapper from './featureSection.style';
+import NextImage from '../common/components/NextImage';
 
 const FeatureSection = ({
   row,
@@ -33,7 +34,7 @@ const FeatureSection = ({
           {Features.map((feature, index) => (
             <Box className="col" {...col} key={index}>
               <FeatureBlock
-                icon={<img src={feature?.icon?.src} />}
+                icon={<NextImage src={feature?.icon} />}
                 wrapperStyle={blockWrapperStyle}
                 contentStyle={contentStyle}
                 title={<Heading content={feature.title} {...featureTitle} />}
