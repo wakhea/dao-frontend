@@ -341,7 +341,7 @@ function App() {
 
             <Switch>
               <Route exact path="/">
-                <Redirect to="/presale" />
+                <Redirect to="/landing" />
               </Route>
 
               <Route path="/presale">

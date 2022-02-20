@@ -12,9 +12,7 @@ import Investment from "../../components/Landing/Investment";
 import FundRaising from "../../components/Landing/FundRaising";
 import Privacypolicy from "../../components/Landing/Privacy";
 import WalletSection from "../../components/Landing/WalletSection";
-import MapSection from "../../components/Landing/MapSection";
 import FaqSection from "../../components/Landing/FaqSection";
-import Newsletter from "../../components/Landing/Newsletter";
 import Footer from "../../components/Landing/Footer";
 import GlobalStyle, { CryptoWrapper, ContentWrapper } from "../../components/Landing/cryptoModern.style";
 
@@ -51,9 +49,7 @@ const CryptoModern = () => {
             <FundRaising />
             <Privacypolicy />
             <WalletSection />
-            <MapSection />
             <FaqSection />
-            <Newsletter />
           </ContentWrapper>
           <Footer />
         </CryptoWrapper>
