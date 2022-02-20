@@ -49,7 +49,7 @@ export const ContentWrapper = styled.div`
       margin-bottom: 0px;
     }
     h2 {
-      color: ${themeGet('colors.white', 'fff')};
+      color: ${themeGet('colors.primary', '#13296C')};
       font-size: 48px;
       line-height: 1.2;
       font-weight: 300;
@@ -71,7 +71,7 @@ export const ContentWrapper = styled.div`
     p {
       font-size: 16px;
       line-height: 28px;
-      color: #496b96;
+      color: ${themeGet('colors.primary', '#13296C')};
       max-width: 400px;
       @media only screen and (max-width: 768px) {
         max-width: 100%;
@@ -86,7 +86,7 @@ export const ContentWrapper = styled.div`
       p {
         font-size: 16px;
         line-height: 28px;
-        color: ${themeGet('colors.white', 'fff')};
+        color: ${themeGet('colors.primary', '#13296C')};
         padding-left: 24px;
         max-width: 100%;
         margin-bottom: 30px;
@@ -98,8 +98,8 @@ export const ContentWrapper = styled.div`
       margin-bottom: 20px;
       .reusecore__button {
         font-weight: 500;
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.302);
+        color: ${themeGet('colors.primary', '#13296C')};
+        border: 1px solid rgba(19, 41, 108, 0.302);
         margin-right: 17px;
         padding-left: 30px;
         padding-right: 30px;

@@ -20,8 +20,8 @@ const FaqSectionWrapper = styled.section`
 
     .accordion__item {
       border-top: 0;
-      background-color: #08153f;
-      color: #fff;
+      background-color: ${themeGet("colors.primary", "#13296C")};
+      color: ;
       border-radius: 5px;
       transition: all 0.3s ease;
       cursor: pointer;

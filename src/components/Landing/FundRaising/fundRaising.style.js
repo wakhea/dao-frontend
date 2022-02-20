@@ -62,7 +62,7 @@ export const ContentWrapper = styled.div`
       margin-bottom: 50px;
     }
     h2 {
-      color: ${themeGet('colors.white', 'fff')};
+      color: ${themeGet('colors.primary', '#13296C')};
       font-size: 48px;
       line-height: 1.2;
       font-weight: 300;
@@ -84,7 +84,7 @@ export const ContentWrapper = styled.div`
     p {
       font-size: 16px;
       line-height: 28px;
-      color: #496b96;
+      color: ${themeGet('colors.primary', '#13296C')};
       max-width: 400px;
       @media only screen and (max-width: 768px) {
         max-width: 100%;

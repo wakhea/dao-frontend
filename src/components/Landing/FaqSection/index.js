@@ -48,10 +48,10 @@ const FaqSection = ({
                         <Heading content={faqItem.title} {...titleStyle} />
                         <IconWrapper>
                           <OpenIcon>
-                            <Icon icon={thinRight} size={18} />
+                            <Icon icon={thinRight} size={18} style={{color:"#FFF"}}/>
                           </OpenIcon>
                           <CloseIcon>
-                            <Icon icon={thinDown} size={18} />
+                            <Icon icon={thinDown} size={18} style={{color:"#FFF"}} />
                           </CloseIcon>
                         </IconWrapper>
                       </Fragment>
@@ -96,7 +96,7 @@ FaqSection.defaultProps = {
     fontSize: ['30px', '40px'],
     fontWeight: '300',
     letterSpacing: '-0.025em',
-    color: '#fff',
+    color: "#13296C",
     mb: '15px',
   },
   // section title default style
@@ -104,7 +104,7 @@ FaqSection.defaultProps = {
     textAlign: 'center',
     fontSize: ['14px', '16px'],
     fontWeight: '400',
-    color: '#496b96',
+    color: '#13296C',
     mb: '0',
     maxWidth: '420px',
     lineHeight: '1.5',
@@ -120,7 +120,8 @@ FaqSection.defaultProps = {
   // accordion description default style
   descriptionStyle: {
     fontSize: '15px',
-    color: '#496b96',
+    color: '#FFF',
+    opacity: '0.85',
     lineHeight: '1.75',
     mb: '0',
   },
