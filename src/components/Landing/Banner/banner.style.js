@@ -5,11 +5,6 @@ const BannerWrapper = styled.div`
   padding-top: 100px;
   min-height: 802px;
   overflow: hidden;
-  background-image: linear-gradient(
-    135deg,
-    rgba(64, 219, 216, 0.15) 0%,
-    rgba(255, 255, 255, 0.15) 35%
-  );
   @media only screen and (min-width: 1201px) and (max-width: 1440px) {
     min-height: 100%;
   }
