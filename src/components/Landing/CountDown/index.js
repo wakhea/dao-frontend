@@ -13,6 +13,7 @@ import { Link } from '@material-ui/core';
 const CountDownSection = () => {
   return (
     <SectionWrapper>
+      <div id="separator"></div>
       <Container>
         <ContentWrapper>
           <Heading content="Token Presale starting in: " />
@@ -26,6 +27,7 @@ const CountDownSection = () => {
           </Link>
         </ContentWrapper>
       </Container>
+      <div id="separator" className="bottom"></div>
     </SectionWrapper>
   );
 };

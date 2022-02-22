@@ -1,17 +1,27 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import pattern from '../common/assets/image/plus_pattern.png';
 
 const SectionWrapper = styled.div`
-  padding: 75px 0;
+  padding: 3px 0;
   overflow: hidden;
-  
+  margin-top: 25px;
+  #separator {
+    height: 40px;
+    background-image: url(${pattern});
+    backgound-repeat: repeat-x;
+    background-size: contain;
+  }
+  .bottom {
+    transform: scaleY(-1);
+  }
   background: ${themeGet("colors.secondaryBackground", "#13296C")};
 
   @media only screen and (max-width: 1440px) {
-    padding: 100px 0 50px;
+    padding: 3px 0 3px;
   }
   @media only screen and (max-width: 480px) {
-    padding: 60px 0 5px;
+    padding: 3px 0 5px;
   }
 `;
 
@@ -20,6 +30,8 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
+  margin-top: 25px;
+  margin-bottom: 25px;
   @media (max-width: 480px) {
     flex-wrap: nowrap;
     align-items: center;
