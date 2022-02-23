@@ -4,6 +4,8 @@ import { themeGet } from '@styled-system/theme-get';
 const WorkHistoryWrapper = styled.section`
   padding: 70px 0 80px;
   overflow: hidden;
+  box-shadow: 20px -40px 80px white;
+  background-color: #13296C;
   @media (max-width: 990px) {
     padding: 50px 0 60px 0;
   }

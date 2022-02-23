@@ -31,7 +31,7 @@ const FeatureSection = ({
           />
         </Box>
         <Box className="row" {...row}>
-          {Features.map((feature, index) => (
+          {/*Features.map((feature, index) => (
             <Box className="col" {...col} key={index}>
               <FeatureBlock
                 icon={<NextImage src={feature?.icon} />}
@@ -44,7 +44,7 @@ const FeatureSection = ({
                 className="cryptoFeature"
               />
             </Box>
-          ))}
+              ))*/}
         </Box>
       </Container>
     </FeatureSectionWrapper>

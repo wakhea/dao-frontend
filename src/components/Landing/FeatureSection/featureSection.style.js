@@ -1,6 +1,23 @@
 import styled from 'styled-components';
+import hand from '../common/assets/image/hand.png';
 
 const FeatureSectionWrapper = styled.section`
+  
+  background-image: url(${hand});
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: 650px;
+  @media(max-width: 2561px) {
+    background-size: 25%;
+  }
+  @media(max-width: 1778px) {
+    background-size: 35%;
+  }
+
+  @media(max-width: 1000px) {
+    background-size: 25%;
+  }
+
   padding: 80px 0 180px 0;
   @media (max-width: 990px) {
     padding: 60px 0 60px 0;
