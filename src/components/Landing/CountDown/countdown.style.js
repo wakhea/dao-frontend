@@ -5,7 +5,7 @@ import pattern from '../common/assets/image/plus_pattern.png';
 const SectionWrapper = styled.div`
   padding: 3px 0;
   overflow: hidden;
-  margin-top: 25px;
+  box-shadow: 20px -40px 80px white;
   #separator {
     height: 40px;
     background-image: url(${pattern});
@@ -22,6 +22,7 @@ const SectionWrapper = styled.div`
   }
   @media only screen and (max-width: 480px) {
     padding: 3px 0 5px;
+    margin-top: 25px;
   }
 `;
 

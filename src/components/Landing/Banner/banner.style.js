@@ -15,6 +15,7 @@ const BannerWrapper = styled.div`
   @media only screen and (max-width: 480px) {
     padding-top: 120px;
     min-height: 100%;
+    max-width: 480px;
   }
   > div.container {
     display: flex;
@@ -26,6 +27,8 @@ const BannerWrapper = styled.div`
     }
     @media only screen and (max-width: 1099px) {
       min-height: 100%;
+      flex-wrap: wrap;
+      max-width: 1099px;
     }
     @media only screen and (max-width: 480px) {
       flex-wrap: wrap;
@@ -37,6 +40,7 @@ const BannerWrapper = styled.div`
 export const BannerContent = styled.div`
   max-width: 425px;
   width: 100%;
+  margin: 0 auto;
   @media only screen and (max-width: 991px) {
     flex-shrink: 0;
     max-width: 360px;
@@ -63,39 +67,15 @@ export const BannerContent = styled.div`
   }
 `;
 
-export const DiscountLabel = styled.div`
-  display: flex;
-  border-radius: 4em;
-  background-color: rgb(26, 29, 95);
-  box-shadow: 0px 5px 15px 0px rgba(22, 53, 76, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  padding: 7px 25px;
-  margin-bottom: 15px;
-  width: 80%;
-  @media (max-width: 767px) {
-    padding: 7px 15px;
-    width: 100%;
-  }
-  .discountAmount {
-    font-size: 14px;
-    color: rgb(64, 224, 219);
-    margin-bottom: 0;
-    margin-right: 0.6em;
-    font-weight: 700;
-  }
-  .discountText {
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.902);
-    margin-bottom: 0;
-    font-weight: 700;
-  }
-`;
-
 export const BannerImage = styled.div`
-  flex-shrink: 0;
   width: calc(100% - 425px);
+  min-width: 400px;
+  margin: 0 auto;
   img {
-    margin-left: 80px;
+    margin-bottom: -4px;
+    position: relative;
+    z-index: -1;
+    min-width: 400px;
     @media only screen and (max-width: 1600px) {
       margin-left: 0;
     }

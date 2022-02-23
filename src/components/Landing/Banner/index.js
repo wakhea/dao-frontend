@@ -13,7 +13,7 @@ import BannerWrapper, {
   ButtonGroup,
 } from './banner.style';
 
-import bannerImg from '../common/assets/image/plus_token.png';
+import bannerImg from '../common/assets/image/nike.png';
 
 const Banner = () => {
   return (
@@ -46,7 +46,7 @@ const Banner = () => {
         </BannerContent>
         <BannerImage>
           <Fade in delay={100}>
-            <NextImage width="1060px" src={bannerImg} alt="Banner" />
+            <NextImage width="100%" src={bannerImg} alt="Banner" />
           </Fade>
         </BannerImage>
       </Container>
