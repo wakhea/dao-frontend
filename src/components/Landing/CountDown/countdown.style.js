@@ -3,16 +3,16 @@ import { themeGet } from '@styled-system/theme-get';
 import pattern from '../common/assets/image/plus_pattern.png';
 
 const SectionWrapper = styled.div`
-  padding: 3px 0;
+  padding: 5px 0;
   overflow: hidden;
   box-shadow: 20px -40px 80px white;
   #separator {
-    height: 40px;
+    height: 30px;
     background-image: url(${pattern});
     backgound-repeat: repeat-x;
     background-size: contain;
   }
-  .bottom {
+  .top {
     transform: scaleY(-1);
   }
   background: ${themeGet("colors.secondaryBackground", "#13296C")};
