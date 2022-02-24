@@ -18,7 +18,7 @@ const FeatureSectionWrapper = styled.section`
     background-size: 25%;
   }
 
-  padding: 80px 0 180px 0;
+  padding: 80px 0 250px 0;
   @media (max-width: 990px) {
     padding: 60px 0 60px 0;
   }

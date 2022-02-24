@@ -1,11 +1,31 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
+import plusToken from '../common/assets/image/plus-token.png';
 
 const WorkHistoryWrapper = styled.section`
   padding: 70px 0 80px;
   overflow: hidden;
   box-shadow: 20px -40px 80px white;
   background-color: #13296C;
+  height: 400px;
+  background-image: url(${plusToken});
+  background-repeat: no-repeat;
+  background-size: 500px;
+  background-position: right;
+  background-position-x: 75%;
+
+  .container {
+    display: flex;
+    height: 100%;
+  }
+  .image {
+    width: 30%;
+  }
+
+  .buy {
+    width: 70%;
+  }
+
   @media (max-width: 990px) {
     padding: 50px 0 60px 0;
   }
@@ -28,6 +48,8 @@ const WorkHistoryWrapper = styled.section`
       margin-bottom: 40px;
       margin-top: 0;
     }
+
+    
     h2 {
       font-size: 48px;
       line-height: 1.2;
@@ -63,9 +85,27 @@ const WorkHistoryWrapper = styled.section`
   }
 `;
 
-const CounterUpArea = styled.div`
+const BuyTokenArea = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  #buy-link {
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 94px;
+    color: #527DFF;
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    background: rgb(82,125,255);
+    background: linear-gradient(77deg, rgba(82,125,255,1) 26%, rgba(45,86,210,0.9976191160057774) 95%);
+    width: 350px;
+    font-size: 50px;
+  }
 
   @media only screen and (max-width: 1200px) {
     padding-left: 0;
@@ -134,5 +174,5 @@ const CounterUpArea = styled.div`
   }
 `;
 
-export { CounterUpArea };
+export { BuyTokenArea };
 export default WorkHistoryWrapper;

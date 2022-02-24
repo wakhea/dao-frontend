@@ -86,13 +86,13 @@ const Navbar = () => {
     <NavbarWrapper className="navbar">
       <Container>
         <Logo
-          href="/landing"
+          href="/"
           logoSrc={LogoImage}
           title="Plutus Protocol"
           className="main-logo"
         />
         <Logo
-          href="/landing"
+          href="/"
           logoSrc={LogoImageAlt}
           title="PlutusProtocol"
           className="logo-alt"

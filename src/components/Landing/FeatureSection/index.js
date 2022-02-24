@@ -11,14 +11,9 @@ import NextImage from '../common/components/NextImage';
 
 const FeatureSection = ({
   row,
-  col,
   sectionHeader,
   sectionTitle,
   sectionSubTitle,
-  featureTitle,
-  featureDescription,
-  contentStyle,
-  blockWrapperStyle,
 }) => {
   return (
     <FeatureSectionWrapper id="key-features">
