@@ -340,10 +340,6 @@ function App() {
               oldAssetsEnoughToMigrate && <CallToAction setMigrationModalOpen={setMigrationModalOpen} />}
 
             <Switch>
-              <Route exact path="/">
-                <Redirect to="/landing" />
-              </Route>
-
               <Route path="/presale">
                 <Presale />
               </Route>

@@ -21,9 +21,9 @@ const Root: FC = () => {
     <Web3ContextProvider>
       <Provider store={store}>
         <I18nProvider i18n={i18n}>
-          <BrowserRouter basename={"/"}>
+          <BrowserRouter>
             <Switch>
-              <Route path="/landing">
+              <Route exact path="/">
                 <Landing></Landing>
               </Route>
               <App />
