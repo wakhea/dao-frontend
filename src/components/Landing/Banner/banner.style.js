@@ -2,18 +2,18 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const BannerWrapper = styled.div`
-  padding-top: 100px;
+  padding-top: 125px;
   min-height: 802px;
   overflow: hidden;
   @media only screen and (min-width: 1201px) and (max-width: 1440px) {
     min-height: 100%;
   }
   @media only screen and (max-width: 1099px) {
-    padding-top: 120px;
+    padding-top: 140px;
     min-height: 100%;
   }
   @media only screen and (max-width: 480px) {
-    padding-top: 120px;
+    padding-top: 140px;
     min-height: 100%;
     max-width: 480px;
   }

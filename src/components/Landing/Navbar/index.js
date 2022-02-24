@@ -10,9 +10,9 @@ import Logo from '../common/components/UIElements/Logo';
 import Button from '../common/components/Button';
 import Container from '../common/components/UI/Container';
 import useOnClickOutside from '../common/hooks/useOnClickOutside';
-import NavbarWrapper, { MenuArea, MobileMenu, Search } from './navbar.style';
-import LogoImage from '../common/assets/image/logo.png';
-import LogoImageAlt from '../common/assets/image/logo.png';
+import NavbarWrapper, { MenuArea, MobileMenu } from './navbar.style';
+import LogoImage from '../common/assets/image/logo-landing.png';
+import LogoImageAlt from '../common/assets/image/logo-landing.png';
 import { Link } from "@material-ui/core";
 import { navbar } from '../common/data/';
 

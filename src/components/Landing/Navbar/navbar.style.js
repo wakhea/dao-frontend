@@ -4,7 +4,7 @@ import searchIcon from '../common/assets/image/search.svg';
 
 const NavbarWrapper = styled.nav`
   width: 100%;
-  padding: 25px 0 26px;
+  padding: 10px 0;
   background-color: transparent;
   position: fixed;
   z-index: 9999;
@@ -17,15 +17,21 @@ const NavbarWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media only screen and (max-width: 991px) {
+      justify-content: center;
+    }
     .main-logo {
       img {
-        width: 54px;
-        height: auto;
+        width: auto;
+        height: 100px;
       }
     }
     .logo-alt {
-      width: 54px;
-      height: auto;
+      width: auto;
+      height: 100px;
+      img {
+        height: 100%;
+      }
       display: none;
     }
   }
