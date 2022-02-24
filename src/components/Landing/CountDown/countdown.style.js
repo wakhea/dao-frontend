@@ -22,7 +22,6 @@ const SectionWrapper = styled.div`
   }
   @media only screen and (max-width: 480px) {
     padding: 3px 0 5px;
-    margin-top: 25px;
   }
 `;
 
