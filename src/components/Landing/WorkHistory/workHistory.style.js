@@ -13,22 +13,47 @@ const WorkHistoryWrapper = styled.section`
   background-size: 500px;
   background-position: right;
   background-position-x: 75%;
-
+  @media only screen and (max-width: 1440px) {
+    background-position-x: 90%;
+  }
   .container {
     display: flex;
     height: 100%;
-  }
-  .image {
-    width: 30%;
-  }
+    @media only screen and (max-width: 1220px) {
+      margin: 0;
+    }
+    @media only screen and (max-width: 990px) {
+      margin: 0 auto;
+      justify-content: center;
+      flex-direction: row;
+      align-content: center;
+      align-items: start;
+    }
+    .image {
+      width: 30%;
+    }
 
-  .buy {
-    width: 70%;
+    .buy {
+      width: 70%;
+      @media only screen and (max-width: 1200px) {
+        max-width: 500px;
+        width: 100%;
+      }
+      @media only screen and (max-width: 990px) {
+        max-width: 990px;
+        width: 100%;
+      }
+    }
   }
 
   @media (max-width: 990px) {
     padding: 50px 0 60px 0;
+    height: 800px;
+    background-position: bottom;
+    background-position-x: 50%;
+    background-position-y: 120%;
   }
+
   @media (max-width: 480px) {
     padding: 50px 0 0px 0;
   }
@@ -98,6 +123,21 @@ const BuyTokenArea = styled.div`
     color: #527DFF;
     width: 100%;
     text-align: center;
+    @media only screen and (max-width: 1440px) {
+      font-size: 84px;
+    }
+
+    @media only screen and (max-width: 990px) {
+      font-size: 94px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      font-size: 74px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      font-size: 66px;
+    }
   }
 
   button {
@@ -105,6 +145,23 @@ const BuyTokenArea = styled.div`
     background: linear-gradient(77deg, rgba(82,125,255,1) 26%, rgba(45,86,210,0.9976191160057774) 95%);
     width: 350px;
     font-size: 50px;
+    @media only screen and (max-width: 1440px) {
+      width: 250px;
+      font-size: 40px;
+    }
+
+    @media only screen and (max-width: 990px) {
+      width: 350px;
+      font-size: 50px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: 250px;
+      font-size: 35px;
+    }
+    @media only screen and (max-width: 767px) {
+      font-size: 30px;
+    }
   }
 
   @media only screen and (max-width: 1200px) {
