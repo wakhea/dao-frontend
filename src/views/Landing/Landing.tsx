@@ -7,7 +7,7 @@ import Navbar from "../../components/Landing/Navbar";
 import Banner from "../../components/Landing/Banner";
 import CountDown from "../../components/Landing/CountDown";
 import Features from "../../components/Landing/FeatureSection";
-import WorkHistory from "../../components/Landing/WorkHistory";
+import BuyToken from "../../components/Landing/BuyToken";
 import Investment from "../../components/Landing/Investment";
 import FundRaising from "../../components/Landing/FundRaising";
 import Privacypolicy from "../../components/Landing/Privacy";
@@ -44,7 +44,7 @@ const CryptoModern = () => {
             <Banner />
             <CountDown />
             <Features />
-            <WorkHistory />
+            <BuyToken />
             <Investment />
             <FundRaising />
             <Privacypolicy />
