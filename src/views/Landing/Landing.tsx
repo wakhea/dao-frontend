@@ -15,6 +15,7 @@ import WalletSection from "../../components/Landing/WalletSection";
 import FaqSection from "../../components/Landing/FaqSection";
 import Footer from "../../components/Landing/Footer";
 import GlobalStyle, { CryptoWrapper, ContentWrapper } from "../../components/Landing/cryptoModern.style";
+import Percentages from "src/components/Landing/Percentages";
 
 const CryptoModern = () => {
   return (
@@ -45,6 +46,7 @@ const CryptoModern = () => {
             <CountDown />
             <Features />
             <BuyToken />
+            <Percentages />
             <Investment />
             <FundRaising />
             <Privacypolicy />
