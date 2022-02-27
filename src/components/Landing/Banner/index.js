@@ -28,7 +28,7 @@ const Banner = () => {
           </Fade>
           <Fade up delay={200}>
             <Text
-              content="PlutusProtocol is a DAO-governed VC fund. You decide on your Gains. ."
+              content="PlutusProtocol is a DAO-governed VC fund. You decide on your Gains."
             />
           </Fade>
           <Fade up delay={300}>
@@ -46,7 +46,7 @@ const Banner = () => {
         </BannerContent>
         <BannerImage>
           <Fade in delay={100}>
-            <NextImage width="100%" src={bannerImg} alt="Banner" />
+            <NextImage width="80%" src={bannerImg} alt="Banner" />
           </Fade>
         </BannerImage>
       </Container>

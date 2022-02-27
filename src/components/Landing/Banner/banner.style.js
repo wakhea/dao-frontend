@@ -9,7 +9,7 @@ const BannerWrapper = styled.div`
     min-height: 100%;
   }
   @media only screen and (max-width: 1099px) {
-    padding-top: 140px;
+    padding-top: 170px;
     min-height: 100%;
   }
   @media only screen and (max-width: 480px) {
@@ -38,6 +38,9 @@ const BannerWrapper = styled.div`
 `;
 
 export const BannerContent = styled.div`
+  padding-left: 20px;
+  border-left: 15px solid ${themeGet('colors.menu', '#3461E8')};
+  border-radius: 15px; 
   max-width: 425px;
   width: 100%;
   margin: 0 auto;
@@ -49,8 +52,8 @@ export const BannerContent = styled.div`
   h1 {
     font-size: 48px;
     line-height: 1.25;
-    font-weight: 400;
-    color: ${themeGet('colors.menu', "#13296C")};
+    font-weight: bold;
+    color: ${themeGet('colors.menu', "#3461E8")};
     margin-bottom: 24px;
     letter-spacing: -0.025em;
     @media only screen and (max-width: 1440px) {
@@ -60,8 +63,8 @@ export const BannerContent = styled.div`
   }
 
   p {
-    color: ${themeGet('colors.paragraph', 'red')};
-    font-size: 16px;
+    color: ${themeGet('colors.paragraph', '#5b82f8')};
+    font-size: 20px;
     line-height: 33px;
     font-weight: 400;
   }
