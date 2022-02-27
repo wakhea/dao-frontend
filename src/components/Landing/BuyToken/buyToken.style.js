@@ -47,15 +47,16 @@ const BuyTokenWrapper = styled.section`
   }
 
   @media (max-width: 990px) {
-    padding: 50px 0 60px 0;
-    height: 800px;
+    padding: 0;
+    height: 500px;
     background-position: bottom;
     background-position-x: 50%;
-    background-position-y: 120%;
+    background-position-y: 140%;
+    background-size: 350px;
   }
 
   @media (max-width: 480px) {
-    padding: 50px 0 0px 0;
+    padding: 0
   }
   .feature__block {
     padding-left: 132px;
