@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 import pattern from '../common/assets/image/plus_pattern.png';
 
 const SectionWrapper = styled.div`
-  padding: 5px 0;
+  padding: 0px 0;
   overflow: hidden;
   box-shadow: 20px -40px 80px white;
   #separator {

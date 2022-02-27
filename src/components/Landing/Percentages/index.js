@@ -15,15 +15,15 @@ const Percentages = ({
   return (
     <PercentagesWrapper id="key-features">
       <Container>
-        <Box {...sectionHeader} className="sectionHeader">
+        {/*<Box {...sectionHeader} className="sectionHeader">
           <Text content="DECENTRALIZED" {...sectionSubTitle} />
           <Text
             content="VENTURE CAPITAL"
             {...sectionTitle}
           />
-        </Box>
+  </Box>*/}
         <Box className="row" {...row}>
-          <NextImage width="100%" src={vcPercentages} />
+          <NextImage width="100%"  src={vcPercentages} />
         </Box>
       </Container>
     </PercentagesWrapper>
