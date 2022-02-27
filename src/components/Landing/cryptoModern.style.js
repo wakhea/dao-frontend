@@ -74,17 +74,19 @@ export const CryptoWrapper = styled.div`
       ul {
         li {
           a {
-            color: ${themeGet('colors.primary', '#000')};
+            color: ${themeGet('colors.menu', '#000')};
             font-size: 16px;
             font-weight: 400;
             transition: all 0.3s ease;
             &:hover {
-              color: ${themeGet('colors.menuHoverColor', '#03103b')};
+              color: ${themeGet('colors.menu', '#03103b')};
+              font-weight: 700;
             }
           }
           &.is-current {
             a {
-              color: ${themeGet('colors.menuHoverColor', '#03103b')};
+              color: ${themeGet('colors.menu', '#03103b')};
+              font-weight:700;
             }
           }
         }
