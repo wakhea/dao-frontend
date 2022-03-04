@@ -45,7 +45,7 @@ function NavContent() {
   const activeTheme = () => {
     let theme = localStorage.getItem("theme");
     if (theme === null) {
-      return dark;
+      return "light";
     } else {
       return theme;
     }
@@ -94,7 +94,7 @@ function NavContent() {
             <Link href="/" target="_blank">
               <SvgIcon
                 color="primary"
-                component={activeTheme() == "dark" ? PlutusIconDark : PlutusIconLight}
+                component={activeTheme() === "dark" ? PlutusIconDark : PlutusIconLight}
                 viewBox="0 0 849.43 1062.08"
                 style={{ minWdth: "200px", minHeight: "200px", width: "200px" }}
               />
