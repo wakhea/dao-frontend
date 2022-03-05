@@ -69,7 +69,6 @@ FeatureSection.defaultProps = {
   sectionSubTitle: {
     as: 'span',
     display: 'block',
-    textAlign: 'center',
     fontSize: ['30px', '40px'],
     fontWeight: 'bold',
     letterSpacing: '-0.025em',

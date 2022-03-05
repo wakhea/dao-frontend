@@ -2,10 +2,11 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import plusToken from '../common/assets/image/plus-token.png';
 
+// box-shadow: 20px -40px 80px white;
 const BuyTokenWrapper = styled.section`
   padding: 70px 0 80px;
   overflow: hidden;
-  box-shadow: 20px -40px 80px white;
+  
   background-color: #13296C;
   height: 400px;
   background-image: url(${plusToken});
