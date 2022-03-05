@@ -30,8 +30,9 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  text-align: right;
   .image {
-    width: 50%;
+    width: 40%;
     padding: 70px;
     padding-right: 100px;
     @media only screen and (max-width: 991px) {
@@ -53,7 +54,11 @@ export const ContentWrapper = styled.div`
     }
   }
   .content {
-    width: 50%;
+    width: 60%;
+    
+  padding-right: 15px;
+  border-right: ${themeGet('colors.border')};
+  border-radius: 15px;
     @media only screen and (max-width: 991px) {
       width: 50%;
     }
@@ -62,10 +67,10 @@ export const ContentWrapper = styled.div`
       margin-bottom: 50px;
     }
     h2 {
-      color: ${themeGet('colors.primary', '#13296C')};
-      font-size: 48px;
+      color: ${themeGet('colors.menu', '#13296C')};
+      font-size: 42px;
       line-height: 1.2;
-      font-weight: 300;
+      font-weight: bold;
       letter-spacing: -0.025em;
       margin-bottom: 27px;
       @media only screen and (max-width: 1440px) {
@@ -83,8 +88,9 @@ export const ContentWrapper = styled.div`
     }
     p {
       font-size: 16px;
+      float: right;
       line-height: 28px;
-      color: ${themeGet('colors.primary', '#13296C')};
+      color: ${themeGet('colors.paragraph', '#13296C')};
       max-width: 400px;
       @media only screen and (max-width: 768px) {
         max-width: 100%;

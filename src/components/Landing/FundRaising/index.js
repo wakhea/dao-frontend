@@ -4,8 +4,10 @@ import Heading from '../common/components/Heading';
 import NextImage from '../common/components/NextImage';
 import Container from '../common/components/UI/Container';
 import SectionWrapper, { ContentWrapper } from './fundRaising.style';
-import FundGraphImg from '../common/assets/image/fund-graph.png';
-import GraphFeatureImg from '../common/assets/image/graph-feature.png';
+import Treasury from '../common/assets/image/treasury.png';
+
+const CONTENT = "Plutus Protocol's Treasury\n" +
+  "Assets received by the Treasury increases its balance, backing PLUS and creating exponential value and unmatched upside for investors.";
 
 const DesignedAndBuilt = () => {
   return (
@@ -13,14 +15,12 @@ const DesignedAndBuilt = () => {
       <Container>
         <ContentWrapper>
           <div className="image">
-            <NextImage src={FundGraphImg} alt="Graph Image" />
+            <NextImage src={Treasury} alt="Treasury chest" />
           </div>
           <div className="content">
-            <Heading content="Fund raising allocation" />
-            <Text content="Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiu Lorem ipsum dolor sit ." />
-            <NextImage src={GraphFeatureImg} alt="Graph Feature Image" />
+            <Heading content="TREASURY GROWTH" />
+            <Text content={CONTENT} />
           </div>
-          <div className="gradientDiv"> </div>
         </ContentWrapper>
       </Container>
     </SectionWrapper>

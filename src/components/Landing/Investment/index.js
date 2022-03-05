@@ -1,28 +1,27 @@
 import React from 'react';
 import Text from '../common/components/Text';
 import Heading from '../common/components/Heading';
-import Image from '../common/components/Image';
 import NextImage from '../common/components/NextImage';
 import Container from '../common/components/UI/Container';
 import SectionWrapper, { ContentWrapper } from './investment.style';
-import GraphImg from '../common/assets/image/graph.png';
-import dummyImg from '../common/assets/image/pattern.png';
+import coins from '../common/assets/image/coins.png';
 
+const CONTENT = "As a smart VC, the treasury revenue will continue" +
+  "to grow with investments from the VC fund. As a staker, you vote and decide where the funds will be allocated"
 const InvestmentPortal = () => {
   return (
     <SectionWrapper>
       <Container>
         <ContentWrapper>
           <div className="content">
-            <Heading content="Total Investment sale from last year transaction" />
-            <Text content="Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiu Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiu" />
+            <Heading content="TREASURY REVENUE" />
+            <Text content={CONTENT} />
           </div>
           <div className="image">
-            <NextImage src={GraphImg} alt="Graph Image" />
+            <NextImage src={coins} alt="Coins" />
           </div>
         </ContentWrapper>
       </Container>
-      <Image className="patternImg" src={dummyImg?.src} alt="pattern Image" />
     </SectionWrapper>
   );
 };

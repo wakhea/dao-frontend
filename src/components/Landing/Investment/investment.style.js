@@ -28,8 +28,9 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   .image {
-    width: 50%;
+    width: 30%;
     @media only screen and (max-width: 991px) {
       width: 50%;
     }
@@ -44,21 +45,24 @@ export const ContentWrapper = styled.div`
   }
   .content {
     width: 50%;
+    padding-left: 15px;
+    border-left: ${themeGet('colors.border')};
+    border-radius: 15px;
     @media only screen and (max-width: 991px) {
-      width: 50%;
+      width: 60%;
     }
     @media only screen and (max-width: 768px) {
       width: 100%;
       margin-bottom: 50px;
     }
     h2 {
-      color: ${themeGet('colors.primary', '#13296C')};
-      font-size: 48px;
+      color: ${themeGet('colors.menu', '#13296C')};
+      font-size: 42px;
       line-height: 1.2;
-      font-weight: 300;
+      font-weight: bold;
       letter-spacing: -0.025em;
-      margin-bottom: 27px;
-      max-width: 370px;
+      margin-bottom: 15px;
+      
       @media only screen and (max-width: 1440px) {
         font-size: 38px;
       }
@@ -73,7 +77,7 @@ export const ContentWrapper = styled.div`
     p {
       font-size: 16px;
       line-height: 28px;
-      color: ${themeGet('colors.primary', '#13296C')};
+      color: ${themeGet('colors.paragraph', '#13296C')};
       max-width: 400px;
       @media only screen and (max-width: 768px) {
         max-width: 100%;
