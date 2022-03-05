@@ -28,6 +28,8 @@ const colors = {
   paragraph: "#5b82f8",
   primaryButton: "linear-gradient(to right, #3461E8 ,#5b82f8 95%)",
   secondaryButton: "white", //"linear-gradient(to right, #FFF ,#2345AB 95%)",
+  timer: "linear-gradient(184deg, #5A81F8 41%, #3461E8 72%)",
+  border: "15px solid #3461E8",
 };
 
 export default colors;

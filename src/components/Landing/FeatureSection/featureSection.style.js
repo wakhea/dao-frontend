@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import hand from '../common/assets/image/hand.png';
+import { themeGet } from '@styled-system/theme-get';
 
 const FeatureSectionWrapper = styled.section`
   
   background-image: url(${hand});
   background-repeat: no-repeat;
-  background-position: bottom left;
-  background-size: 650px;
+  background-position: bottom right;
+  background-position-x: 60%;
+  background-size: 350px;
   @media(max-width: 2561px) {
-    background-size: 25%;
+    background-size: 450px;
   }
   @media(max-width: 1778px) {
     background-size: 35%;
@@ -18,7 +20,7 @@ const FeatureSectionWrapper = styled.section`
     background-size: 25%;
   }
 
-  padding: 80px 0 250px 0;
+  padding: 140px 0 100px 0;
   @media (max-width: 990px) {
     padding: 60px 0 60px 0;
   }
@@ -29,7 +31,7 @@ const FeatureSectionWrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
   }
   .feature__block {
     position: relative;
@@ -55,6 +57,13 @@ const FeatureSectionWrapper = styled.section`
         background-image: none;
       }
     }
+  }
+
+  .container {
+    border-left: ${themeGet('colors.border')};
+    border-radius: 15px;
+    padding-left: 20px;
+    margin-bottom: 0 !important;
   }
 `;
 

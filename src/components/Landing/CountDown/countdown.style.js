@@ -3,7 +3,10 @@ import { themeGet } from '@styled-system/theme-get';
 import pattern from '../common/assets/image/plus_pattern.png';
 
 const SectionWrapper = styled.div`
-  padding: 0px 0;
+  padding: 25px 87px;
+  margin-left: 30%;
+  margin-right: 30%;
+  border-radius: 80px;
   overflow: hidden;
   box-shadow: 20px -40px 80px white;
   #separator {
@@ -11,11 +14,12 @@ const SectionWrapper = styled.div`
     background-image: url(${pattern});
     backgound-repeat: repeat-x;
     background-size: contain;
+    bacground-position: center;
   }
   .top {
     transform: scaleY(-1);
   }
-  background: ${themeGet("colors.secondaryBackground", "#13296C")};
+  background: ${themeGet("colors.timer", "#13296C")};
 
   @media only screen and (max-width: 1440px) {
     padding: 3px 0 3px;
@@ -41,7 +45,7 @@ export const ContentWrapper = styled.div`
     color: ${themeGet('colors.white', '#fff')};
     font-size: 32px;
     line-height: 44px;
-    font-weight: 400;
+    font-weight: 900;
     margin-bottom: 27px;
     @media only screen and (max-width: 1366px) {
       font-size: 30px;
@@ -76,7 +80,7 @@ export const ContentWrapper = styled.div`
         width: 110px;
         height: 100px;
         border-radius: 5px;
-        background-color: #0b1741;
+        background-color: #18337E;
         @media (max-width: 480px) {
           width: 70px;
           height: 70px;
@@ -100,11 +104,11 @@ export const ContentWrapper = styled.div`
           }
         }
         .digitLabel {
-          font-size: 14px;
+          font-size: 18px;
           letter-spacing: 3px;
-          color: #8ec7ff;
+          color: #FFF;
           font-family: 'Readex Pro';
-          font-weight: 500;
+          font-weight: 900;
           text-transform: uppercase;
           text-align: center;
           margin-top: 12px;
@@ -139,6 +143,7 @@ export const ContentWrapper = styled.div`
     &.primary {
       background-color: ${themeGet("colors.secondaryButton", "#13296C")};
       color: ${themeGet("colors.primary", "#13296C")};
+      font-weight: bold;
       &:hover {
         box-shadow: rgba(75, 109, 235, 0.78) 0px 9px 20px -10px;
       }

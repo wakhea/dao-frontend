@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import Box from '../common/components/Box';
 import Text from '../common/components/Text';
 import Heading from '../common/components/Heading';
-import FeatureBlock from '../common/components/FeatureBlock';
-import { Features } from '../common/data';
 import Container from '../common/components/UI/Container';
 import FeatureSectionWrapper from './featureSection.style';
 import NextImage from '../common/components/NextImage';
 
+const HEADING_CONTENT="The main benefit for stakers comes from the supply growth.\n" +
+  "Plutus protocol mints new PLUS tokens from the treasury, the majority of which are distributed to stakers";
 const FeatureSection = ({
   row,
   sectionHeader,
@@ -19,9 +19,9 @@ const FeatureSection = ({
     <FeatureSectionWrapper id="key-features">
       <Container>
         <Box {...sectionHeader} className="sectionHeader">
-          <Text content="Why you choose TheCoin" {...sectionSubTitle} />
+          <Text content="WHY CHOOSE PLUTUS PROTOCOL" {...sectionSubTitle} />
           <Heading
-            content="Lorem ipsum dolor sit amet consectetur adipisicing elit sed eiu Lorem ipsum dolor Lorem ipsum dolor"
+            content={HEADING_CONTENT}
             {...sectionTitle}
           />
         </Box>
@@ -61,7 +61,6 @@ FeatureSection.propTypes = {
 FeatureSection.defaultProps = {
   // section header default style
   sectionHeader: {
-    mb: ['40px', '40px', '40px', '80px'],
     display: 'flex',
     width: '100%',
     color: "red"
@@ -72,17 +71,17 @@ FeatureSection.defaultProps = {
     display: 'block',
     textAlign: 'center',
     fontSize: ['30px', '40px'],
-    fontWeight: '300',
+    fontWeight: 'bold',
     letterSpacing: '-0.025em',
-    color: '#13296C',
+    color: '#3461E8',
     mb: '15px',
   },
   // section title default style
   sectionTitle: {
-    textAlign: 'center',
-    fontSize: ['14px', '16px'],
+    textAlign: 'left',
+    fontSize: ['16px', '18px'],
     fontWeight: '400',
-    color: '#13296C',
+    color: '#5b82f8',
     mb: '0',
     maxWidth: '420px',
     lineHeight: '1.5',
