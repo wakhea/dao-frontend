@@ -13,7 +13,7 @@ import Investment from "../../components/Landing/Investment";
 import FundRaising from "../../components/Landing/FundRaising";
 import Privacypolicy from "../../components/Landing/Privacy";
 import WalletSection from "../../components/Landing/WalletSection";
-import FaqSection from "../../components/Landing/FaqSection";
+import Team from "../../components/Landing/Team";
 import Roadmap from "../../components/Landing/Roadmap";
 import Title from "../../components/Landing/FeatureTitle";
 import Footer from "../../components/Landing/Footer";
@@ -57,6 +57,7 @@ const CryptoModern = () => {
             <Percentages />
             <Roadmap />
             <BuyToken />
+            <Team />
           </ContentWrapper>
           <Footer />
         </CryptoWrapper>
