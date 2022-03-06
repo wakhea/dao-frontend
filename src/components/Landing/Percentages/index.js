@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import Box from '../common/components/Box';
 import Text from '../common/components/Text';
 import Container from '../common/components/UI/Container';
-import PercentagesWrapper from './percentages.style';
+import PercentagesWrapper, {ContentWrapper} from './percentages.style';
 import NextImage from '../common/components/NextImage';
 import vcPercentages from '../common/assets/image/vc-percents.png';
+
+const MAIN_CONTENT = "The main benefit for Stakers comes from supply growth. Plutus Protocol mints new PLUS tokens from the treasury, " +
+"the majority of which are distributed to the Stakers. Thus, the gain for Stakers will come from their auto-compounding balances, though price " +
+"exposure remains an important consideration. That is, if the increase in token balance outpaces the potential drop in price (due to inflation), Stakers would make a profit." +
+"Furthermore, Stakers gain the ability to vote for upcoming changes, investments made by the protocol and a portion of the profits made";
 const Percentages = ({
   row,
   sectionHeader,
@@ -14,19 +19,24 @@ const Percentages = ({
 }) => {
   return (
     <PercentagesWrapper id="key-features">
+        <div className="separator"></div>
       <Container>
-        {/*<Box {...sectionHeader} className="sectionHeader">
-          <Text content="DECENTRALIZED" {...sectionSubTitle} />
-          <Text
-            content="VENTURE CAPITAL"
-            {...sectionTitle}
-          />
-  </Box>*/}
-        <Box className="row" {...row}>
-          <NextImage width="100%"  src={vcPercentages} />
-        </Box>
+        <ContentWrapper>
+          <Box className="row" {...row}>
+            <Box {...sectionHeader} className="sectionHeader">
+              <Text content="DECENTRALIZED" {...sectionSubTitle} />
+              <Text
+                content="VENTURE CAPITAL"
+                {...sectionTitle}
+              />
+              <Text className="text-content" content={MAIN_CONTENT}/>
+            </Box>
+            <NextImage height="550px" src={vcPercentages} />
+          </Box>
+        </ContentWrapper>
       </Container>
-    </PercentagesWrapper>
+        <div className="separator"></div>
+    </PercentagesWrapper >
   );
 };
 
@@ -45,32 +55,30 @@ Percentages.propTypes = {
 Percentages.defaultProps = {
   // section header default style
   sectionHeader: {
-    mb: ['40px', '40px', '40px', '80px'],
     display: 'flex',
-    width: '100%',
-    color: "red"
+    width: '60%',
   },
   // sub section default style
   sectionSubTitle: {
     as: 'span',
     display: 'block',
-    textAlign: 'center',
+    textAlign: 'right',
     fontSize: ['30px', '40px'],
     fontWeight: 'bold',
     letterSpacing: '-0.025em',
-    color: '#13296C',
+    color: '#3461E8',
     mb: '0px'
   },
   // section title default style
   sectionTitle: {
     as: 'span',
-    letterSpacing: '16px',
-    textAlign: 'center',
-    fontSize: ['26px', '36px'],
-    fontWeight: '300',
-    color: '#13296C',
-    mb: '0',
-    lineHeight: '1.5',
+    display: 'block',
+    textAlign: 'right',
+    fontSize: ['30px', '40px'],
+    fontWeight: 'bold',
+    letterSpacing: '-0.025em',
+    color: '#5b82f8',
+    mb: '40px'
   },
   // feature row default style
   row: {

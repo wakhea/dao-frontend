@@ -4,11 +4,11 @@ import plusToken from '../common/assets/image/plus-token.png';
 
 // box-shadow: 20px -40px 80px white;
 const BuyTokenWrapper = styled.section`
-  padding: 70px 0 80px;
+  padding: 10px 0;
   overflow: hidden;
   
   background-color: #13296C;
-  height: 400px;
+  height: 270px;
   background-image: url(${plusToken});
   background-repeat: no-repeat;
   background-size: 500px;

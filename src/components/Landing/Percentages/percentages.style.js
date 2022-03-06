@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import hand from '../common/assets/image/hand.png';
-
+import { themeGet } from '@styled-system/theme-get';
+import separator from '../common/assets/image/delimiter-pattern.png'
 const PercentagesWrapper = styled.section`
-
-  padding: 80px 0 250px 0;
+.container {
+  padding: 80px 0;
+}
   @media (max-width: 990px) {
     padding: 60px 0 60px 0;
   }
@@ -41,6 +42,36 @@ const PercentagesWrapper = styled.section`
       }
     }
   }
+
+  .separator {
+    height: 30px;
+    width: 100%;
+    background-image: url(${separator});
+    repeat: repeat-x;
+    background-size: contain;
+  }
 `;
+
+export const ContentWrapper = styled.div `
+  .sectionHeader {
+    align-items: start;
+    color: ${themeGet('colors.menu')};
+    text-align: justify;
+    direction: rtl;
+    padding-right: 15px;
+    border-right: ${themeGet('colors.border')};
+    border-radius: 15px;
+    max-width: 420px;
+  }
+
+  .text-content {
+    font-size: 18px;
+  }
+
+  .row {
+    flex-direction: row;
+    justify-content: center;
+  }
+`
 
 export default PercentagesWrapper;
