@@ -16,8 +16,9 @@ export const ContentWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   .image {
-    width: 50%;
+    width: 30%;
     @media only screen and (max-width: 991px) {
       width: 50%;
     }
@@ -29,14 +30,15 @@ export const ContentWrapper = styled.div`
     }
     img {
       width: 100%;
-      height: 900px;
       object-fit: contain;
     }
   }
   .content {
     width: 50%;
-    padding-left: 100px;
-
+    padding-right: 15px;
+    border-right: ${themeGet('colors.border')};
+    border-radius: 15px;
+    text-align: right;
     @media only screen and (max-width: 991px) {
       width: 50%;
     }
@@ -49,8 +51,8 @@ export const ContentWrapper = styled.div`
       margin-bottom: 0px;
     }
     h2 {
-      color: ${themeGet('colors.primary', '#13296C')};
-      font-size: 48px;
+      color: ${themeGet('colors.menu', '#13296C')};
+      font-size: 42px;
       line-height: 1.2;
       font-weight: 300;
       letter-spacing: -0.025em;
@@ -68,60 +70,21 @@ export const ContentWrapper = styled.div`
         font-size: 30px;
       }
     }
+    .content-description {
+      float: right;
+    }
     p {
+      text-align: justify;
+      direction: rtl;
       font-size: 16px;
       line-height: 28px;
-      color: ${themeGet('colors.primary', '#13296C')};
+      color: ${themeGet('colors.paragraph', '#13296C')};
       max-width: 400px;
+      margin-bottom: 0;
       @media only screen and (max-width: 768px) {
         max-width: 100%;
         text-align: left;
       }
-    }
-    .walletfeatures {
-      margin-top: 40px;
-      img {
-        height: 24px;
-      }
-      p {
-        font-size: 16px;
-        line-height: 28px;
-        color: ${themeGet('colors.primary', '#13296C')};
-        padding-left: 24px;
-        max-width: 100%;
-        margin-bottom: 30px;
-        margin-top: -1px;
-      }
-    }
-    .btnGroups {
-      margin-top: 30px;
-      margin-bottom: 20px;
-      .reusecore__button {
-        font-weight: 500;
-        color: ${themeGet('colors.primary', '#13296C')};
-        border: 1px solid rgba(19, 41, 108, 0.302);
-        margin-right: 17px;
-        padding-left: 30px;
-        padding-right: 30px;
-        font-size: 14px;
-        text-transform: uppercase;
-        @media only screen and (max-width: 480px) {
-          width: 100%;
-          &:nth-child(1) {
-            margin-bottom: 15px;
-          }
-        }
-        .btn-icon {
-          margin-right: 10px;
-          margin-top: -2px;
-          img {
-            height: 18px;
-          }
-        }
-      }
-    }
-    .windowsAllert {
-      font-size: 14px;
     }
   }
 `;
