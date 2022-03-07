@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const SectionWrapper = styled.div`
-  padding: 75px 0;
+  padding: 25px 0;
   position: relative;
   @media only screen and (max-width: 667px) {
     padding: 30px 0 0;
@@ -31,40 +31,53 @@ export const ContentWrapper = styled.div`
   flex-wrap: wrap;
   align-items: center;
   text-align: right;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
   .image {
     width: 40%;
-    padding: 70px;
-    padding-right: 100px;
-    @media only screen and (max-width: 991px) {
-      width: 50%;
-    }
     @media only screen and (max-width: 768px) {
-      width: 100%;
-      padding: 100px;
-      margin-bottom: 0;
+      width: 50%;
       padding-top: 0;
     }
     @media only screen and (max-width: 480px) {
-      padding: 25px;
       margin-bottom: 30px;
     }
     img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 250px;
       object-fit: cover;
+      float: left;
+      @media only screen and (max-width: 768px) {
+        min-width: 300px;
+        width: 100%;
+      }
+      @media only screen and (max-width: 768px) {
+        min-width: 200px;
+        max-height: 100%;
+      }
     }
   }
   .content {
     width: 60%;
-    
-  padding-right: 15px;
-  border-right: ${themeGet('colors.border')};
-  border-radius: 15px;
+      
+    padding-right: 15px;
+    border-right: ${themeGet('colors.border')};
+    border-radius: 15px;
     @media only screen and (max-width: 991px) {
       width: 50%;
     }
+    @media only screen and (max-width: 991px) {
+      width: 60%;
+    }
     @media only screen and (max-width: 768px) {
-      width: 100%;
+      width: 75%;
       margin-bottom: 50px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      width: 85%;
     }
     h2 {
       color: ${themeGet('colors.menu', '#13296C')};
@@ -77,24 +90,30 @@ export const ContentWrapper = styled.div`
         font-size: 38px;
         margin-bottom: 15px;
       }
+      @media only screen and (max-width: 991px) {
+        font-size: 34px;
+      }
       @media only screen and (max-width: 768px) {
-        font-size: 40px;
+        font-size: 30px;
         max-width: 100%;
-        text-align: center;
+        text-align: right;
       }
       @media only screen and (max-width: 480px) {
-        font-size: 30px;
+        font-size: 24px;
       }
     }
     p {
-      font-size: 16px;
+      font-size: 20px;
       float: right;
       line-height: 28px;
       color: ${themeGet('colors.paragraph', '#13296C')};
-      max-width: 400px;
+      @media only screen and (max-width: 991px) {
+        font-size: 18px;
+      }
       @media only screen and (max-width: 768px) {
         max-width: 100%;
-        text-align: center;
+        text-align: right;
+        font-size: 16px;
       }
     }
     img {

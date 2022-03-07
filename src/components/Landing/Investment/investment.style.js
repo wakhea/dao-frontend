@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const SectionWrapper = styled.div`
-  padding: 75px 0 25px;
+  padding: 40px 0 25px;
   position: relative;
   @media (max-width: 1600px) {
     padding: 25px 0 0px;
@@ -31,15 +31,13 @@ export const ContentWrapper = styled.div`
   justify-content: space-around;
   .image {
     width: 40%;
-    @media only screen and (max-width: 991px) {
-      width: 40%;
-    }
     @media only screen and (max-width: 768px) {
       width: 50%;
       margin-bottom: 40px;
     }
     img {
-      width: 65%;
+      max-width: 100%;
+      max-height: 250px;
       object-fit: cover;
       float: right;
       @media only screen and (max-width: 768px) {
