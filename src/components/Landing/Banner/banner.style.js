@@ -56,7 +56,10 @@ export const BannerContent = styled.div`
     color: ${themeGet('colors.menu', "#3461E8")};
     margin-bottom: 24px;
     letter-spacing: -0.025em;
-    @media only screen and (max-width: 1440px) {
+    @media only screen and (max-width: 1200px) {
+      font-size: 42px;
+    }
+    @media only screen and (max-width: 479px) {
       font-size: 38px;
       margin-bottom: 20px;
     }
@@ -65,8 +68,12 @@ export const BannerContent = styled.div`
   p {
     color: ${themeGet('colors.paragraph', '#5b82f8')};
     font-size: 20px;
+    @media only screen and (max-width: 479px) {
+      font-size: 18px;
+    }
     line-height: 33px;
     font-weight: 400;
+    @media only screen and (maxx-)
   }
 `;
 
