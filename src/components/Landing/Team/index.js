@@ -12,7 +12,7 @@ import { Link } from '@material-ui/core';
 const Team = ({ row, col, btnStyle }) => {
   return (
     <TeamWrapper id="teamSection">
-      <Container width="75%">
+      <Container width="100%">
         <Box className="row" {...row}>
           <Box className="col image" {...col}>
             <NextImage src={TeamLogo} alt="Stakers Rewards" />
@@ -46,13 +46,9 @@ Team.defaultProps = {
   row: {
     flexBox: true,
     flexWrap: 'wrap',
-    ml: '-15px',
-    mr: '-15px',
   },
   // Team section col default style
   col: {
-    pr: '15px',
-    pl: '15px',
     width: [1, 1, 1 / 2, 1 / 2],
     flexBox: true,
     alignSelf: 'center',

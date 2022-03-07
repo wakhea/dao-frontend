@@ -10,27 +10,41 @@ const TeamWrapper = styled.section`
   }
   .container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     height: 100%;
     width: 80%;
-    @media only screen and (max-width: 1220px) {
-      margin: 0;
-    }
     @media only screen and (max-width: 990px) {
       margin: 0 auto;
       justify-content: center;
       flex-direction: row;
       align-content: center;
       align-items: start;
+      width: 100%;
+
     }
     .image {
       width: 100%;
       img {
         width: 100%;
+        @media (max-width: 1200px) {
+          min-width: 600px;
+        }
+        @media (max-width: 660px) {
+          min-width: 0;
+        }
       }
     }
-
+    
+    .row {
+      width: 80%;
+      max-width: 1170px;
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+    }
     .buy {
-      width: 40%;
+      width: 20%;
       justify-content: center;
       @media only screen and (max-width: 1200px) {
         max-width: 500px;
@@ -145,8 +159,13 @@ const TeamArea = styled.div`
     border-radius: 15px;
     font-size: 50px;
     @media only screen and (max-width: 1440px) {
-      width: 250px;
+      width: 100%;
+      max-width: 150px;
       font-size: 40px;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      margin-top: 30px;
     }
 
     @media only screen and (max-width: 990px) {
@@ -172,7 +191,7 @@ const TeamArea = styled.div`
   }
   @media only screen and (max-width: 767px) {
     margin-left: 0;
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 30px;
   }
   .card {
