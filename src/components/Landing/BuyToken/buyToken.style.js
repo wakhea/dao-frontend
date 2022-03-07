@@ -49,11 +49,11 @@ const BuyTokenWrapper = styled.section`
 
   @media (max-width: 990px) {
     padding: 0;
-    height: 500px;
+    height: 400px;
     background-position: bottom;
     background-position-x: 50%;
     background-position-y: 140%;
-    background-size: 350px;
+    background-size: 300px;
   }
 
   @media (max-width: 480px) {
@@ -85,7 +85,7 @@ const BuyTokenWrapper = styled.section`
       color: ${themeGet('colors.primary', '#13296C')};;
       max-width: 270px;
       @media only screen and (max-width: 1440px) {
-        font-size: 38px;
+        font-size: 32px;
         max-width: 100%;
       }
       @media only screen and (max-width: 767px) {
@@ -115,7 +115,8 @@ const BuyTokenWrapper = styled.section`
 const BuyTokenArea = styled.div`
   display: flex;
   flex-wrap: wrap;
-
+  height: 100%;
+  align-content: center;
   #buy-link {
     margin: 0 auto;
   }
@@ -126,7 +127,7 @@ const BuyTokenArea = styled.div`
     width: 100%;
     text-align: center;
     @media only screen and (max-width: 1440px) {
-      font-size: 84px;
+      font-size: 52px;
     }
 
     @media only screen and (max-width: 990px) {
@@ -148,8 +149,8 @@ const BuyTokenArea = styled.div`
     width: 350px;
     font-size: 50px;
     @media only screen and (max-width: 1440px) {
-      width: 250px;
-      font-size: 40px;
+      width: 240px;
+      font-size: 38px;
     }
 
     @media only screen and (max-width: 990px) {
