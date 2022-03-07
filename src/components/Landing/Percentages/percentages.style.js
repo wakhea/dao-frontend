@@ -3,13 +3,14 @@ import { themeGet } from '@styled-system/theme-get';
 import separator from '../common/assets/image/delimiter-pattern.png'
 const PercentagesWrapper = styled.section`
 .container {
-  padding: 80px 0;
+  padding: 80px 30px;
+  max-width: 100%;
 }
   @media (max-width: 990px) {
-    padding: 60px 0 60px 0;
+    padding: 60px 0px 60px 0px;
   }
   @media (max-width: 767px) {
-    padding: 60px 0 30px 0;
+    padding: 60px 0px 30px 0px;
   }
   .sectionHeader {
     display: flex;
@@ -62,10 +63,22 @@ export const ContentWrapper = styled.div `
     border-right: ${themeGet('colors.border')};
     border-radius: 15px;
     max-width: 420px;
+    @media (max-width: 680px) {
+      width: 90%;
+    }
+    span {
+      font-size: 40px;
+      @media (max-width: 680px) {
+        font-size: 34px;
+      }
+    }
   }
 
   .text-content {
-    font-size: 18px;
+    font-size: 20px;
+    @media (max-width: 680px) {
+      font-size: 18px;
+    }
   }
 
   .row {

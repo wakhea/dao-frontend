@@ -100,7 +100,6 @@ Percentages.defaultProps = {
   },
   // feature title default style
   featureTitle: {
-    fontSize: ['18px', '20px'],
     fontWeight: '400',
     color: '#13296C',
     lineHeight: '1.5',
