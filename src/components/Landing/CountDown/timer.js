@@ -10,7 +10,7 @@ const StaticCard = ({ position, digit }) => {
 };
 
 // function component
-const NormalUnitContainer = ({ digit, unit = 'time', countdown }) => {
+const NormalUnitContainer = ({ digit, unit = 'time', countdown, isSeconds = false }) => {
   // assign digit values
   let currentDigit = digit;
   let previousDigit;
@@ -33,7 +33,7 @@ const NormalUnitContainer = ({ digit, unit = 'time', countdown }) => {
   }
 
   return (
-    <div className={'NormalUnitContainer'}>
+    <div className={'NormalUnitContainer' + (isSeconds ? " seconds" : "")}>
       <StaticCard position={'NormalupperCard'} digit={currentDigit} />
 
       <div className="digitLabel">
@@ -130,6 +130,7 @@ class NormalClock extends React.Component {
         />
         {divider ? <span className="dividerColon">:</span> : ''}
         <NormalUnitContainer
+          isSeconds={true}
           countdown={countdown}
           unit={'seconds'}
           digit={seconds}
