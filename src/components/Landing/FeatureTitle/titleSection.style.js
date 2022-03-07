@@ -12,7 +12,26 @@ const TitleSectionWrapper = styled.section`
     background-repeat: repeat-x;
     background-position: bottom left;
     padding-bottom: 30px;
-    
+    @media (max-width: 1220px) {
+      font-size: 70px;
+      background-size: 61px;
+    }
+
+    @media (max-width: 995px) {
+      font-size: 50px;
+      background-size: 49px;
+    }
+
+    @media (max-width: 600px) {
+      font-size: 40px;
+      background-size: 41px;
+      padding-bottom: 20px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 34px;
+      background-size: 35px;
+    }
   }
   .underline {
   }
