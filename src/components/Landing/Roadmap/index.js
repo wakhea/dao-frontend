@@ -5,6 +5,7 @@ import Container from '../common/components/UI/Container';
 import RoadmapWrapper from './roadmap.style';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
+import Text from '../common/components/Text';
 
 const Roadmap = ({
   row,
@@ -13,6 +14,7 @@ const Roadmap = ({
     <RoadmapWrapper>
       <Container className="timeline-container">
         <Box className="row" {...row}>
+          <Text content="2022 ROADMAP" className="title" />
           <VerticalTimeline lineColor="#5b82f8">
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
@@ -20,7 +22,7 @@ const Roadmap = ({
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               date="2011 - present"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-              //icon={<WorkIcon />}
+            //icon={<WorkIcon />}
             >
               <h3 className="vertical-timeline-element-title current">Creative Director</h3>
               <h4 className="vertical-timeline-element-subtitle current">Miami, FL</h4>
@@ -33,7 +35,7 @@ const Roadmap = ({
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               date="2010 - 2011"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-              //icon={<WorkIcon />}
+            //icon={<WorkIcon />}
             >
               <h3 className="vertical-timeline-element-title">Art Director</h3>
               <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
@@ -46,7 +48,7 @@ const Roadmap = ({
               date="2008 - 2010"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-             // icon={<WorkIcon />}
+            // icon={<WorkIcon />}
             >
               <h3 className="vertical-timeline-element-title">Web Designer</h3>
               <h4 className="vertical-timeline-element-subtitle">Los Angeles, CA</h4>
@@ -59,7 +61,7 @@ const Roadmap = ({
               date="2006 - 2008"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-              //icon={<WorkIcon />}
+            //icon={<WorkIcon />}
             >
               <h3 className="vertical-timeline-element-title">Web Designer</h3>
               <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
@@ -72,7 +74,7 @@ const Roadmap = ({
               date="April 2013"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-             // icon={<SchoolIcon />}
+            // icon={<SchoolIcon />}
             >
               <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
               <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
@@ -85,7 +87,7 @@ const Roadmap = ({
               date="November 2012"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
-              //icon={<SchoolIcon />}
+            //icon={<SchoolIcon />}
             >
               <h3 className="vertical-timeline-element-title">Agile Development Scrum Master</h3>
               <h4 className="vertical-timeline-element-subtitle">Certification</h4>
@@ -99,7 +101,7 @@ const Roadmap = ({
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              //icon={<SchoolIcon />}
+            //icon={<SchoolIcon />}
             >
               <h3 className="vertical-timeline-element-title">Bachelor of Science in Interactive Digital Media Visual Imaging</h3>
               <h4 className="vertical-timeline-element-subtitle">Bachelor Degree</h4>

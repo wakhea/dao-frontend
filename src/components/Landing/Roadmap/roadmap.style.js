@@ -2,7 +2,22 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const RoadmapWrapper = styled.section`
+  .row {
+    flex-direction: column;
+  }
 
+  .title {
+    color: ${themeGet('colors.menu', '#3461E8')};
+    font-weight: bold;
+    padding-left: 15px;
+    border-radius: 15px;
+    border-left: ${themeGet('colors.border')};
+    font-size: 60px;
+    @media (max-width: 800px) {
+      font-size: 42px;
+    }
+    margin-bottom: 40px;
+  }
   padding: 80px 0 25px 0;
   @media (max-width: 990px) {
     padding: 60px 0 60px 0;
