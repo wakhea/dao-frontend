@@ -28,7 +28,7 @@ const CommunitySectionWrapper = styled.section`
   }
 
   @media(max-width: 1050px) {
-    background-position-y: bottom -35%;
+    background-position-y: 130%;
     background-position-x: 50%;
     background-size: 500px, cover;
     padding: 80px 0 50px 0;
