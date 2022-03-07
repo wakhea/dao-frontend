@@ -22,13 +22,14 @@ const CommunitySection = ({
       <Container>
         <Box {...sectionHeader} className="sectionHeader">
           <div className="content-container">
-            <Text content="WHY CHOOSE PLUTUS PROTOCOL" {...sectionSubTitle} />
+            <Text content="PLUTUS IS A COMMUNITY GOVERNED DAO" {...sectionSubTitle} />
             <Heading
               content={HEADING_CONTENT}
               {...sectionTitle}
             />
           </div>
         </Box>
+        <div className="padder" />
       </Container>
     </CommunitySectionWrapper>
   );

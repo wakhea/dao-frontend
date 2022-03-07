@@ -91,7 +91,7 @@ const FeatureSectionWrapper = styled.section`
     max-width: 420px;
 
     @media (max-width: 1050px) {
-      max-width: 80%;
+      max-width: 100%;
     }
   }
 
