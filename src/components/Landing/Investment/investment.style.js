@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 const SectionWrapper = styled.div`
   padding: 40px 0 25px;
-  position: relative;
+  overflow: hidden;
   @media (max-width: 1600px) {
     padding: 25px 0 0px;
   }
@@ -12,15 +12,6 @@ const SectionWrapper = styled.div`
   }
   @media only screen and (max-width: 667px) {
     padding: 30px 0 0;
-  }
-  .patternImg {
-    position: absolute;
-    left: -28%;
-    top: -100%;
-    width: 50%;
-    @media only screen and (max-width: 1440px) {
-      display: none;
-    }
   }
 `;
 
@@ -42,7 +33,7 @@ export const ContentWrapper = styled.div`
       float: right;
       @media only screen and (max-width: 768px) {
         min-width: 250px;
-        width: 100%;
+        max-height: 100%;
       }
       @media only screen and (max-width: 768px) {
         min-width: 150px;

@@ -2,13 +2,16 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 const SectionWrapper = styled.div`
-  padding: 75px 0;
+  padding: 25px 0;
   overflow: hidden;
-  @media (max-width: 1440px) {
-    padding: 0;
+  @media (max-width: 1600px) {
+    padding: 25px 0 0px;
   }
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 1366px) {
     padding: 30px 0;
+  }
+  @media only screen and (max-width: 667px) {
+    padding: 30px 0 0;
   }
 `;
 
@@ -18,67 +21,76 @@ export const ContentWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   .image {
-    width: 30%;
-    padding-left: 50px;
-    @media only screen and (max-width: 1440px) {
-      padding-left: 0px;
-    }
-    @media only screen and (max-width: 991px) {
-      width: 50%;
-    }
+    width: 40%;
     @media only screen and (max-width: 768px) {
-      width: 100%;
+      width: 50%;
       margin-bottom: 40px;
-      padding-left: 100px;
     }
     img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 250px;
       object-fit: cover;
-      @media only screen and (max-width: 1440px) {
-        width: 80%;
+      float: right;
+      @media only screen and (max-width: 768px) {
+        min-width: 250px;
+        max-height: 100%;
+      }
+      @media only screen and (max-width: 768px) {
+        min-width: 150px;
       }
     }
   }
   .content {
-    width: 50%;
+    width: 60%;
     padding-left: 15px;
     border-left: ${themeGet('colors.border')};
     border-radius: 15px;
     @media only screen and (max-width: 991px) {
-      width: 50%;
+      width: 60%;
     }
     @media only screen and (max-width: 768px) {
-      width: 100%;
+      width: 75%;
       margin-bottom: 50px;
+    }
+
+    @media only screen and (max-width: 480px) {
+      width: 85%;
     }
     h2 {
       color: ${themeGet('colors.menu', '#13296C')};
       font-size: 42px;
+      
       line-height: 1.2;
       font-weight: bold;
       letter-spacing: -0.025em;
-      margin-bottom: 27px;
-      max-width: 370px;
+      margin-bottom: 15px;
+      
       @media only screen and (max-width: 1440px) {
         font-size: 38px;
       }
+      @media only screen and (max-width: 991px) {
+        font-size: 34px;
+      }
       @media only screen and (max-width: 768px) {
-        font-size: 40px;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
+        font-size: 30px;
       }
       @media only screen and (max-width: 480px) {
-        font-size: 30px;
+        font-size: 24px;
       }
     }
     p {
-      font-size: 16px;
+      font-size: 20px;
       line-height: 28px;
       color: ${themeGet('colors.paragraph', '#13296C')};
-      max-width: 400px;
+      @media only screen and (max-width: 991px) {
+        font-size: 18px;
+      }
       @media only screen and (max-width: 768px) {
-        max-width: 100%;
-        text-align: center;
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
       }
     }
   }
