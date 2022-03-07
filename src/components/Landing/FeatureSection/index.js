@@ -22,25 +22,11 @@ const FeatureSection = ({
           <Text content="WHY CHOOSE PLUTUS PROTOCOL" {...sectionSubTitle} />
           <Heading
             content={HEADING_CONTENT}
+            className="sectionTitle"
             {...sectionTitle}
           />
         </Box>
-        <Box className="row" {...row}>
-          {/*Features.map((feature, index) => (
-            <Box className="col" {...col} key={index}>
-              <FeatureBlock
-                icon={<NextImage src={feature?.icon} />}
-                wrapperStyle={blockWrapperStyle}
-                contentStyle={contentStyle}
-                title={<Heading content={feature.title} {...featureTitle} />}
-                description={
-                  <Text content={feature.description} {...featureDescription} />
-                }
-                className="cryptoFeature"
-              />
-            </Box>
-              ))*/}
-        </Box>
+        <div className="padder" />
       </Container>
     </FeatureSectionWrapper>
   );
