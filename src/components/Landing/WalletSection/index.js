@@ -5,6 +5,7 @@ import NextImage from '../common/components/NextImage';
 import Container from '../common/components/UI/Container';
 import SectionWrapper, { ContentWrapper } from './walletSection.style';
 import StakersRewards from '../common/assets/image/stakers-rewards.png';
+import Fade from 'react-reveal';
 
 const CONTENT_HEADER = "Plus Token";
 const CONTENT = "Stake Plus to gain more Plus. The DAO uses its protocol controlled value to reward token holder with exceptional yields on auto compounding basis";
@@ -15,7 +16,9 @@ const WalletPortal = () => {
       <Container>
         <ContentWrapper>
           <div className="image">
-            <NextImage src={StakersRewards} alt="Stakers Rewards" />
+            <Fade up>
+              <NextImage src={StakersRewards} alt="Stakers Rewards" />
+            </Fade>
           </div>
           <div className="content">
             <Heading content="STAKERS REWARDS" />
