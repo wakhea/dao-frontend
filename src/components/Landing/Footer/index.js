@@ -2,15 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import Box from '../common/components/Box';
-import Text from '../common/components/Text';
-import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
-import Logo from '../common/components/UIElements/Logo';
 import FooterWrapper, { List, ListItem } from './footer.style';
+import twitter from '../common/assets/image/twitter-logo.png';
+import discord from '../common/assets/image/discord-logo.png';
+import gitbook from '../common/assets/image/gitbook-logo.png';
+import dapp from '../common/assets/image/dapp-logo.png';
 
-import LogoImage from '../common/assets/image/logo-white.png';
-
-import { Footer_Data } from '../common/data/';
+import NextImage from '../common/components/NextImage';
 
 const Footer = ({
   row,
@@ -25,32 +24,27 @@ const Footer = ({
     <FooterWrapper>
       <Container className="footer_container">
         <Box className="row" {...row}>
-          <Box {...colOne}>
-            <Logo
-              href="#"
-              logoSrc={LogoImage}
-              title="Hosting"
-              logoStyle={logoStyle}
-            />
-            <Text content="hello@redq.io" {...textStyle} />
-            <Text content="+479-443-9334" {...textStyle} />
-          </Box>
-          {/* End of footer logo column */}
-          <Box {...colTwo}>
-            {Footer_Data.map((widget, index) => (
-              <Box className="col" {...col} key={`footer-widget-${index}`}>
-                <Heading content={widget.title} {...titleStyle} />
-                <List>
-                  {widget.menuItems.map((item, index) => (
-                    <ListItem key={`footer-list-item-${index}`}>
-                      <Link href={item.url}>
-                        <a className="ListItem">{item.text}</a>
-                      </Link>
-                    </ListItem>
-                  ))}
-                </List>
-              </Box>
-            ))}
+          <Box {...colTwo} className="container">
+            <Box className="col"  key={`footer-widget-1`}>
+                <Link href="https://twitter.com/Plutus_Protocol">
+                  <NextImage className="social-icon" src={twitter} />
+                </Link>
+            </Box>
+            <Box className="col" {...col} key={`footer-widget-2`}>
+                <Link href="https://twitter.com/Plutus_Protocol">
+                  <NextImage className="social-icon" src={discord} />
+                </Link>
+            </Box>
+            <Box className="col" {...col} key={`footer-widget-3`}>
+                <Link href="https://twitter.com/Plutus_Protocol">
+                  <NextImage className="social-icon" src={gitbook} />
+                </Link>
+            </Box>
+            <Box className="col" {...col} key={`footer-widget-4`}>
+                <Link href="https://twitter.com/Plutus_Protocol">
+                  <NextImage className="dapp-icon" src={dapp} />
+                </Link>
+            </Box>
           </Box>
           {/* End of footer List column */}
         </Box>
@@ -83,7 +77,6 @@ Footer.defaultProps = {
   colOne: {
     width: [1, '35%', '35%', '23%'],
     mt: [0, '13px'],
-    mb: ['30px', 0],
     pl: ['15px', 0],
     pr: ['15px', '15px', 0],
   },
@@ -91,15 +84,8 @@ Footer.defaultProps = {
   colTwo: {
     width: ['100%', '65%', '65%', '77%'],
     flexBox: true,
-    flexWrap: 'wrap',
   },
   // Footer col default style
-  col: {
-    width: ['100%', '50%', '50%', '25%'],
-    pl: '15px',
-    pr: '15px',
-    mb: '30px',
-  },
   // widget title default style
   titleStyle: {
     color: '#13296C',

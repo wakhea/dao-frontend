@@ -12,6 +12,23 @@ const FooterWrapper = styled.footer`
   position: relative;
   background-image: url(${FooterPattern});
 
+  .row {
+    display: flex;
+    justify-content: space-evenly;
+
+    .container {
+      justify-content: space-evenly;
+    }
+  }
+  .social-icon {
+    height: 50px;
+    width: 50px;
+  }
+
+  .dapp-icon {
+    width: 111px;
+    height: 50px;
+  }
   @media (min-width: 576px) {
     
   }
