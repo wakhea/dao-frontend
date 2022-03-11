@@ -24,6 +24,9 @@ const NormalUnitContainer = ({ digit, unit = 'time', countdown, isSeconds = fals
       previousDigit = previousDigit === 24 ? 23 : previousDigit;
     }
   }
+  if (currentDigit <= 0) {
+    currentDigit=0;
+  }
   // add zero
   if (currentDigit < 10) {
     currentDigit = `0${currentDigit}`;
@@ -31,6 +34,7 @@ const NormalUnitContainer = ({ digit, unit = 'time', countdown, isSeconds = fals
   if (previousDigit < 10) {
     previousDigit = `0${previousDigit}`;
   }
+  console.log()
 
   return (
     <div className={'NormalUnitContainer' + (isSeconds ? " seconds" : "")}>
