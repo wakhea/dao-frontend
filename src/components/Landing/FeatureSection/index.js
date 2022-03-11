@@ -5,12 +5,10 @@ import Text from '../common/components/Text';
 import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
 import FeatureSectionWrapper from './featureSection.style';
-import NextImage from '../common/components/NextImage';
 
 const HEADING_CONTENT="The main benefit for stakers comes from the supply growth.\n" +
   "Plutus protocol mints new PLUS tokens from the treasury, the majority of which are distributed to stakers";
 const FeatureSection = ({
-  row,
   sectionHeader,
   sectionTitle,
   sectionSubTitle,

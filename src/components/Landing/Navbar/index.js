@@ -30,15 +30,6 @@ const Navbar = () => {
   );
 
   const toggleHandler = (type) => {
-    if (type === 'search') {
-      setState({
-        ...state,
-        search: '',
-        searchToggle: !state.searchToggle,
-        mobileMenu: false,
-      });
-    }
-
     if (type === 'menu') {
       setState({
         ...state,
@@ -144,7 +135,13 @@ const Navbar = () => {
                   {menu.label}
                 </AnchorLink>
               </li>
+
             ))}
+            <li>
+              <Link href="/presale" offset={84} className="mobile-dapp">
+                <span>Enter DApp</span>
+              </Link>
+            </li>
           </Scrollspy>
           <Button title="Try for Free" />
         </Container>

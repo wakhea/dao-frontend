@@ -93,7 +93,7 @@ export const CryptoWrapper = styled.div`
       }
       .reusecore__button {
         &.menubar {
-          color: ${themeGet('colors.secondary', '#000')};
+          color: ${themeGet('colors.menu')};
         }
         &.text {
           color: ${themeGet('colors.secondary', '#000')};

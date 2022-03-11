@@ -3,7 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 // box-shadow: 20px -40px 80px white;
 const TeamWrapper = styled.section`
-  padding: 100px 0;
+  padding: 180px 0 50px;
   overflow: hidden;
   
   @media only screen and (max-width: 1440px) {
@@ -58,8 +58,7 @@ const TeamWrapper = styled.section`
   }
 
   @media (max-width: 990px) {
-    padding: 0;
-    height: 500px;
+    padding: 120px 0 30px;
     background-position: bottom;
     background-position-x: 50%;
     background-position-y: 140%;
@@ -67,7 +66,8 @@ const TeamWrapper = styled.section`
   }
 
   @media (max-width: 480px) {
-    padding: 0
+    padding: 100px 0 20px;
+
   }
   .feature__block {
     padding-left: 132px;

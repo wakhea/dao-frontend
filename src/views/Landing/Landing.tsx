@@ -56,7 +56,7 @@ const CryptoModern = () => {
             <WalletSection />
             <Percentages />
             <Roadmap />
-            <BuyToken />
+            {/*<BuyToken />*/}
             <Team />
           </ContentWrapper>
           <Footer />

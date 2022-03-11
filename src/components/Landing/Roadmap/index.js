@@ -11,7 +11,7 @@ const Roadmap = ({
   row,
 }) => {
   return (
-    <RoadmapWrapper>
+    <RoadmapWrapper id="roadmap">
       <Container className="timeline-container">
         <Box className="row" {...row}>
           <Text content="2022 ROADMAP" className="title" />

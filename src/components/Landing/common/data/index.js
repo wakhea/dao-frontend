@@ -14,14 +14,14 @@ export const navbar = {
     },
     {
       id: 2,
-      label: 'Key features',
-      path: '#key-features',
+      label: 'How plutus works?',
+      path: '#title',
       offset: '81',
     },
     {
       id: 3,
-      label: 'Fund Raising',
-      path: '#fund',
+      label: 'Roadmap',
+      path: '#roadmap',
       offset: '81',
     },
   ],

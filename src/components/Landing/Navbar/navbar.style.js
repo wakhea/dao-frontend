@@ -152,7 +152,7 @@ export const MenuArea = styled.div`
         padding: 0;
         justify-content: flex-end;
         min-width: 35px;
-        color: #fff;
+        color: ${themeGet("colors.menu", "#13296C")};
         svg {
           width: 27px;
           height: auto;
@@ -199,6 +199,7 @@ export const Search = styled.div`
 export const MobileMenu = styled.div`
   display: none;
   @media only screen and (max-width: 991px) {
+    margin-top: 60px;
     display: flex;
     width: 100%;
     height: calc(100vh - 70px);
@@ -210,7 +211,7 @@ export const MobileMenu = styled.div`
     flex-direction: column;
     background-color: ${themeGet('colors.white', '#ffffff')};
     transition: all 0.3s ease;
-    color: ${themeGet('colors.secondary', '#000')};
+    color: ${themeGet('colors.menu', '#000')};
     &.active {
       opacity: 1;
       visibility: visible;
@@ -232,20 +233,25 @@ export const MobileMenu = styled.div`
           padding: 13px 0;
           border-radius: 5px;
           transition: all 0.3s ease;
-          color: ${themeGet('colors.secondary', '#000')};
+          color: ${themeGet('colors.menu', '#000')};
         }
         &:hover {
           a {
             padding: 13px 15px;
-            color: ${themeGet('colors.primary')};
+            color: ${themeGet('colors.menu')};
+            font-weight: bold;
           }
+        }
+        .mobile-dapp {
+          font-weight: bold;
+          margin-top: 15px;
         }
       }
     }
     .reusecore__button {
       width: 100%;
       border-radius: 4px;
-      background-image: ${themeGet("colors.primaryButton", "#13296C")}
+      background-image: ${themeGet("colors.menu", "#13296C")}
       @media only screen and (max-width: 480px) {
         margin-top: 20px;
       }
