@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
+import { Link } from "@material-ui/core";
 import Box from '../common/components/Box';
 import Container from '../common/components/UI/Container';
 import FooterWrapper, { List, ListItem } from './footer.style';
@@ -26,22 +26,22 @@ const Footer = ({
         <Box className="row" {...row}>
           <Box {...colTwo} className="container">
             <Box className="col"  key={`footer-widget-1`}>
-                <Link href="https://twitter.com/Plutus_Protocol">
+                <Link href="https://twitter.com/Plutus_Protocol" target="_blank">
                   <NextImage className="social-icon" src={twitter} />
                 </Link>
             </Box>
             <Box className="col" {...col} key={`footer-widget-2`}>
-                <Link href="https://twitter.com/Plutus_Protocol">
+                <Link href="https://discord.gg/jjVSb8S3J3" target="_blank">
                   <NextImage className="social-icon" src={discord} />
                 </Link>
             </Box>
             <Box className="col" {...col} key={`footer-widget-3`}>
-                <Link href="https://twitter.com/Plutus_Protocol">
+                <Link href="https://twitter.com/Plutus_Protocol" target="_blank">
                   <NextImage className="social-icon" src={gitbook} />
                 </Link>
             </Box>
             <Box className="col" {...col} key={`footer-widget-4`}>
-                <Link href="https://twitter.com/Plutus_Protocol">
+                <Link href="https://plutusprotocol.io/presale">
                   <NextImage className="dapp-icon" src={dapp} />
                 </Link>
             </Box>
