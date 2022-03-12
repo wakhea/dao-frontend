@@ -6,8 +6,12 @@ import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
 import FeatureSectionWrapper from './featureSection.style';
 
-const HEADING_CONTENT="The main benefit for stakers comes from the supply growth.\n" +
-  "Plutus protocol mints new PLUS tokens from the treasury, the majority of which are distributed to stakers";
+const HEADING_CONTENT="Not only the fairest VC fund but also the smartest. \n" +
+"How Smart Are We? \n" +
+"we use the Brain Power of the community instead of a handful of team members to pick and choose what projects to invest in.\n" +
+"How are we Fair?\n" +
+"All Stakers that vote and maintain their tokens staked are PAID in Stable coins for every successful investment made.\n"
+
 const FeatureSection = ({
   sectionHeader,
   sectionTitle,
@@ -17,7 +21,7 @@ const FeatureSection = ({
     <FeatureSectionWrapper id="key-features">
       <Container>
         <Box {...sectionHeader} className="sectionHeader">
-          <Text content="WHY CHOOSE PLUTUS PROTOCOL" {...sectionSubTitle} />
+          <Text content="WHY PLUTUS PROTOCOL" {...sectionSubTitle} />
           <Heading
             content={HEADING_CONTENT}
             className="sectionTitle"

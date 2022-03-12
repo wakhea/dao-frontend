@@ -6,10 +6,9 @@ import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
 import CommunitySectionWrapper from './communitySection.style';
 
-const HEADING_CONTENT = "Stakers will receive 70% of all profits made by the Protocol, distributed in $BUSD" +
-  "(e.g., incubated project makes a 10x return on a $1.000.000 investmen, $6.300.000" +
-  "will be shared amongst Stakers). Initial investment of $1.000.000 goes back in the treasury plus "
-"10% for future projects. 10$ will be used for buy back and 10% to the operation team to pay for salaries, marketing etc.";
+const HEADING_CONTENT = "As a Staker of Plutus Protocol, you PLAY a VITAL role in how the funds are Invested. " +
+"The Treasury brings you an on-chain venture fund, YOU vote on every incubation or partnership decision. " +
+"Revenue generated from investments is automatically distributed amongst Stakers.";
 
 const CommunitySection = ({
   row,
@@ -58,7 +57,7 @@ CommunitySection.defaultProps = {
   sectionSubTitle: {
     as: 'span',
     display: 'block',
-    textAlign: 'center',
+    textAlign: 'justify',
     fontSize: ['30px', '40px'],
     fontWeight: 'bold',
     letterSpacing: '-0.025em',

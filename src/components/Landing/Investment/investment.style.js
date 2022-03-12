@@ -83,6 +83,7 @@ export const ContentWrapper = styled.div`
     p {
       font-size: 20px;
       line-height: 28px;
+      text-align: justify;
       color: ${themeGet('colors.paragraph', '#13296C')};
       @media only screen and (max-width: 991px) {
         font-size: 18px;

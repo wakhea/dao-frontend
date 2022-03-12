@@ -7,9 +7,8 @@ import Container from '../common/components/UI/Container';
 import SectionWrapper, { ContentWrapper } from './privacy.style';
 import StakingRewards from '../common/assets/image/staking-rewards.png';
 
-const CONTENT = "Incubate, Accelerate & Reward\n" +
-  "The Treasury brings you an on-chain venture fund, where the DAO decides on every incubation or partnership decision. " +
-  "Revenue generated from each investment will be distributed amongst Stakers."
+const CONTENT = "Stakers receive 70% of all profits made by the Protocol, distributed in $BUSD"
+
 const PrivacyPortal = () => {
   return (
     <SectionWrapper>

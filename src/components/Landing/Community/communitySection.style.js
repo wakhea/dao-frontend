@@ -76,7 +76,11 @@ const CommunitySectionWrapper = styled.section`
 
     span, h2 {
       color: #FFF;
-      text-align: left;
+      text-align: left ;
+    }
+
+    h2 {
+      text-align: justify;
     }
 
   }

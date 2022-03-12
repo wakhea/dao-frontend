@@ -23,14 +23,14 @@ const Banner = () => {
           <Fade up delay={100}>
             <Heading
               as="h1"
-              content="WELCOME TO TOMMOROW'S DECENTRALIZED VC FUND"
+              content="WELCOME TO THE SMARTEST AND FAIREST DECENTRALIZED VC FUND IN EXISTENCE"
             />
           </Fade>
-          <Fade up delay={200}>
+          {/*<Fade up delay={200}>
             <Text
-              content="PlutusProtocol is a DAO-governed VC fund. You decide on your Gains."
+              content=""
             />
-          </Fade>
+          </Fade>*/}
           <Fade up delay={300}>
             <ButtonGroup>
               <Link href="/presale">

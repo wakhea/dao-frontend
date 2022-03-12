@@ -106,6 +106,8 @@ export const ContentWrapper = styled.div`
       font-size: 20px;
       float: right;
       line-height: 28px;
+      text-align: justify;
+      direction: rtl;
       color: ${themeGet('colors.paragraph', '#13296C')};
       @media only screen and (max-width: 991px) {
         font-size: 18px;

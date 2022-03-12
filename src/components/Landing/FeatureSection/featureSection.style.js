@@ -8,7 +8,7 @@ const FeatureSectionWrapper = styled.section`
   background-repeat: no-repeat;
   background-position: bottom right;
   background-position-x: 60%;
-  background-size: 400px;
+  background-size: 600px;
   @media(min-width: 2561px) {
     background-size: 450px;
   }
@@ -89,7 +89,8 @@ const FeatureSectionWrapper = styled.section`
 
   .sectionTitle {
     max-width: 420px;
-
+    whitespace: pre-line;
+    text-align: justify;
     @media (max-width: 1050px) {
       max-width: 100%;
     }
