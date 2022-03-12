@@ -5,8 +5,19 @@
   align-items: center;
   overflow: hidden;
 
+  .open-soon {
+    text-align: center;
+    font-size: large;
+  }
   .card-header {
     text-align: center;
+  }
+
+  .link {
+    color: #F4D092;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   .presale-wallet-notification {
