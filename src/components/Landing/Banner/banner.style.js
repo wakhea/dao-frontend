@@ -60,7 +60,7 @@ export const BannerContent = styled.div`
       font-size: 42px;
     }
     @media only screen and (max-width: 479px) {
-      font-size: 38px;
+      font-size: 31px;
       margin-bottom: 20px;
     }
   }
@@ -69,7 +69,7 @@ export const BannerContent = styled.div`
     color: ${themeGet('colors.paragraph', '#5b82f8')};
     font-size: 20px;
     @media only screen and (max-width: 479px) {
-      font-size: 18px;
+      font-size: 16px;
     }
     line-height: 33px;
     font-weight: 400;
@@ -107,6 +107,14 @@ export const ButtonGroup = styled.div`
     font-weight: 500;
     text-transform: uppercase;
 
+    @media only screen and (max-width: 480px) {
+      min-width: 36px;
+      padding-left: 8px;
+      padding-right: 8px;
+      font-size: 13px;
+      width: 118px;
+    }
+
     &.primary {
       background-image: ${themeGet("colors.primaryButton", "#13296C")};
       &:hover {
@@ -116,7 +124,10 @@ export const ButtonGroup = styled.div`
 
     &.text {
       margin-left: 15px;
-      color: ${themeGet("colors.primary", "#13296C")};
+      @media only screen and (max-width: 480px) {
+        margin-left: 8px;
+      }
+      color: ${themeGet("colors.menu", "#13296C")};
       border: 1px solid rgba(19, 41, 154, 0.302);
     }
   }

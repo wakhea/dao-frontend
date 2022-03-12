@@ -71,6 +71,10 @@ export const ContentWrapper = styled.div `
       @media (max-width: 680px) {
         font-size: 34px;
       }
+
+      @media (max-width: 480px) {
+        font-size: 29px;
+      }
     }
   }
 
@@ -78,6 +82,9 @@ export const ContentWrapper = styled.div `
     font-size: 20px;
     @media (max-width: 680px) {
       font-size: 18px;
+    }
+    @media (max-width: 680px) {
+      font-size: 17px;
     }
   }
 

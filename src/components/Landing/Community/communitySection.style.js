@@ -62,7 +62,8 @@ const CommunitySectionWrapper = styled.section`
     border-radius: 15px;
     border-color: #FFF;
     width: 60%;
-    @media(max-width: 1050px) {
+    @media (max-width: 1050px) {
+      margin-top: 100px;
       min-width: 400px;
       width: 70%;
     }
@@ -70,7 +71,7 @@ const CommunitySectionWrapper = styled.section`
     @media (max-width: 480px) {
       width: 90%;
       min-width: 300px;
-      margin: 0 auto;
+      margin: 100px auto 0;
     }
 
     span, h2 {
