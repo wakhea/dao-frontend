@@ -14,12 +14,18 @@ export const navbar = {
     },
     {
       id: 2,
-      label: 'How plutus works?',
+      label: 'Presale',
+      path: '#presale',
+      offset: '0',
+    },
+    {
+      id: 3,
+      label: 'How plutus works',
       path: '#title',
       offset: '81',
     },
     {
-      id: 3,
+      id: 4,
       label: 'Roadmap',
       path: '#roadmap',
       offset: '81',
@@ -123,104 +129,3 @@ export const Faq = [
   },
 ];
 
-/* ------------------------------------ */
-// Footer data section
-/* ------------------------------------ */
-export const Footer_Data = [
-  {
-    title: 'About Us',
-    menuItems: [
-      {
-        url: '#',
-        text: 'Support Center',
-      },
-      {
-        url: '#',
-        text: 'Customer Support',
-      },
-      {
-        url: '#',
-        text: 'About Us',
-      },
-      {
-        url: '#',
-        text: 'Copyright',
-      },
-      {
-        url: '#',
-        text: 'Popular Campaign',
-      },
-    ],
-  },
-  {
-    title: 'Our Information',
-    menuItems: [
-      {
-        url: '#',
-        text: 'Return Policy',
-      },
-      {
-        url: '#',
-        text: 'Privacy Policy',
-      },
-      {
-        url: '#',
-        text: 'Terms & Conditions',
-      },
-      {
-        url: '#',
-        text: 'Site Map',
-      },
-      {
-        url: '#',
-        text: 'Store Hours',
-      },
-    ],
-  },
-  {
-    title: 'My Account',
-    menuItems: [
-      {
-        url: '#',
-        text: 'Press inquiries',
-      },
-      {
-        url: '#',
-        text: 'Social media directories',
-      },
-      {
-        url: '#',
-        text: 'Images & B-roll',
-      },
-      {
-        url: '#',
-        text: 'Permissions',
-      },
-      {
-        url: '#',
-        text: 'Speaker requests',
-      },
-    ],
-  },
-  {
-    title: 'Policy',
-    menuItems: [
-      {
-        url: '#',
-        text: 'Application security',
-      },
-      {
-        url: '#',
-        text: 'Software principles',
-      },
-      {
-        url: '#',
-        text: 'Unwanted software policy',
-      },
-      {
-        url: '#',
-        text: 'Responsible supply chain',
-      },
-    ],
-  },
-];

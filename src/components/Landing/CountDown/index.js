@@ -10,7 +10,7 @@ import { Link } from '@material-ui/core';
 
 const CountDownSection = () => {
   return (
-    <SectionWrapper>
+    <SectionWrapper id="presale">
       <div id="separator" className="top"></div>
       <Container>
         <ContentWrapper>
