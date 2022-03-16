@@ -73,6 +73,10 @@ const RoadmapWrapper = styled.section`
     .vertical-timeline-element-content {
       border: 1px solid ${themeGet('colors.menu', '#3461E8')};
     }
+    
+    .vertical-timeline-element-date {
+      color: ${themeGet('colors.menu', '#3461E8')};
+    }
   }
 `;
 

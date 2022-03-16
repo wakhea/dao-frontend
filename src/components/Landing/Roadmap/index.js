@@ -26,7 +26,7 @@ const Roadmap = ({
             >
               <p className="current">
                 - Creation of PLUTUS PROTOCOL <br />
-                - Hiring Dev team <br />
+                - Hiring of dev team <br />
                 - Social media launch <br />
                 - Marketing strategies <br />
                 - Buy backs

@@ -7,7 +7,7 @@ import SectionWrapper, { ContentWrapper } from './investment.style';
 import coins from '../common/assets/image/coins.png';
 import Fade from 'react-reveal';
 
-const CONTENT = "As a smart VC, the treasury revenue will continue" +
+const CONTENT = "As a smart VC, the treasury revenue will continue " +
   "to grow with investments from the VC fund. As a staker, you vote and decide where the funds will be allocated"
 const InvestmentPortal = () => {
   return (

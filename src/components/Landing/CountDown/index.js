@@ -4,7 +4,7 @@ import Heading from '../common/components/Heading';
 import Button from '../common/components/Button';
 import Container from '../common/components/UI/Container';
 import NormalClock from './timer';
-const deadline = new Date('2022-03-16T13:00:00');
+const deadline = new Date('2022-03-31T13:00:00');
 import SectionWrapper, { ContentWrapper } from './countdown.style';
 import { Link } from '@material-ui/core';
 

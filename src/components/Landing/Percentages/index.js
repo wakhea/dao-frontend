@@ -9,7 +9,7 @@ import vcPercentages from '../common/assets/image/vc-percents.png';
 
 const MAIN_CONTENT = "The main benefit for Stakers comes from supply growth. Plutus Protocol mints new PLUS tokens from the treasury, " +
 "the majority of which are distributed to the Stakers. Thus, the gain for Stakers will come from their auto-compounding balances, though price " +
-"exposure remains an important consideration. That is, if the increase in token balance outpaces the potential drop in price (due to inflation), Stakers would make a profit." +
+"exposure remains an important consideration. That is, if the increase in token balance outpaces the potential drop in price (due to inflation), Stakers would make a profit. " +
 "Furthermore, Stakers gain the ability to vote for upcoming changes, investments made by the protocol and a portion of the profits made";
 const Percentages = ({
   row,
