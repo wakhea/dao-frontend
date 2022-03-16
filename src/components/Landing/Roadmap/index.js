@@ -20,93 +20,57 @@ const Roadmap = ({
               className="vertical-timeline-element--work"
               contentStyle={{ background: '#5b82f8' }}
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              date="2011 - present"
+              date="Q1"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             //icon={<WorkIcon />}
             >
-              <h3 className="vertical-timeline-element-title current">Creative Director</h3>
-              <h4 className="vertical-timeline-element-subtitle current">Miami, FL</h4>
               <p className="current">
-                Creative Direction, User Experience, Visual Design, Project Management, Team Leading
+                - Creation of PLUTUS PROTOCOL <br />
+                - Hiring Dev team <br />
+                - Social media launch <br />
+                - Marketing strategies <br />
+                - Buy backs
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              date="2010 - 2011"
+              date="Q2"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             //icon={<WorkIcon />}
             >
-              <h3 className="vertical-timeline-element-title">Art Director</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
               <p>
-                Creative Direction, User Experience, Visual Design, SEO, Online Marketing
+                - Official Launch<br /> 
+                - Analytics dashboard<br />
+                - On-chain Governance<br />
+                - VC Launch<br />
+                - NFTs whitelisting<br />
+                - Hiring of marketing team<br />
+                - Hiring of business developpers<br />
+                - Additional Bonding options
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              date="2008 - 2010"
+              date="Q3"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             // icon={<WorkIcon />}
             >
-              <h3 className="vertical-timeline-element-title">Web Designer</h3>
-              <h4 className="vertical-timeline-element-subtitle">Los Angeles, CA</h4>
               <p>
-                User Experience, Visual Design
+                - NFTs Launch<br />
+                - Decentralized banking: Lending and borrowing
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              date="2006 - 2008"
+              date="Q4"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             //icon={<WorkIcon />}
             >
-              <h3 className="vertical-timeline-element-title">Web Designer</h3>
-              <h4 className="vertical-timeline-element-subtitle">San Francisco, CA</h4>
               <p>
-                User Experience, Visual Design
-              </p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="April 2013"
-              contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              iconStyle={{ background: '#5b82f8', color: '#fff' }}
-            // icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Content Marketing for Web, Mobile and Social Media</h3>
-              <h4 className="vertical-timeline-element-subtitle">Online Course</h4>
-              <p>
-                Strategy, Social Media
-              </p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="November 2012"
-              contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              iconStyle={{ background: '#5b82f8', color: '#fff' }}
-            //icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Agile Development Scrum Master</h3>
-              <h4 className="vertical-timeline-element-subtitle">Certification</h4>
-              <p>
-                Creative Direction, User Experience, Visual Design
-              </p>
-            </VerticalTimelineElement>
-            <VerticalTimelineElement
-              className="vertical-timeline-element--education"
-              date="2002 - 2006"
-              contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-              iconStyle={{ background: '#5b82f8', color: '#fff' }}
-              contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
-            //icon={<SchoolIcon />}
-            >
-              <h3 className="vertical-timeline-element-title">Bachelor of Science in Interactive Digital Media Visual Imaging</h3>
-              <h4 className="vertical-timeline-element-subtitle">Bachelor Degree</h4>
-              <p>
-                Creative Direction, Visual Design
+                - To be released...
               </p>
             </VerticalTimelineElement>
           </VerticalTimeline>

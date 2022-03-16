@@ -64,6 +64,7 @@ const RoadmapWrapper = styled.section`
     }
     p {
       color: ${themeGet('colors.paragraph', '#3461E8')};
+      margin-top: 0;
     }
     .current {
       color: ${themeGet('colors.white', '#FFF')} !important;
