@@ -6,11 +6,11 @@ import Heading from '../common/components/Heading';
 import Container from '../common/components/UI/Container';
 import FeatureSectionWrapper from './featureSection.style';
 
-const HEADING_CONTENT="Not only the fairest VC fund but also the smartest. \n" +
-"How Smart Are We? \n" +
-"we use the Brain Power of the community instead of a handful of team members to pick and choose what projects to invest in.\n" +
-"How are we Fair?\n" +
-"All Stakers that vote and maintain their tokens staked are PAID in Stable coins for every successful investment made.\n"
+const HEADING_CONTENT="Plutus Protocol provides a unique chance for brilliant investors to pool together " + 
+"and fund venture-capital-level opportunities collectively. Instead of having to sink all or most of your capital " +
+"in one, single place at any given time, and instead of missing out on a spectacular offer due to lack of available funds, " +
+"the pooled Treasury will enable your blockchain investments through DAO voting to be diversely " +
+"sown across multiple VC opportunities. Decreased risk. Sustained reward.";
 
 const FeatureSection = ({
   sectionHeader,

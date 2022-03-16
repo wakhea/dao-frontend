@@ -21,7 +21,7 @@ const WalletPortal = () => {
             </Fade>
           </div>
           <div className="content">
-            <Heading content="STAKERS REWARDS" />
+            <Heading content="STAKING REWARDS" />
             <div className="content-description">
               <Text content={CONTENT_HEADER} />
               <Text content={CONTENT} />
