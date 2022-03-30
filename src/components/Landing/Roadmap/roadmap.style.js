@@ -56,12 +56,18 @@ const RoadmapWrapper = styled.section`
       }
     }
   }
-
   .vertical-timeline {
     font-family: Readex Pro;
     .vertical-timeline-element-title, .vertical-timeline-element-subtitle {
       color: ${themeGet('colors.menu', '#3461E8')};
     }
+
+    @media (max-width: 1169px) {
+      .vertical-timeline-element--work.current span {
+        color: #fff !important;
+      }
+    }
+
     p {
       color: ${themeGet('colors.paragraph', '#3461E8')};
       margin-top: 0;
@@ -76,6 +82,9 @@ const RoadmapWrapper = styled.section`
     
     .vertical-timeline-element-date {
       color: ${themeGet('colors.menu', '#3461E8')};
+      .current {
+        color: white;
+      }
     }
   }
 `;

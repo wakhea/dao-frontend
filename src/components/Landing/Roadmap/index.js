@@ -17,7 +17,7 @@ const Roadmap = ({
           <Text content="2022 ROADMAP" className="title" />
           <VerticalTimeline lineColor="#5b82f8">
             <VerticalTimelineElement
-              className="vertical-timeline-element--work"
+              className="vertical-timeline-element--work current"
               contentStyle={{ background: '#5b82f8' }}
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               date="Q1"
