@@ -161,16 +161,16 @@ const Presale = () => {
             {/*// TODO: Change that on presale lunch*/}
             {true ? (
               <Typography variant="h6" className="open-soon">
-                Presale opening soon ! Come back in the near future if you want to get in early.
-                <br /> Join our{" "}
+                Presale releasing soon! Want to get in early? <br />
+                Follow our{" "}
                 <Link className="link" href="https://discord.gg/jjVSb8S3J3" target="_blank">
-                  Discord
+                  Discord{" "}
                 </Link>
-                /
+                or{" "}
                 <Link href="https://twitter.com/Plutus_Protocol" className="link" target="_blank">
                   Twitter
                 </Link>{" "}
-                to get the latest news.
+                for the latest news.
               </Typography>
             ) : !address ? (
               <div className="presale-wallet-notification">

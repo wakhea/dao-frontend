@@ -26,10 +26,10 @@ const Roadmap = ({
             >
               <p className="current">
                 - Creation of PLUTUS PROTOCOL <br />
-                - Hiring of dev team <br />
-                - Social media launch <br />
-                - Marketing strategies <br />
-                - Buy backs
+                - Hiring of Dev Team <br />
+                - Social Media Launch <br />
+                - Implementation of Marketing Strategies <br />
+                - Execution of Buybacks
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
@@ -41,12 +41,12 @@ const Roadmap = ({
             >
               <p>
                 - Official Launch<br /> 
-                - Analytics dashboard<br />
-                - On-chain Governance<br />
+                - Deployment of Analytics Dashboard<br />
+                - Deployment of On-chain Governance<br />
                 - VC Launch<br />
-                - NFTs whitelisting<br />
-                - Hiring of marketing team<br />
-                - Hiring of business developpers<br />
+                - Distribution of NFT Whitelist<br />
+                - Hiring of Marketing Team<br />
+                - Hiring of Business Developpers<br />
                 - Additional Bonding options
               </p>
             </VerticalTimelineElement>
@@ -59,7 +59,7 @@ const Roadmap = ({
             >
               <p>
                 - NFTs Launch<br />
-                - Decentralized banking: Lending and borrowing
+                - Introduction of Decentralized Lending and Borrowing
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
@@ -70,7 +70,7 @@ const Roadmap = ({
             //icon={<WorkIcon />}
             >
               <p>
-                - To be released...
+                - More to be revealed later...
               </p>
             </VerticalTimelineElement>
           </VerticalTimeline>

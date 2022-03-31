@@ -20,7 +20,7 @@ export const navbar = {
     },
     {
       id: 3,
-      label: 'How plutus works',
+      label: 'How Plutus Works',
       path: '#title',
       offset: '81',
     },
