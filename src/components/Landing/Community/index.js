@@ -8,7 +8,9 @@ import CommunitySectionWrapper from './communitySection.style';
 
 const HEADING_CONTENT = "As a Staker of Plutus Protocol, you PLAY a VITAL role in how the funds are Invested. " +
 "The Treasury brings you an on-chain venture fund, YOU vote on every incubation or partnership decision. " +
-"Revenue generated from investments is automatically distributed amongst Stakers.";
+"Revenue generated from investments is automatically distributed amongst Stakers.\n" +
+"Instead of leaving your capital to a small, like-minded managing group to call the shots, you will have an active say in how the Treasury's funds are deployed across the blockchain. " +
+"Myriad perspectives, thoughts, and insights will back each individual's votes, collectively coming together in a fantastic recipe for success."
 
 const CommunitySection = ({
   row,

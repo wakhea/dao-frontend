@@ -81,6 +81,7 @@ export const ContentWrapper = styled.div`
       }
     }
     p {
+      white-space: pre-line;
       font-size: 20px;
       line-height: 28px;
       text-align: justify;

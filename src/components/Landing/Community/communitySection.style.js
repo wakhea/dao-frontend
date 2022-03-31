@@ -8,29 +8,30 @@ const CommunitySectionWrapper = styled.section`
   background-repeat: no-repeat;
   background-position: bottom left;
   background-position-x: 20%;
-  background-size: 650px, cover;
-  background-position-y: 0%;
+  background-size: 700px, cover;
+  background-position-y: bottom 100%;
+
   box-shadow: 4px -15px 10px white;
   @media(max-width: 2561px) {
-    background-size: 650px, cover;
+    background-size: 750px, cover;
   }
   @media(max-width: 1778px) {
     background-position-x: 15%;
-    background-size: 550px, cover;
-    background-position-y: -150%;
+    background-size: 650px, cover;
+    background-position-y: bottom -150%;
   }
 
   @media(max-width: 1340px) {
-    background-position-x: 10%;
-    background-size: 500px, cover;
+    background-position-x: 5%;
+    background-size: 550px, cover;
     background-position-y: 30%;
     padding: 60px 0 50px 0;
   }
 
   @media(max-width: 1050px) {
-    background-position-y: 130%;
+    background-position-y: bottom -20%;
     background-position-x: 50%;
-    background-size: 500px, cover;
+    background-size: 550px, cover;
     padding: 80px 0 50px 0;
 
     .padder {
@@ -76,7 +77,8 @@ const CommunitySectionWrapper = styled.section`
 
     span, h2 {
       color: #FFF;
-      text-align: left ;
+      text-align: left;
+      white-space: pre-line;
     }
 
     h2 {
