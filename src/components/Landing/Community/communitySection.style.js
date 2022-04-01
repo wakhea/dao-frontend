@@ -8,30 +8,35 @@ const CommunitySectionWrapper = styled.section`
   background-repeat: no-repeat;
   background-position: bottom left;
   background-position-x: 20%;
-  background-size: 700px, cover;
-  background-position-y: bottom 100%;
+  background-size: 650px, cover;
+  background-position-y: 0%;
 
   box-shadow: 4px -15px 10px white;
   @media(max-width: 2561px) {
-    background-size: 750px, cover;
+    background-size: 650px, cover;
   }
   @media(max-width: 1778px) {
     background-position-x: 15%;
-    background-size: 650px, cover;
-    background-position-y: bottom -150%;
+    background-size: 600px, cover;
+    background-position-y: -150%;
   }
-
+  
   @media(max-width: 1340px) {
-    background-position-x: 5%;
-    background-size: 550px, cover;
-    background-position-y: 30%;
+    background-position-x: 10%;
+    background-position-y: bottom 100%;
+    background-size: 500px, cover;
     padding: 60px 0 50px 0;
   }
 
+  @media(max-width: 1220px) {
+    background-position-y: -50%;
+    background-size: 520px, cover;
+  }
+
   @media(max-width: 1050px) {
-    background-position-y: bottom -20%;
+    background-position-y: 120%;
     background-position-x: 50%;
-    background-size: 550px, cover;
+    background-size: 500px, cover;
     padding: 80px 0 50px 0;
 
     .padder {

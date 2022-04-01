@@ -7,9 +7,7 @@ import SectionWrapper, { ContentWrapper } from './investment.style';
 import coins from '../common/assets/image/coins.png';
 import Fade from 'react-reveal';
 
-const CONTENT = "As a smart VC, the treasury revenue will continue " +
-  "to grow with investments from the VC fund. As a staker, you vote and decide where the funds will be allocated.\n" +
-  "Treasury funds will grow as excellent returns and profitability attract more investors on board. " +
+const CONTENT = "Treasury funds will grow as excellent returns and profitability attract more investors on board. " +
   "Your votes determine the success, the success snowballs the Treasury reserve, and an ever-increasing reserve makes way for abundant opportunities to abound.";
 
 const InvestmentPortal = () => {
