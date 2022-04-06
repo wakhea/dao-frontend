@@ -14,14 +14,14 @@ const CountDownSection = () => {
       <div id="separator" className="top"></div>
       <Container>
         <ContentWrapper>
-          <Heading content="TOKEN PRESALE STARTING IN: " />
-          <Fade up>
+          <Heading content="TOKEN PRESALE STARTING SOON" />
+          {/* <Fade up>
             <div className="timerCount">
               <NormalClock countdown={deadline} divider="true" />
             </div>
-          </Fade>
+          </Fade> */}
           <Link href="/presale">
-            <Button className="primary" title="Enter presale" />
+            <Button className="primary" title="Enter DApp" />
           </Link>
         </ContentWrapper>
       </Container>
