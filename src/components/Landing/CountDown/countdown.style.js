@@ -224,12 +224,12 @@ export const ContentWrapper = styled.div`
     margin-top: 30px;
 
     &.primary {
+      &:hover {
+        box-shadow: white 0px 9px 20px -10px;
+      }
       background-color: ${themeGet("colors.secondaryButton", "#13296C")};
       color: ${themeGet("colors.primary", "#13296C")};
       font-weight: bold;
-      &:hover {
-        box-shadow: rgba(75, 109, 235, 0.78) 0px 9px 20px -10px;
-      }
     }
   }
 `;

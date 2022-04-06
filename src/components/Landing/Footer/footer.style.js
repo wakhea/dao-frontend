@@ -6,7 +6,7 @@ const FooterWrapper = styled.footer`
   position: relative;
   overflow: hidden;
   background-repeat: repeat;
-  background-size: 90px;
+  background-size: 57px;
   padding-top: 30px;
   padding-bottom: 20px;
   position: relative;
@@ -23,11 +23,21 @@ const FooterWrapper = styled.footer`
   .social-icon {
     height: 50px;
     width: 50px;
+
+    border-radius: 50%;
+    &:hover {
+      box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
+    }
   }
 
   .dapp-icon {
     width: 111px;
     height: 50px;
+
+    border-radius: 10px;
+    &:hover {
+      box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
+    }
   }
   @media (min-width: 576px) {
     

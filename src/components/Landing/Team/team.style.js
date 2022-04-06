@@ -110,6 +110,7 @@ const TeamWrapper = styled.section`
       font-weight: 400;
     }
     .reusecore__button {
+      
       transition: all 0.3s ease;
       color: #fff;
       margin-left: 0;
@@ -153,6 +154,9 @@ const TeamArea = styled.div`
   }
 
   button {
+    &:hover {
+      box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
+    }
     background: rgb(82,125,255);
     background: linear-gradient(77deg, rgba(82,125,255,1) 26%, rgba(45,86,210,0.9976191160057774) 95%);
     width: 150px;

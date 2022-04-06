@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from "@material-ui/core";
 import Box from '../common/components/Box';
 import Container from '../common/components/UI/Container';
-import FooterWrapper, { List, ListItem } from './footer.style';
+import FooterWrapper from './footer.style';
 import twitter from '../common/assets/image/twitter-logo.png';
 import discord from '../common/assets/image/discord-logo.png';
 import gitbook from '../common/assets/image/gitbook-logo.png';
@@ -14,11 +14,7 @@ import NextImage from '../common/components/NextImage';
 const Footer = ({
   row,
   col,
-  colOne,
   colTwo,
-  titleStyle,
-  logoStyle,
-  textStyle,
 }) => {
   return (
     <FooterWrapper>
@@ -36,7 +32,7 @@ const Footer = ({
                 </Link>
             </Box>
             <Box className="col" {...col} key={`footer-widget-3`}>
-                <Link href="https://twitter.com/Plutus_Protocol" target="_blank">
+                <Link href="https://docs.plutusprotocol.io" target="_blank">
                   <NextImage className="social-icon" src={gitbook} />
                 </Link>
             </Box>
@@ -46,7 +42,6 @@ const Footer = ({
                 </Link>
             </Box>
           </Box>
-          {/* End of footer List column */}
         </Box>
       </Container>
     </FooterWrapper>

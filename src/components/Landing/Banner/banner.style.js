@@ -114,12 +114,13 @@ export const ButtonGroup = styled.div`
       font-size: 13px;
       width: 118px;
     }
-
+    
+    &:hover {
+      box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
+    }
+    
     &.primary {
       background-image: ${themeGet("colors.primaryButton", "#13296C")};
-      &:hover {
-        box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
-      }
     }
 
     &.text {
