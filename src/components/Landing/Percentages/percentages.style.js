@@ -57,8 +57,7 @@ export const ContentWrapper = styled.div `
   .sectionHeader {
     align-items: start;
     color: ${themeGet('colors.menu')};
-    text-align: justify;
-    direction: rtl;
+    text-align: center;
     padding-right: 15px;
     border-right: ${themeGet('colors.border')};
     border-radius: 15px;
@@ -88,9 +87,40 @@ export const ContentWrapper = styled.div `
     }
   }
 
+  .title-container {
+    width: fit-content;
+    margin 0 auto;
+    padding-left: 15px;
+    border-radius: 15px;
+    border-left: ${themeGet('colors.border')};
+    padding-bottom: 9px;
+    margin-bottom: 40px;
+  }
+
   .row {
     flex-direction: row;
     justify-content: center;
+    @media (max-width: 800px) {
+      .small {
+        display: inline;
+      }
+      .large {
+        display: none;
+      }
+    }
+
+    @media (min-width: 801px) {
+      img {
+        max-width: 1300px;
+        min-width: 700px;
+      }
+      .small {
+        display: none;
+      }
+      .large {
+        display: inline;
+      }
+    }
   }
 `
 
