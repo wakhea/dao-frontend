@@ -6,7 +6,7 @@ import { Trans } from "@lingui/macro";
 const externalUrls = [
   {
     title: <Trans>Docs</Trans>,
-    url: "https://docs.olympusdao.finance/",
+    url: "https://docs.plutusprotocol.io",
     icon: <SvgIcon color="primary" component={DocsIcon} />,
   },
   {

@@ -36,11 +36,13 @@ const Banner = () => {
               <Link href="/presale">
                 <Button className="primary" title="GET TOKEN" />
               </Link>
-              <Button
-                className="text"
-                variant="textButton"
-                title="WHITE PAPER"
-              />
+              <Link href="https://docs.plutusprotocol.io" target="_blank">
+                <Button
+                  className="text"
+                  variant="textButton"
+                  title="WHITE PAPER"
+                />
+              </Link>
             </ButtonGroup>
           </Fade>
         </BannerContent>
