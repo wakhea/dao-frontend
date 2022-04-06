@@ -94,7 +94,7 @@ export const ContentWrapper = styled.div `
     border-radius: 15px;
     border-left: ${themeGet('colors.border')};
     padding-bottom: 9px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
   }
 
   .row {
