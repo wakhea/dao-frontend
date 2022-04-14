@@ -108,6 +108,20 @@ export const ContentWrapper = styled.div`
     }
   }
 
+  p {
+    color: #fff;
+    text-align: center;
+    font-size: 17px;
+    @media only screen and (max-width: 660px) {
+      font-size: 16px;
+    }
+    a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+
   .timerCount {
     margin-top: 30px;
     margin-bottom: 60px;
