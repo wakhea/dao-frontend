@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 import { FC, useEffect } from "react";
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Web3ContextProvider } from "./hooks/web3Context";
 
 import { i18n } from "@lingui/core";
@@ -10,6 +10,7 @@ import { initLocale } from "./locales";
 
 import App from "./App";
 import store from "./store";
+import { Landing } from "./views";
 
 const Root: FC = () => {
   useEffect(() => {
@@ -20,8 +21,13 @@ const Root: FC = () => {
     <Web3ContextProvider>
       <Provider store={store}>
         <I18nProvider i18n={i18n}>
-          <BrowserRouter basename={"/#"}>
-            <App />
+          <BrowserRouter>
+            <Switch>
+              <Route exact path="/">
+                <Landing></Landing>
+              </Route>
+              <App />
+            </Switch>
           </BrowserRouter>
         </I18nProvider>
       </Provider>

@@ -5,7 +5,8 @@ import externalUrls from "./externalUrls";
 import { ReactComponent as StakeIcon } from "../../assets/icons/stake.svg";
 import { ReactComponent as BondIcon } from "../../assets/icons/bond.svg";
 import { ReactComponent as DashboardIcon } from "../../assets/icons/dashboard.svg";
-import { ReactComponent as PlutusIcon } from "../../assets/icons/plutus-nav-header.svg";
+import { ReactComponent as PlutusIconDark } from "../../assets/icons/plus-logo-dark.svg";
+import { ReactComponent as PlutusIconLight } from "../../assets/icons/plus-logo-light.svg";
 import { ReactComponent as GiveIcon } from "../../assets/icons/give.svg";
 import { ReactComponent as NewIcon } from "../../assets/icons/new-icon.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
@@ -31,6 +32,7 @@ import "./sidebar.scss";
 import { useSelector } from "react-redux";
 import { EnvHelper } from "src/helpers/Environment";
 import { ExpandMore } from "@material-ui/icons";
+import { useAppSelector } from "src/hooks";
 
 function NavContent() {
   const [isActive] = useState();
@@ -39,6 +41,15 @@ function NavContent() {
   const { bonds } = useBonds(networkId);
   const { ensName } = useENS(address);
   const location = useLocation();
+
+  const activeTheme = () => {
+    let theme = localStorage.getItem("theme");
+    if (theme === null) {
+      return "light";
+    } else {
+      return theme;
+    }
+  };
 
   const checkPage = useCallback((match, location, page) => {
     const currentPath = location.pathname.replace("/", "");
@@ -83,8 +94,8 @@ function NavContent() {
             <Link href="/" target="_blank">
               <SvgIcon
                 color="primary"
-                component={PlutusIcon}
-                viewBox="0 0 414 414"
+                component={activeTheme() === "dark" ? PlutusIconDark : PlutusIconLight}
+                viewBox="0 0 849.43 1062.08"
                 style={{ minWdth: "200px", minHeight: "200px", width: "200px" }}
               />
             </Link>

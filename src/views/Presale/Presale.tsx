@@ -10,6 +10,7 @@ import {
   OutlinedInput,
   InputAdornment,
   Divider,
+  Link,
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
@@ -75,7 +76,9 @@ const Presale = () => {
   });
 
   const isSupportedNetwork = () => {
-    return networkId === 97 || networkId === 56;
+    // TODO: Change that on presale lunch
+    return false;
+    //return networkId === 97 || networkId === 56;
   };
   const isAllowanceDataLoading = busdAllowance == null;
 
@@ -155,7 +158,21 @@ const Presale = () => {
             )}
           </Grid>
           <div className="presale-area">
-            {!address ? (
+            {/*// TODO: Change that on presale lunch*/}
+            {true ? (
+              <Typography variant="h6" className="open-soon">
+                Presale releasing soon! Want to get in early? <br />
+                Follow our{" "}
+                <Link className="link" href="https://discord.gg/jjVSb8S3J3" target="_blank">
+                  Discord{" "}
+                </Link>
+                or{" "}
+                <Link href="https://twitter.com/Plutus_Protocol" className="link" target="_blank">
+                  Twitter
+                </Link>{" "}
+                for the latest news.
+              </Typography>
+            ) : !address ? (
               <div className="presale-wallet-notification">
                 <div className="wallet-menu" id="wallet-menu">
                   {modalButton}

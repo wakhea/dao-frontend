@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Readex+Pro:regular,bold,italic');
+
 * {
   outline: none;
   -ms-overflow-style: none !important; /* IE and Edge */
@@ -10,10 +12,9 @@
 html,
 body,
 #root {
-  font-family: "Square";
+  font-family: "Readex Pro";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
 body {
@@ -29,7 +30,7 @@ body {
   flex-direction: column;
   z-index: 1;
   background-size: cover;
-  font-family: "Square";
+  font-family: "Readex Pro";
   overflow: hidden;
   transition: all ease 0.33ms;
 }

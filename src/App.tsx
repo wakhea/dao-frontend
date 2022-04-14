@@ -32,6 +32,7 @@ import {
   DepositYield,
   RedeemYield,
   Presale,
+  Landing,
 } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
@@ -339,10 +340,6 @@ function App() {
               oldAssetsEnoughToMigrate && <CallToAction setMigrationModalOpen={setMigrationModalOpen} />}
 
             <Switch>
-              <Route exact path="/">
-                <Redirect to="/presale" />
-              </Route>
-
               <Route path="/presale">
                 <Presale />
               </Route>
@@ -377,6 +374,7 @@ function App() {
               <Route path="/network">
                 <ChangeNetwork />
               </Route>
+
               <Route component={NotFound} />
             </Switch>
           </div>

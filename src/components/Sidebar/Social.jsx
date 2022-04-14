@@ -6,11 +6,11 @@ export default function Social() {
   return (
     <div className="social-row">
       {/* TODO: Update social links */}
-      <Link href="https://twitter.com/PlutusDaoVC" target="_blank">
+      <Link href="https://twitter.com/Plutus_Protocol" target="_blank">
         <SvgIcon color="primary" component={Twitter} />
       </Link>
 
-      <Link href="https://discord.gg/TeFk87wK" target="_blank">
+      <Link href="https://discord.gg/jjVSb8S3J3" target="_blank">
         <SvgIcon color="primary" component={Discord} />
       </Link>
     </div>
