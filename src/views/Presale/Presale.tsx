@@ -75,6 +75,10 @@ const Presale = () => {
     return state.account.presale || 0;
   });
 
+  const percentReleased = useAppSelector(state => {
+    return state.presale.info.percentReleased || 0;
+  });
+
   const isSupportedNetwork = () => {
     // TODO: Change that on presale lunch
     //return false;
@@ -137,22 +141,40 @@ const Presale = () => {
             </div>
           </Grid>
           <Grid item>
-            {isSupportedNetwork() && !PRESALE_ENDED ? (
-              <MetricCollection>
-                <Metric
-                  className="plus-bought"
-                  label={`Total BUSD Raised`}
-                  metric={totalContribution}
-                  isLoading={totalContribution ? false : true}
-                />
-                <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
-                <Metric
-                  className="presale-end"
-                  label={`Presale End`}
-                  metric={closingDate}
-                  isLoading={closingDate ? false : true}
-                />
-              </MetricCollection>
+            {isSupportedNetwork() ? (
+              !PRESALE_ENDED ? (
+                <MetricCollection>
+                  <Metric
+                    className="plus-bought"
+                    label={`Total BUSD Raised`}
+                    metric={totalContribution}
+                    isLoading={totalContribution ? false : true}
+                  />
+                  <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
+                  <Metric
+                    className="presale-end"
+                    label={`Presale End`}
+                    metric={closingDate}
+                    isLoading={closingDate ? false : true}
+                  />
+                </MetricCollection>
+              ) : (
+                <MetricCollection>
+                  <Metric
+                    className="plus-bought"
+                    label={`Total MIMIMI Raised`}
+                    metric={totalContribution}
+                    isLoading={totalContribution ? false : true}
+                  />
+                  <Metric className="plus-price" label={`Percent Released`} metric={percentReleased.toString()} />
+                  <Metric
+                    className="presale-end"
+                    label={`Presale End`}
+                    metric={closingDate}
+                    isLoading={closingDate ? false : true}
+                  />
+                </MetricCollection>
+              )
             ) : (
               <> </>
             )}
