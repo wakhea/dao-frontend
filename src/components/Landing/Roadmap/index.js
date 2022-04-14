@@ -17,36 +17,33 @@ const Roadmap = ({
           <Text content="2022 ROADMAP" className="title" />
           <VerticalTimeline lineColor="#5b82f8">
             <VerticalTimelineElement
-              className="vertical-timeline-element--work current"
-              contentStyle={{ background: '#5b82f8' }}
+              className="vertical-timeline-element--work"
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               date="Q1"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             //icon={<WorkIcon />}
             >
-              <p className="current">
+              <p>
                 - Creation of PLUTUS PROTOCOL <br />
                 - Hiring of Dev Team <br />
-                - Social Media Launch <br />
-                - Implementation of Marketing Strategies <br />
-                - Execution of Buybacks
               </p>
             </VerticalTimelineElement>
             <VerticalTimelineElement
-              className="vertical-timeline-element--work"
+              className="vertical-timeline-element--work current"
+              contentStyle={{ background: '#5b82f8', color: "#fff" }}
               contentArrowStyle={{ borderRight: '7px solid  #5b82f8' }}
               date="Q2"
               iconStyle={{ background: '#5b82f8', color: '#fff' }}
             //icon={<WorkIcon />}
             >
-              <p>
+              <p className="current">
+                - Social Media Launch <br />
+                - Implementation of Marketing Strategies <br />
+                - Presale Launch<br />
+                - Execution of Buybacks<br />
                 - Official Launch<br /> 
                 - Deployment of Analytics Dashboard<br />
                 - Deployment of On-chain Governance<br />
-                - VC Launch<br />
-                - Distribution of NFT Whitelist<br />
-                - Hiring of Marketing Team<br />
-                - Hiring of Business Developpers<br />
                 - Additional Bonding options
               </p>
             </VerticalTimelineElement>
@@ -58,7 +55,10 @@ const Roadmap = ({
             // icon={<WorkIcon />}
             >
               <p>
-                - NFTs Launch<br />
+                - VC Launch<br />
+                - Distribution of NFT Whitelist<br />
+                - Hiring of Marketing Team<br />
+                - Hiring of Business Developpers<br />
                 - Introduction of Decentralized Lending and Borrowing
               </p>
             </VerticalTimelineElement>
@@ -70,6 +70,7 @@ const Roadmap = ({
             //icon={<WorkIcon />}
             >
               <p>
+                - NFTs Launch<br />
                 - More to be revealed later...
               </p>
             </VerticalTimelineElement>
