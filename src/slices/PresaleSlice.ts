@@ -26,6 +26,8 @@ interface IPresaleData {
     cap: string;
     openingDate: string;
     closingDate: number;
+    percentReleased: number;
+    vestingTime: number;
   };
 }
 
@@ -40,6 +42,10 @@ export const getPresaleInfo = createAsyncThunk(
     let openingDate = BigNumber.from("0");
     let closingDate = BigNumber.from("0");
 
+    // After presale
+    let percentReleased = BigNumber.from("0");
+    let vestingTime = BigNumber.from("0");
+
     try {
       const plusContract = PlutusERC20Token__factory.connect(addresses[networkID].PLUS_ADDRESS, provider);
       plusBalance = await plusContract.balanceOf(address);
@@ -49,12 +55,14 @@ export const getPresaleInfo = createAsyncThunk(
 
     try {
       const presaleContract = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider);
-      contribution = await presaleContract.contributions(address);
+      contribution = (await presaleContract.preBuys(address))[0];
       contributionLimit = await presaleContract.individualCap();
       totalContribution = await presaleContract.weiRaised();
       cap = await presaleContract.cap();
       openingDate = await presaleContract.openingTime();
       closingDate = await presaleContract.closingTime();
+      percentReleased = await presaleContract.getPercentReleased();
+      vestingTime = await presaleContract.vestingTime();
     } catch (e) {
       handleContractError(e);
     }
@@ -68,6 +76,8 @@ export const getPresaleInfo = createAsyncThunk(
         cap: ethers.utils.formatEther(cap),
         openingDate: await openingDate.toString(),
         closingDate: await closingDate.toNumber(),
+        percentReleased: await percentReleased.toNumber(),
+        vestingTime: await vestingTime.toNumber(),
       },
     };
   },
@@ -162,6 +172,8 @@ export interface IPresaleSlice extends IPresaleData {
     cap: string;
     openingDate: string;
     closingDate: number;
+    percentReleased: number;
+    vestingTime: number;
   };
 }
 
@@ -175,6 +187,8 @@ const initialState: IPresaleSlice = {
     cap: "",
     openingDate: "",
     closingDate: 0,
+    percentReleased: 0,
+    vestingTime: 0,
   },
 };
 

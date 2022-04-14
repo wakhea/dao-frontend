@@ -20,7 +20,7 @@ import { formatTimestamp } from "src/helpers";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
-import { NETWORKS } from "../../constants";
+import { NETWORKS, PRESALE_ENDED } from "../../constants";
 
 import "./presale.scss";
 import { buyToken, changeApproval } from "src/slices/PresaleSlice";
@@ -77,8 +77,8 @@ const Presale = () => {
 
   const isSupportedNetwork = () => {
     // TODO: Change that on presale lunch
-    return false;
-    //return networkId === 97 || networkId === 56;
+    //return false;
+    return networkId === 97 || networkId === 56;
   };
   const isAllowanceDataLoading = busdAllowance == null;
 
@@ -137,7 +137,7 @@ const Presale = () => {
             </div>
           </Grid>
           <Grid item>
-            {isSupportedNetwork() ? (
+            {isSupportedNetwork() && !PRESALE_ENDED ? (
               <MetricCollection>
                 <Metric
                   className="plus-bought"
@@ -159,7 +159,7 @@ const Presale = () => {
           </Grid>
           <div className="presale-area">
             {/*// TODO: Change that on presale lunch*/}
-            {true ? (
+            {false ? (
               <Typography variant="h6" className="open-soon">
                 Presale releasing soon! Want to get in early? <br />
                 Follow our{" "}
@@ -197,6 +197,8 @@ const Presale = () => {
                       </Typography>
                     </Button>
                   </Box>
+                ) : address && PRESALE_ENDED ? (
+                  <div>Presale has endeed, please redeem</div>
                 ) : address && !isAllowanceDataLoading ? (
                   busdAllowance == 0 ? (
                     <>
@@ -263,7 +265,7 @@ const Presale = () => {
                     <Skeleton width="250px" height="40px" />
                   </Grid>
                 )}
-                {isSupportedNetwork() ? (
+                {isSupportedNetwork() && !PRESALE_ENDED ? (
                   <Box className="presale-data">
                     <div className="data-row">
                       <Typography>PLUS balance</Typography>
