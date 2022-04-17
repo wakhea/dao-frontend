@@ -162,6 +162,29 @@ export const changeApproval = createAsyncThunk(
   },
 );
 
+export const redeemPlus = createAsyncThunk(
+  "presale/redeemPlus",
+  async ({ address, provider, networkID }: IBaseAddressAsyncThunk, { dispatch }) => {
+    let redeemPlusTx;
+    try {
+      const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
+
+      redeemPlusTx = await presale.redeemPlus(address);
+      dispatch(fetchPendingTxns({ txnHash: redeemPlusTx.hash, text: "Redeeming token", type: "redeemPlus" }));
+
+      await redeemPlusTx.wait();
+    } catch (e) {
+      handleContractError(e);
+      return;
+    } finally {
+      if (redeemPlusTx) {
+        dispatch(clearPendingTxn(redeemPlusTx.hash));
+      }
+    }
+    dispatch(getPresaleInfo({ address, networkID, provider }));
+  },
+);
+
 export interface IPresaleSlice extends IPresaleData {
   loading: boolean;
   info: {

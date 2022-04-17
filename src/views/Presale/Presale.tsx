@@ -16,7 +16,7 @@ import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
-import { formatTimestamp } from "src/helpers";
+import { formatTimestamp, formatPercentage } from "src/helpers";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
@@ -76,7 +76,11 @@ const Presale = () => {
   });
 
   const percentReleased = useAppSelector(state => {
-    return state.presale.info.percentReleased || 0;
+    return formatPercentage(state.presale.info.percentReleased, 10000000);
+  });
+
+  const vestingEndDate = useAppSelector(state => {
+    return formatTimestamp(state.presale.info.vestingTime + state.presale.info.closingDate, false);
   });
 
   const isSupportedNetwork = () => {
@@ -161,17 +165,22 @@ const Presale = () => {
               ) : (
                 <MetricCollection>
                   <Metric
-                    className="plus-bought"
-                    label={`Total MIMIMI Raised`}
-                    metric={totalContribution}
-                    isLoading={totalContribution ? false : true}
-                  />
-                  <Metric className="plus-price" label={`Percent Released`} metric={percentReleased.toString()} />
-                  <Metric
-                    className="presale-end"
-                    label={`Presale End`}
+                    className="vesting-start"
+                    label={`Vesting Start`}
                     metric={closingDate}
                     isLoading={closingDate ? false : true}
+                  />
+                  <Metric
+                    className="percent-released"
+                    label={`Percent Released`}
+                    metric={percentReleased}
+                    isLoading={percentReleased ? false : true}
+                  />
+                  <Metric
+                    className="vesting-end"
+                    label={`Vesting End`}
+                    metric={vestingEndDate}
+                    isLoading={vestingEndDate ? false : true}
                   />
                 </MetricCollection>
               )
@@ -220,7 +229,19 @@ const Presale = () => {
                     </Button>
                   </Box>
                 ) : address && PRESALE_ENDED ? (
-                  <div>Presale has endeed, please redeem</div>
+                  <Grid container direction="row" justifyContent="space-around" alignItems="center">
+                    <Grid item xl={5}>
+                      <Button
+                        className="stake-button"
+                        variant="contained"
+                        color="primary"
+                        disabled={isPendingTxn(pendingTransactions, "approve_presale")}
+                        onClick={onSeekApproval}
+                      >
+                        {txnButtonText(pendingTransactions, "approve_presale", `Redeem $PLUS`)}
+                      </Button>
+                    </Grid>
+                  </Grid>
                 ) : address && !isAllowanceDataLoading ? (
                   busdAllowance == 0 ? (
                     <>
