@@ -88,6 +88,7 @@ const Presale = () => {
   });
 
   const redeemablePlus = useAppSelector(state => {
+    // TODO: Handle floating numbers
     let contribution = state.presale.info.contribution;
     let percents = state.presale.info.percentReleased;
 
@@ -142,6 +143,9 @@ const Presale = () => {
 
   const onRedeemPlus = async () => {
     // Check if everything is redeemed
+    if (redeemablePlus === 0) {
+      return dispatch(error(`No $PLUS to redeem !`));
+    }
 
     await dispatch(redeemPlus({ address, provider, networkID: networkId }));
   };
@@ -261,7 +265,7 @@ const Presale = () => {
                         className="stake-button"
                         variant="contained"
                         color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "redeemPlus")}
+                        disabled={isPendingTxn(pendingTransactions, "redeemPlus") || !percentReleased}
                         onClick={onRedeemPlus}
                       >
                         {txnButtonText(pendingTransactions, "redeemPlus", `Redeem $PLUS`)}
