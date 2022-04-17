@@ -302,5 +302,9 @@ export const formatTimestamp = (timestamp: number, includeTime: boolean): string
 };
 
 export const formatPercentage = (rawPercent: number, decimals: number): string => {
+  if (rawPercent === 0) {
+    return "";
+  }
+
   return ((rawPercent * 100) / decimals).toFixed(1) + "%";
 };

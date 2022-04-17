@@ -28,6 +28,7 @@ interface IPresaleData {
     closingDate: number;
     percentReleased: number;
     vestingTime: number;
+    plusClaimed: string;
   };
 }
 
@@ -45,6 +46,7 @@ export const getPresaleInfo = createAsyncThunk(
     // After presale
     let percentReleased = BigNumber.from("0");
     let vestingTime = BigNumber.from("0");
+    let plusClaimed = BigNumber.from("0");
 
     try {
       const plusContract = PlutusERC20Token__factory.connect(addresses[networkID].PLUS_ADDRESS, provider);
@@ -56,6 +58,7 @@ export const getPresaleInfo = createAsyncThunk(
     try {
       const presaleContract = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider);
       contribution = (await presaleContract.preBuys(address))[0];
+      plusClaimed = (await presaleContract.preBuys(address))[1];
       contributionLimit = await presaleContract.individualCap();
       totalContribution = await presaleContract.weiRaised();
       cap = await presaleContract.cap();
@@ -78,6 +81,7 @@ export const getPresaleInfo = createAsyncThunk(
         closingDate: await closingDate.toNumber(),
         percentReleased: await percentReleased.toNumber(),
         vestingTime: await vestingTime.toNumber(),
+        plusClaimed: await ethers.utils.formatUnits(plusClaimed, "gwei"),
       },
     };
   },
@@ -197,6 +201,7 @@ export interface IPresaleSlice extends IPresaleData {
     closingDate: number;
     percentReleased: number;
     vestingTime: number;
+    plusClaimed: string;
   };
 }
 
@@ -212,6 +217,7 @@ const initialState: IPresaleSlice = {
     closingDate: 0,
     percentReleased: 0,
     vestingTime: 0,
+    plusClaimed: "",
   },
 };
 

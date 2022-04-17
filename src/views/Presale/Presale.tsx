@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 import { NETWORKS, PRESALE_ENDED } from "../../constants";
 
 import "./presale.scss";
-import { buyToken, changeApproval } from "src/slices/PresaleSlice";
+import { buyToken, changeApproval, redeemPlus } from "src/slices/PresaleSlice";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { switchNetwork } from "src/slices/NetworkSlice";
 import { loadAccountDetails } from "src/slices/AccountSlice";
@@ -76,11 +76,31 @@ const Presale = () => {
   });
 
   const percentReleased = useAppSelector(state => {
-    return formatPercentage(state.presale.info.percentReleased, 10000000);
+    return formatPercentage(state.presale.info.percentReleased, 10000000) || "";
   });
 
   const vestingEndDate = useAppSelector(state => {
     return formatTimestamp(state.presale.info.vestingTime + state.presale.info.closingDate, false);
+  });
+
+  const plusClaimed = useAppSelector(state => {
+    return state.presale.info.plusClaimed;
+  });
+
+  const redeemablePlus = useAppSelector(state => {
+    let contribution = state.presale.info.contribution;
+    let percents = state.presale.info.percentReleased;
+
+    let totalToClaim = (parseFloat(contribution) / 5) * (percents / 10000000);
+
+    return totalToClaim - parseFloat(state.presale.info.plusClaimed);
+  });
+
+  const plusLocked = useAppSelector(state => {
+    let contribution = state.presale.info.contribution;
+    let percents = state.presale.info.percentReleased;
+
+    return (parseFloat(contribution) / 5) * (1 - percents / 10000000);
   });
 
   const isSupportedNetwork = () => {
@@ -114,10 +134,16 @@ const Presale = () => {
 
     let weiValue = ethers.utils.parseEther(quantity.toString());
     if (weiValue.gt(ethers.utils.parseEther(busdBalance))) {
-      return dispatch(error(`You cannot stake more than your BUSD balance.`));
+      return dispatch(error(`You cannot buy more than your BUSD balance.`));
     }
 
     await dispatch(buyToken({ address, value: await weiValue.toString(), provider, networkID: networkId }));
+  };
+
+  const onRedeemPlus = async () => {
+    // Check if everything is redeemed
+
+    await dispatch(redeemPlus({ address, provider, networkID: networkId }));
   };
 
   const handleSwitchChain = (id: any) => {
@@ -173,7 +199,7 @@ const Presale = () => {
                   <Metric
                     className="percent-released"
                     label={`Percent Released`}
-                    metric={percentReleased}
+                    metric={percentReleased.toString()}
                     isLoading={percentReleased ? false : true}
                   />
                   <Metric
@@ -235,10 +261,10 @@ const Presale = () => {
                         className="stake-button"
                         variant="contained"
                         color="primary"
-                        disabled={isPendingTxn(pendingTransactions, "approve_presale")}
-                        onClick={onSeekApproval}
+                        disabled={isPendingTxn(pendingTransactions, "redeemPlus")}
+                        onClick={onRedeemPlus}
                       >
-                        {txnButtonText(pendingTransactions, "approve_presale", `Redeem $PLUS`)}
+                        {txnButtonText(pendingTransactions, "redeemPlus", `Redeem $PLUS`)}
                       </Button>
                     </Grid>
                   </Grid>
@@ -326,6 +352,27 @@ const Presale = () => {
                       <Typography>Max Contribution</Typography>
                       <Typography className="price-data">
                         {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
+                      </Typography>
+                    </div>
+                  </Box>
+                ) : isSupportedNetwork() && PRESALE_ENDED ? (
+                  <Box className="presale-data">
+                    <div className="data-row">
+                      <Typography>PLUS redeemed</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusClaimed} PLUS</>}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>PLUS available to redeem</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{redeemablePlus} PLUS</>}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>PLUS Locked</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{plusLocked} PLUS</>}
                       </Typography>
                     </div>
                   </Box>
