@@ -308,3 +308,7 @@ export const formatPercentage = (rawPercent: number, decimals: number): string =
 
   return ((rawPercent * 100) / decimals).toFixed(1) + "%";
 };
+
+export const formatToDecimals = (number: number, decimals: number) => {
+  return parseFloat(number.toFixed(decimals));
+};
