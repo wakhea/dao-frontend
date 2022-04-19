@@ -20,11 +20,7 @@ const Percentages = ({
       <Container>
         <ContentWrapper>
           <Box className="title-container">
-            <Text content="DECENTRALIZED" {...sectionSubTitle} />{"\n"}
-            <Text
-              content="VENTURE CAPITAL"
-              {...sectionTitle}
-            />
+            <Text content="PROFIT ALLOCATION" {...sectionSubTitle} />
           </Box>
           <Box className="row" {...row}>
             <NextImage className="large" src={vcPercentages} />

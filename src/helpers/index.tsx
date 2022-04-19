@@ -300,3 +300,7 @@ export const formatTimestamp = (timestamp: number, includeTime: boolean): string
     return dateString + " " + hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
   }
 };
+
+export const formatToDecimals = (number: number, decimals: number) => {
+  return parseFloat(number.toFixed(decimals));
+};

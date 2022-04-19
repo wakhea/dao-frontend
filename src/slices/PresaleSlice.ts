@@ -49,7 +49,7 @@ export const getPresaleInfo = createAsyncThunk(
 
     try {
       const presaleContract = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider);
-      contribution = await presaleContract.contributions(address);
+      //contribution = await presaleContract.contributions(address))[0];
       contributionLimit = await presaleContract.individualCap();
       totalContribution = await presaleContract.weiRaised();
       cap = await presaleContract.cap();
