@@ -16,7 +16,7 @@ import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
-import { formatTimestamp, formatPercentage } from "src/helpers";
+import { formatTimestamp, formatPercentage, formatToDecimals } from "src/helpers";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
@@ -343,19 +343,31 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS balance</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusBalance} PLUS</>}
+                        {isAppLoading || !plusBalance ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(plusBalance), 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>Contribution</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BUSD</>}
+                        {isAppLoading || !contribution ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(contribution), 2)} BUSD</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>Max Contribution</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
+                        {isAppLoading || !contributionLimit ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(contributionLimit), 4)} BUSD</>
+                        )}
                       </Typography>
                     </div>
                   </Box>
@@ -364,19 +376,31 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS redeemed</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusClaimed} PLUS</>}
+                        {isAppLoading || !plusBalance ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(plusClaimed), 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>PLUS available to redeem</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{redeemablePlus} PLUS</>}
+                        {isAppLoading || !contribution ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(redeemablePlus, 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>PLUS Locked</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{plusLocked} PLUS</>}
+                        {isAppLoading || !contributionLimit ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(plusLocked, 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                   </Box>
