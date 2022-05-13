@@ -79,6 +79,10 @@ const Presale = () => {
     return formatPercentage(state.presale.info.percentReleased, 10000000) || "";
   });
 
+  const vestingStartDate = useAppSelector(state => {
+    return formatTimestamp(state.presale.info.vestingStart, false);
+  });
+
   const vestingEndDate = useAppSelector(state => {
     return formatTimestamp(state.presale.info.vestingTime + state.presale.info.closingDate, false);
   });
@@ -177,6 +181,7 @@ const Presale = () => {
           <Grid item>
             {isSupportedNetwork() ? (
               !PRESALE_ENDED ? (
+                /* PRESALE HEADER */
                 <MetricCollection>
                   <Metric
                     className="plus-bought"
@@ -193,12 +198,13 @@ const Presale = () => {
                   />
                 </MetricCollection>
               ) : (
+                /* VESTING HEADER */
                 <MetricCollection>
                   <Metric
                     className="vesting-start"
                     label={`Vesting Start`}
-                    metric={closingDate}
-                    isLoading={closingDate ? false : true}
+                    metric={vestingStartDate}
+                    isLoading={vestingStartDate ? false : true}
                   />
                   <Metric
                     className="percent-released"
@@ -221,6 +227,7 @@ const Presale = () => {
           <div className="presale-area">
             {/*// TODO: Change that on presale lunch*/}
             {false ? (
+              /* BEFORE PRESALE*/
               <Typography variant="h6" className="open-soon">
                 Presale releasing soon! Want to get in early? <br />
                 Follow our{" "}
@@ -234,6 +241,7 @@ const Presale = () => {
                 for the latest news.
               </Typography>
             ) : !address ? (
+              /* CONNECT PROMPT*/
               <div className="presale-wallet-notification">
                 <div className="wallet-menu" id="wallet-menu">
                   {modalButton}
@@ -243,6 +251,7 @@ const Presale = () => {
             ) : (
               <div className="presale-buy-area">
                 {!isSupportedNetwork() ? (
+                  /* SWITCH NETWORK PROMPT */
                   <Box width="100%" alignItems={"center"} display="flex" flexDirection="column" p={1}>
                     <Typography variant="h4" style={{ margin: "0 0 10px 0" }}>
                       Please switch to a supported network
@@ -273,6 +282,7 @@ const Presale = () => {
                     </Grid>
                   </Grid>
                 ) : address && !isAllowanceDataLoading ? (
+                  /* APPROVE PROMPT */
                   busdAllowance == 0 ? (
                     <>
                       <Grid container direction="row" justifyContent="space-around" alignItems="center">
@@ -372,11 +382,12 @@ const Presale = () => {
                     </div>
                   </Box>
                 ) : isSupportedNetwork() && PRESALE_ENDED ? (
+                  /* VESTING METRICS */
                   <Box className="presale-data">
                     <div className="data-row">
                       <Typography>PLUS redeemed</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusBalance ? (
+                        {isAppLoading || !plusClaimed ? (
                           <Skeleton width="80px" />
                         ) : (
                           <>{formatToDecimals(parseFloat(plusClaimed), 4)} PLUS</>
@@ -386,7 +397,7 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS available to redeem</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contribution ? (
+                        {isAppLoading || !redeemablePlus ? (
                           <Skeleton width="80px" />
                         ) : (
                           <>{formatToDecimals(redeemablePlus, 4)} PLUS</>
@@ -396,7 +407,7 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS Locked</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contributionLimit ? (
+                        {isAppLoading || !plusLocked ? (
                           <Skeleton width="80px" />
                         ) : (
                           <>{formatToDecimals(plusLocked, 4)} PLUS</>

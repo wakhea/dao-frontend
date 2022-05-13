@@ -31,7 +31,7 @@ interface IAddresses {
 export const addresses: IAddresses = {
   97: {
     PLUS_ADDRESS: "0x1D7f64e2Fb2Be8c1eac6914f49Ca4E897F5d7539",
-    PRESALE_ADDRESS: "0xB305b529C4b1D9A3181b2a553C60D8d8E496Af17",
+    PRESALE_ADDRESS: "0x9876e02E92a742374e60FC8dbFD5ccE1FDd892BC",
     BUSD_ADDRESS: "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
   },
   4: {

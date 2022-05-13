@@ -51,6 +51,11 @@
           "internalType": "uint256",
           "name": "_vestingTime",
           "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_vestingStart",
+          "type": "uint256"
         }
       ],
       "stateMutability": "nonpayable",
@@ -390,6 +395,19 @@
       "type": "function"
     },
     {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newVestingStart",
+          "type": "uint256"
+        }
+      ],
+      "name": "setVestingStart",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "token",
       "outputs": [
@@ -439,6 +457,19 @@
       "name": "updateCap",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "vestingStart",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
       "type": "function"
     },
     {

@@ -28,6 +28,7 @@ interface IPresaleData {
     closingDate: number;
     percentReleased: number;
     vestingTime: number;
+    vestingStart: number;
     plusClaimed: string;
   };
 }
@@ -47,6 +48,7 @@ export const getPresaleInfo = createAsyncThunk(
     let percentReleased = BigNumber.from("0");
     let vestingTime = BigNumber.from("0");
     let plusClaimed = BigNumber.from("0");
+    let vestingStart = BigNumber.from("0");
 
     try {
       const plusContract = PlutusERC20Token__factory.connect(addresses[networkID].PLUS_ADDRESS, provider);
@@ -66,6 +68,7 @@ export const getPresaleInfo = createAsyncThunk(
       closingDate = await presaleContract.closingTime();
       percentReleased = await presaleContract.getPercentReleased();
       vestingTime = await presaleContract.vestingTime();
+      vestingStart = await presaleContract.vestingStart();
     } catch (e) {
       handleContractError(e);
     }
@@ -82,6 +85,7 @@ export const getPresaleInfo = createAsyncThunk(
         percentReleased: await percentReleased.toNumber(),
         vestingTime: await vestingTime.toNumber(),
         plusClaimed: await ethers.utils.formatUnits(plusClaimed, "gwei"),
+        vestingStart: await vestingStart.toNumber(),
       },
     };
   },
@@ -178,6 +182,7 @@ export const redeemPlus = createAsyncThunk(
 
       await redeemPlusTx.wait();
     } catch (e) {
+      dispatch(error("Error during contract interaction. Usually a network related issue"));
       handleContractError(e);
       return;
     } finally {
@@ -202,6 +207,7 @@ export interface IPresaleSlice extends IPresaleData {
     percentReleased: number;
     vestingTime: number;
     plusClaimed: string;
+    vestingStart: number;
   };
 }
 
@@ -218,6 +224,7 @@ const initialState: IPresaleSlice = {
     percentReleased: 0,
     vestingTime: 0,
     plusClaimed: "",
+    vestingStart: 0,
   },
 };
 
