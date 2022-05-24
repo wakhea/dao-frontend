@@ -198,7 +198,7 @@ function Stake() {
   };
 
   const hasAllowance = useCallback(
-    token => {
+    (token: string) => {
       if (token === "ohm") return stakeAllowance > 0;
       if (token === "sohm") return unstakeAllowance > 0;
       if (token === "gohm") return directUnstakeAllowance > 0;

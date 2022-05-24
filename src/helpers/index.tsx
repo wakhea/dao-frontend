@@ -1,8 +1,8 @@
 import { EPOCH_INTERVAL, BLOCK_RATE_SECONDS, addresses } from "../constants";
 import { BigNumber, ethers } from "ethers";
 import axios from "axios";
-import { abi as PairContractABI } from "../abi/PairContract.json";
-import { abi as RedeemHelperABI } from "../abi/RedeemHelper.json";
+import PairContractABI from "../abi/PairContract.json";
+import RedeemHelperABI from "../abi/RedeemHelper.json";
 
 import { SvgIcon } from "@material-ui/core";
 import { ReactComponent as OhmImg } from "../assets/tokens/token_OHM.svg";
@@ -25,7 +25,7 @@ export async function getMarketPrice() {
   const mainnetProvider = NodeHelper.getMainnetStaticProvider();
   // v2 price
   const ohm_dai_address = ohm_dai.getAddressForReserve(1);
-  const pairContract = new ethers.Contract(ohm_dai_address || "", PairContractABI, mainnetProvider) as PairContract;
+  const pairContract = new ethers.Contract(ohm_dai_address || "", PairContractABI.abi, mainnetProvider) as PairContract;
   const reserves = await pairContract.getReserves();
 
   const marketPrice = Number(reserves[1].toString()) / Number(reserves[0].toString()) / 10 ** 9;
@@ -38,7 +38,7 @@ export async function getMarketPriceFromWeth() {
   // v2 price
   const ohm_weth_address = ohm_weth.getAddressForReserve(1);
   const wethBondContract = ohm_weth.getContractForBond(1, mainnetProvider);
-  const pairContract = new ethers.Contract(ohm_weth_address || "", PairContractABI, mainnetProvider) as PairContract;
+  const pairContract = new ethers.Contract(ohm_weth_address || "", PairContractABI.abi, mainnetProvider) as PairContract;
   const reserves = await pairContract.getReserves();
 
   // since we're using OHM/WETH... also need to multiply by weth price;
@@ -52,7 +52,7 @@ export async function getV1MarketPrice() {
   const mainnetProvider = NodeHelper.getMainnetStaticProvider();
   // v1 price
   const ohm_dai_address = ohm_daiOld.getAddressForReserve(1);
-  const pairContract = new ethers.Contract(ohm_dai_address || "", PairContractABI, mainnetProvider) as PairContract;
+  const pairContract = new ethers.Contract(ohm_dai_address || "", PairContractABI.abi, mainnetProvider) as PairContract;
   const reserves = await pairContract.getReserves();
   const marketPrice = Number(reserves[1].toString()) / Number(reserves[0].toString()) / 10 ** 9;
   return marketPrice;
@@ -187,7 +187,7 @@ export function contractForRedeemHelper({
 }) {
   return new ethers.Contract(
     addresses[networkID].REDEEM_HELPER_ADDRESS as string,
-    RedeemHelperABI,
+    RedeemHelperABI.abi,
     provider,
   ) as RedeemHelper;
 }

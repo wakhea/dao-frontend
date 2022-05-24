@@ -1,7 +1,6 @@
 import { ethers, BigNumber } from "ethers";
 import { addresses } from "../constants";
-import { abi as ierc20ABI } from "../abi/IERC20.json";
-import { abi as v2sOHM } from "../abi/v2sOhmNew.json";
+import ierc20ABI from "../abi/IERC20.json";
 import { clearPendingTxn, fetchPendingTxns, getWrappingTypeText } from "./PendingTxnsSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAccountSuccess, getBalances } from "./AccountSlice";
@@ -27,8 +26,8 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20ABI, signer) as IERC20;
-    const gohmContract = new ethers.Contract(addresses[networkID].GOHM_ADDRESS as string, ierc20ABI, signer) as IERC20;
+    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20ABI.abi, signer) as IERC20;
+    const gohmContract = new ethers.Contract(addresses[networkID].GOHM_ADDRESS as string, ierc20ABI.abi, signer) as IERC20;
     let approveTx;
     let wrapAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_V2);
     let unwrapAllowance = await gohmContract.allowance(address, addresses[networkID].STAKING_V2);

@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
-import { abi as ierc20Abi } from "../abi/IERC20.json";
-import { abi as OlympusGiving } from "../abi/OlympusGiving.json";
-import { abi as OlympusMockGiving } from "../abi/OlympusMockGiving.json";
-import { abi as MockSohm } from "../abi/MockSohm.json";
+import ierc20Abi from "../abi/IERC20.json";
+import OlympusGiving from "../abi/OlympusGiving.json";
+import OlympusMockGiving from "../abi/OlympusMockGiving.json";
+import MockSohm from "../abi/MockSohm.json";
 import { clearPendingTxn, fetchPendingTxns, getGivingTypeText, isPendingTxn, IPendingTxn } from "./PendingTxnsSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAccountSuccess, getBalances, getDonationBalances, getMockDonationBalances } from "./AccountSlice";
@@ -62,7 +62,7 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Abi, signer);
+    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Abi.abi, signer);
     let approveTx;
     try {
       approveTx = await sohmContract.approve(
@@ -109,7 +109,7 @@ export const changeMockApproval = createAsyncThunk(
       this is the best way to avoid manually switching out code every deployment
     */
     const signer = provider.getSigner();
-    const sohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm, signer);
+    const sohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm.abi, signer);
     let approveTx;
     try {
       approveTx = await sohmContract.approve(
@@ -154,7 +154,7 @@ export const changeGive = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const giving = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving, signer);
+    const giving = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving.abi, signer);
     let giveTx;
 
     let uaData: IUAData = {
@@ -221,7 +221,7 @@ export const changeMockGive = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const giving = new ethers.Contract(addresses[networkID].MOCK_GIVING_ADDRESS as string, OlympusMockGiving, signer);
+    const giving = new ethers.Contract(addresses[networkID].MOCK_GIVING_ADDRESS as string, OlympusMockGiving.abi, signer);
     let giveTx;
 
     let uaData: IUAData = {
@@ -292,7 +292,7 @@ export const getTestTokens = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const mockSohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm, signer);
+    const mockSohmContract = new ethers.Contract(addresses[networkID].MOCK_SOHM as string, MockSohm.abi, signer);
     let pendingTxnType = "drip";
     let getTx;
     try {

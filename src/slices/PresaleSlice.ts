@@ -1,14 +1,8 @@
 import { BigNumber, ethers } from "ethers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addresses } from "../constants";
-import {
-  IBaseAddressAsyncThunk,
-  IChangeApprovalAsyncThunk,
-  IChangeApprovalWithVersionAsyncThunk,
-  IJsonRPCError,
-  IValueAsyncThunk,
-} from "./interfaces";
-import { abi as ierc20Abi } from "../abi/IERC20.json";
+import { IBaseAddressAsyncThunk, IChangeApprovalAsyncThunk, IValueAsyncThunk } from "./interfaces";
+import ierc20Abi from "../abi/IERC20.json";
 import { PlutusERC20Token__factory } from "src/typechain/factories/PlutusERC20Token__factory";
 import { handleContractError, setAll } from "src/helpers";
 import { PlutusPresale__factory } from "src/typechain";
@@ -124,7 +118,7 @@ export const changeApproval = createAsyncThunk(
 
     const busdContract = new ethers.Contract(
       addresses[networkID].BUSD_ADDRESS as string,
-      ierc20Abi,
+      ierc20Abi.abi,
       provider.getSigner(),
     ) as IERC20;
 

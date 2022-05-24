@@ -54,6 +54,7 @@ import ProjectInfo from "./views/Give/ProjectInfo";
 import projectData from "src/views/Give/projects.json";
 import Announcement from "./components/Announcement/Announcement";
 import { getPresaleInfo } from "./slices/PresaleSlice";
+import { JsonRpcProvider, StaticJsonRpcProvider } from "@ethersproject/providers";
 
 // 😬 Sorry for all the console logging
 const DEBUG = false;
@@ -158,12 +159,12 @@ function App() {
     }
   }
 
-  const initNetwork = useCallback(loadProvider => {
+  const initNetwork = useCallback((loadProvider: JsonRpcProvider | StaticJsonRpcProvider) => {
     dispatch(initializeNetwork({ provider: loadProvider }));
   }, []);
 
   const loadApp = useCallback(
-    loadProvider => {
+    (loadProvider: JsonRpcProvider | StaticJsonRpcProvider) => {
       if (networkId == -1) {
         return;
       }
@@ -182,7 +183,7 @@ function App() {
   );
 
   const loadAccount = useCallback(
-    loadProvider => {
+    (loadProvider: StaticJsonRpcProvider | JsonRpcProvider) => {
       if (networkId == -1) {
         return;
       }

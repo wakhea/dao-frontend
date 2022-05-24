@@ -11,23 +11,23 @@ import { ReactComponent as wETHImg } from "src/assets/tokens/wETH.svg";
 import { ReactComponent as LusdImg } from "src/assets/tokens/LUSD.svg";
 import { ReactComponent as CvxImg } from "src/assets/tokens/CVX.svg";
 
-import { abi as FraxOhmBondContract } from "src/abi/bonds/OhmFraxContract.json";
-import { abi as BondOhmDaiContract } from "src/abi/bonds/OhmDaiContract.json";
-import { abi as BondOhmLusdContract } from "src/abi/bonds/OhmLusdContract.json";
-import { abi as BondOhmEthContract } from "src/abi/bonds/OhmEthContract.json";
+import FraxOhmBondContract from "src/abi/bonds/OhmFraxContract.json";
+import BondOhmDaiContract from "src/abi/bonds/OhmDaiContract.json";
+import BondOhmLusdContract from "src/abi/bonds/OhmLusdContract.json";
+import BondOhmEthContract from "src/abi/bonds/OhmEthContract.json";
 
-import { abi as DaiBondContract } from "src/abi/bonds/DaiContract.json";
-import { abi as ReserveOhmLusdContract } from "src/abi/reserves/OhmLusd.json";
-import { abi as ReserveOhmDaiContract } from "src/abi/reserves/OhmDai.json";
-import { abi as ReserveOhmFraxContract } from "src/abi/reserves/OhmFrax.json";
-import { abi as ReserveOhmEthContract } from "src/abi/reserves/OhmEth.json";
+import DaiBondContract from "src/abi/bonds/DaiContract.json";
+import ReserveOhmLusdContract from "src/abi/reserves/OhmLusd.json";
+import ReserveOhmDaiContract from "src/abi/reserves/OhmDai.json";
+import ReserveOhmFraxContract from "src/abi/reserves/OhmFrax.json";
+import ReserveOhmEthContract from "src/abi/reserves/OhmEth.json";
 
-import { abi as FraxBondContract } from "src/abi/bonds/FraxContract.json";
-import { abi as LusdBondContract } from "src/abi/bonds/LusdContract.json";
-import { abi as EthBondContract } from "src/abi/bonds/EthContract.json";
-import { abi as CvxBondContract } from "src/abi/bonds/CvxContract.json";
+import FraxBondContract from "src/abi/bonds/FraxContract.json";
+import LusdBondContract from "src/abi/bonds/LusdContract.json";
+import EthBondContract from "src/abi/bonds/EthContract.json";
+import CvxBondContract from "src/abi/bonds/CvxContract.json";
 
-import { abi as ierc20Abi } from "src/abi/IERC20.json";
+import ierc20Abi from "src/abi/IERC20.json";
 import { getBondCalculator } from "src/helpers/BondCalculator";
 import { BigNumberish } from "ethers";
 import { getTokenPrice } from "src/helpers";
@@ -41,7 +41,7 @@ export const dai = new StableBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: DaiImg,
-  bondContractABI: DaiBondContract,
+  bondContractABI: DaiBondContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -86,7 +86,7 @@ export const fraxOld = new StableBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: FraxImg,
-  bondContractABI: FraxBondContract,
+  bondContractABI: FraxBondContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -131,7 +131,7 @@ export const frax = new StableBond({
   payoutToken: "OHM",
   v2Bond: true,
   bondIconSvg: FraxImg,
-  bondContractABI: FraxBondContract,
+  bondContractABI: FraxBondContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: false,
@@ -176,7 +176,7 @@ export const lusd = new StableBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: LusdImg,
-  bondContractABI: LusdBondContract,
+  bondContractABI: LusdBondContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -223,8 +223,8 @@ export const eth = new CustomBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: wETHImg,
-  bondContractABI: EthBondContract,
-  reserveContract: ierc20Abi, // The Standard ierc20Abi since they're normal tokens
+  bondContractABI: EthBondContract.abi,
+  reserveContract: ierc20Abi.abi, // The Standard ierc20Abi since they're normal tokens
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
@@ -280,8 +280,8 @@ export const cvx = new CustomBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: CvxImg,
-  bondContractABI: CvxBondContract,
-  reserveContract: ierc20Abi, // The Standard ierc20Abi since they're normal tokens
+  bondContractABI: CvxBondContract.abi,
+  reserveContract: ierc20Abi.abi, // The Standard ierc20Abi since they're normal tokens
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -337,8 +337,8 @@ export const cvx_expired = new CustomBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: CvxImg,
-  bondContractABI: CvxBondContract,
-  reserveContract: ierc20Abi, // The Standard ierc20Abi since they're normal tokens
+  bondContractABI: CvxBondContract.abi,
+  reserveContract: ierc20Abi.abi, // The Standard ierc20Abi since they're normal tokens
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -391,8 +391,8 @@ export const ohm_dai = new LPBond({
   payoutToken: "OHM",
   v2Bond: true,
   bondIconSvg: OhmDaiImg,
-  bondContractABI: BondOhmDaiContract,
-  reserveContract: ReserveOhmDaiContract,
+  bondContractABI: BondOhmDaiContract.abi,
+  reserveContract: ReserveOhmDaiContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -440,8 +440,8 @@ export const ohm_daiOld = new LPBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: OhmDaiImg,
-  bondContractABI: BondOhmDaiContract,
-  reserveContract: ReserveOhmDaiContract,
+  bondContractABI: BondOhmDaiContract.abi,
+  reserveContract: ReserveOhmDaiContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -488,8 +488,8 @@ export const ohm_frax = new LPBond({
   payoutToken: "OHM",
   v2Bond: true,
   bondIconSvg: OhmFraxImg,
-  bondContractABI: FraxOhmBondContract,
-  reserveContract: ReserveOhmFraxContract,
+  bondContractABI: FraxOhmBondContract.abi,
+  reserveContract: ReserveOhmFraxContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: false,
@@ -536,8 +536,8 @@ export const ohm_fraxOld = new LPBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: OhmFraxImg,
-  bondContractABI: FraxOhmBondContract,
-  reserveContract: ReserveOhmFraxContract,
+  bondContractABI: FraxOhmBondContract.abi,
+  reserveContract: ReserveOhmFraxContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -584,8 +584,8 @@ export const ohm_lusd = new LPBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: OhmLusdImg,
-  bondContractABI: BondOhmLusdContract,
-  reserveContract: ReserveOhmLusdContract,
+  bondContractABI: BondOhmLusdContract.abi,
+  reserveContract: ReserveOhmLusdContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -633,8 +633,8 @@ export const ohm_weth = new CustomBond({
   payoutToken: "OHM",
   v2Bond: true,
   bondIconSvg: OhmEthImg,
-  bondContractABI: BondOhmEthContract,
-  reserveContract: ReserveOhmEthContract,
+  bondContractABI: BondOhmEthContract.abi,
+  reserveContract: ReserveOhmEthContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
@@ -711,8 +711,8 @@ export const ohm_wethOld = new CustomBond({
   payoutToken: "OHM",
   v2Bond: false,
   bondIconSvg: OhmEthImg,
-  bondContractABI: BondOhmEthContract,
-  reserveContract: ReserveOhmEthContract,
+  bondContractABI: BondOhmEthContract.abi,
+  reserveContract: ReserveOhmEthContract.abi,
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,

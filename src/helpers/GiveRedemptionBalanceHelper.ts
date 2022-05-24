@@ -1,6 +1,6 @@
 import { ethers, BigNumber } from "ethers";
 import { addresses } from "../constants";
-import { abi as OlympusGiving } from "../abi/OlympusGiving.json";
+import OlympusGiving from "../abi/OlympusGiving.json";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IBaseAddressAsyncThunk, ICalcUserBondDetailsAsyncThunk } from "../slices/interfaces";
 
@@ -25,7 +25,7 @@ export const getRedemptionBalancesAsync = async ({ address, networkID, provider 
   };
 
   if (addresses[networkID] && addresses[networkID].GIVING_ADDRESS) {
-    const givingContract = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving, provider);
+    const givingContract = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving.abi, provider);
     redeemableBalance = await givingContract.redeemableBalance(address);
 
     try {
@@ -64,7 +64,7 @@ export const getMockRedemptionBalancesAsync = async ({ address, networkID, provi
   if (addresses[networkID] && addresses[networkID].MOCK_GIVING_ADDRESS) {
     const givingContract = new ethers.Contract(
       addresses[networkID].MOCK_GIVING_ADDRESS as string,
-      OlympusGiving,
+      OlympusGiving.abi,
       provider,
     );
     redeemableBalance = await givingContract.redeemableBalance(address);
@@ -100,7 +100,7 @@ export const getMockRedemptionBalancesAsync = async ({ address, networkID, provi
 export const getDonorNumbers = async ({ address, networkID, provider }: IBaseAddressAsyncThunk) => {
   const zeroPadAddress = ethers.utils.hexZeroPad(address, 32);
 
-  const givingContract = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving, provider);
+  const givingContract = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving.abi, provider);
 
   // creates a filter looking at all Deposited events on the YieldDirector contract
   const filter = {

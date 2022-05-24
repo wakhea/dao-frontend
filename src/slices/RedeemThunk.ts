@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
-import { abi as ierc20Abi } from "../abi/IERC20.json";
-import { abi as OlympusGiving } from "../abi/OlympusGiving.json";
+import OlympusGiving from "../abi/OlympusGiving.json";
 import { clearPendingTxn, fetchPendingTxns } from "./PendingTxnsSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchAccountSuccess, getBalances, getRedemptionBalances, getMockRedemptionBalances } from "./AccountSlice";
@@ -27,7 +26,7 @@ export const redeemBalance = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const giving = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving, signer);
+    const giving = new ethers.Contract(addresses[networkID].GIVING_ADDRESS as string, OlympusGiving.abi, signer);
     const redeemableBalance = await giving.redeemableBalance(address);
     let redeemTx;
 
@@ -81,7 +80,7 @@ export const redeemMockBalance = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const giving = new ethers.Contract(addresses[networkID].MOCK_GIVING_ADDRESS as string, OlympusGiving, signer);
+    const giving = new ethers.Contract(addresses[networkID].MOCK_GIVING_ADDRESS as string, OlympusGiving.abi, signer);
     const redeemableBalance = await giving.redeemableBalance(address);
     let redeemTx;
 
