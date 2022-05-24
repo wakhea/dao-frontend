@@ -20,7 +20,7 @@ import { formatTimestamp, formatPercentage, formatToDecimals } from "src/helpers
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
-import { NETWORKS, PRESALE_ENDED } from "../../constants";
+import { NETWORKS, PRESALE_ENDED, PRESALE_STARTED } from "../../constants";
 
 import "./presale.scss";
 import { buyToken, changeApproval, redeemPlus } from "src/slices/PresaleSlice";
@@ -109,10 +109,9 @@ const Presale = () => {
   });
 
   const isSupportedNetwork = () => {
-    // TODO: Change that on presale lunch
-    //return false;
     return networkId === 97 || networkId === 56;
   };
+
   const isAllowanceDataLoading = busdAllowance == null;
 
   const setMax = () => {
@@ -226,7 +225,7 @@ const Presale = () => {
           </Grid>
           <div className="presale-area">
             {/*// TODO: Change that on presale lunch*/}
-            {false ? (
+            {!PRESALE_STARTED ? (
               /* BEFORE PRESALE*/
               <Typography variant="h6" className="open-soon">
                 Presale releasing soon! Want to get in early? <br />
@@ -260,7 +259,8 @@ const Presale = () => {
                     <Typography variant="h6" style={{ margin: "15px 0 10px 0" }}>
                       Back to BSC Mainnet
                     </Typography>
-                    <Button onClick={handleSwitchChain(97)} variant="outlined">
+                    {/* TODO: switch to bsc mainet */}
+                    <Button onClick={handleSwitchChain(bsc.chainId)} variant="outlined">
                       <img height="28px" width="28px" src={String(bsc.image)} alt={bsc.imageAltText} />
                       <Typography variant="h6" style={{ marginLeft: "8px" }}>
                         {bsc.chainName}
@@ -387,7 +387,7 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS redeemed</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusClaimed ? (
+                        {isAppLoading ? (
                           <Skeleton width="80px" />
                         ) : (
                           <>{formatToDecimals(parseFloat(plusClaimed), 4)} PLUS</>
@@ -397,21 +397,13 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS available to redeem</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !redeemablePlus ? (
-                          <Skeleton width="80px" />
-                        ) : (
-                          <>{formatToDecimals(redeemablePlus, 4)} PLUS</>
-                        )}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(redeemablePlus, 4)} PLUS</>}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>PLUS Locked</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusLocked ? (
-                          <Skeleton width="80px" />
-                        ) : (
-                          <>{formatToDecimals(plusLocked, 4)} PLUS</>
-                        )}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(plusLocked, 4)} PLUS</>}
                       </Typography>
                     </div>
                   </Box>
