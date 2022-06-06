@@ -27,7 +27,11 @@ export const changeApproval = createAsyncThunk(
 
     const signer = provider.getSigner();
     const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20ABI.abi, signer) as IERC20;
-    const gohmContract = new ethers.Contract(addresses[networkID].GOHM_ADDRESS as string, ierc20ABI.abi, signer) as IERC20;
+    const gohmContract = new ethers.Contract(
+      addresses[networkID].GOHM_ADDRESS as string,
+      ierc20ABI.abi,
+      signer,
+    ) as IERC20;
     let approveTx;
     let wrapAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_V2);
     let unwrapAllowance = await gohmContract.allowance(address, addresses[networkID].STAKING_V2);
@@ -53,7 +57,7 @@ export const changeApproval = createAsyncThunk(
         await approveTx.wait();
         dispatch(info("Successfully Approved!"));
       }
-    } catch (e: unknown) {
+    } catch (e) {
       dispatch(error((e as IJsonRPCError).message));
       return;
     } finally {
@@ -110,7 +114,7 @@ export const changeWrapV2 = createAsyncThunk(
         wrapTx = await stakingContract.unwrap(address, formattedValue);
         dispatch(fetchPendingTxns({ txnHash: wrapTx.hash, text: getWrappingTypeText(action), type: "wrapping" }));
       }
-    } catch (e: unknown) {
+    } catch (e) {
       uaData.approved = false;
       const rpcError = e as IJsonRPCError;
       if (rpcError.code === -32603 && rpcError.message.indexOf("ds-math-sub-underflow") >= 0) {

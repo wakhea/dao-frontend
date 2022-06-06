@@ -73,7 +73,7 @@ export const changeApproval = createAsyncThunk(
       const pendingTxnType = PENDING_TXN_GIVE_APPROVAL;
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
       await approveTx.wait();
-    } catch (e: unknown) {
+    } catch (e) {
       dispatch(error((e as IJsonRPCError).message));
       return;
     } finally {
@@ -120,7 +120,7 @@ export const changeMockApproval = createAsyncThunk(
       const pendingTxnType = PENDING_TXN_GIVE_APPROVAL;
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
       await approveTx.wait();
-    } catch (e: unknown) {
+    } catch (e) {
       dispatch(error((e as IJsonRPCError).message));
       return;
     } finally {
@@ -189,7 +189,7 @@ export const changeGive = createAsyncThunk(
       uaData.txHash = giveTx.hash;
       dispatch(fetchPendingTxns({ txnHash: giveTx.hash, text: getGivingTypeText(action), type: pendingTxnType }));
       await giveTx.wait();
-    } catch (e: unknown) {
+    } catch (e) {
       uaData.approved = false;
       const rpcError = e as IJsonRPCError;
       if (rpcError.code === -32603 && rpcError.message.indexOf("ds-math-sub-underflow") >= 0) {
@@ -221,7 +221,11 @@ export const changeMockGive = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const giving = new ethers.Contract(addresses[networkID].MOCK_GIVING_ADDRESS as string, OlympusMockGiving.abi, signer);
+    const giving = new ethers.Contract(
+      addresses[networkID].MOCK_GIVING_ADDRESS as string,
+      OlympusMockGiving.abi,
+      signer,
+    );
     let giveTx;
 
     let uaData: IUAData = {
@@ -256,7 +260,7 @@ export const changeMockGive = createAsyncThunk(
       uaData.txHash = giveTx.hash;
       dispatch(fetchPendingTxns({ txnHash: giveTx.hash, text: getGivingTypeText(action), type: pendingTxnType }));
       await giveTx.wait();
-    } catch (e: unknown) {
+    } catch (e) {
       uaData.approved = false;
       const rpcError = e as IJsonRPCError;
       if (rpcError.code === -32603 && rpcError.message.indexOf("ds-math-sub-underflow") >= 0) {
@@ -299,7 +303,7 @@ export const getTestTokens = createAsyncThunk(
       getTx = await mockSohmContract.drip();
       dispatch(fetchPendingTxns({ txnHash: getTx.hash, text: "Drip", type: pendingTxnType }));
       await getTx.wait();
-    } catch (e: unknown) {
+    } catch (e) {
       const rpcError = e as IJsonRPCError;
       dispatch(error(rpcError.message));
       return;

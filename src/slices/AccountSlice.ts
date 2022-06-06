@@ -96,7 +96,11 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
     try {
-      const wsohmContract = new ethers.Contract(addresses[networkID].WSOHM_ADDRESS as string, wsOHM.abi, provider) as WsOHM;
+      const wsohmContract = new ethers.Contract(
+        addresses[networkID].WSOHM_ADDRESS as string,
+        wsOHM.abi,
+        provider,
+      ) as WsOHM;
       wsohmBalance = await wsohmContract.balanceOf(address);
     } catch (e) {
       handleContractError(e);
@@ -122,13 +126,21 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
     try {
-      const ohmV2Contract = new ethers.Contract(addresses[networkID].OHM_V2 as string, ierc20Contract.abi, provider) as IERC20;
+      const ohmV2Contract = new ethers.Contract(
+        addresses[networkID].OHM_V2 as string,
+        ierc20Contract.abi,
+        provider,
+      ) as IERC20;
       ohmV2Balance = await ohmV2Contract.balanceOf(address);
     } catch (e) {
       handleContractError(e);
     }
     try {
-      const sohmV2Contract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Contract.abi, provider) as IERC20;
+      const sohmV2Contract = new ethers.Contract(
+        addresses[networkID].SOHM_V2 as string,
+        ierc20Contract.abi,
+        provider,
+      ) as IERC20;
       sohmV2Balance = await sohmV2Contract.balanceOf(address);
     } catch (e) {
       handleContractError(e);

@@ -38,7 +38,11 @@ export async function getMarketPriceFromWeth() {
   // v2 price
   const ohm_weth_address = ohm_weth.getAddressForReserve(1);
   const wethBondContract = ohm_weth.getContractForBond(1, mainnetProvider);
-  const pairContract = new ethers.Contract(ohm_weth_address || "", PairContractABI.abi, mainnetProvider) as PairContract;
+  const pairContract = new ethers.Contract(
+    ohm_weth_address || "",
+    PairContractABI.abi,
+    mainnetProvider,
+  ) as PairContract;
   const reserves = await pairContract.getReserves();
 
   // since we're using OHM/WETH... also need to multiply by weth price;

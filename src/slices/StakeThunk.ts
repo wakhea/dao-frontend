@@ -60,8 +60,16 @@ export const changeApproval = createAsyncThunk(
       return;
     }
     const signer = provider.getSigner();
-    const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20ABI.abi, signer) as IERC20;
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, ierc20ABI.abi, signer) as IERC20;
+    const ohmContract = new ethers.Contract(
+      addresses[networkID].OHM_ADDRESS as string,
+      ierc20ABI.abi,
+      signer,
+    ) as IERC20;
+    const sohmContract = new ethers.Contract(
+      addresses[networkID].SOHM_ADDRESS as string,
+      ierc20ABI.abi,
+      signer,
+    ) as IERC20;
     const ohmV2Contract = new ethers.Contract(addresses[networkID].OHM_V2 as string, ierc20ABI.abi, signer) as IERC20;
     const sohmV2Contract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20ABI.abi, signer) as IERC20;
     let approveTx;
