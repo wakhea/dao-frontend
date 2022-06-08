@@ -39,11 +39,49 @@ const FooterWrapper = styled.footer`
       box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
     }
   }
-  @media (min-width: 576px) {
-    
-  }
 
   .footer_container {
+    max-width: 1550px;
+    color: ${themeGet('colors.menu', '#3461E8')};
+    display: flex;
+    justify-content: space-around;
+  
+    .copyrights {
+      width: 50%;
+      h2 {
+        font-size: 36px;
+        margin-bottom: 8px;
+      }
+      h4 {
+        font-size: 26px;
+        font-weight: normal;
+      }
+    }
+
+    .links {
+      width: 45%;
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .community {
+        margin-right: 15px;
+      }
+      .resources {
+        margin-left: 15px;
+      }
+      
+      .section-title {
+        padding-left: 8px;
+        border-left: 14px solid #3461E8;
+        border-radius: 8px;
+
+        font-size: 30px;
+        font-weight: bold;
+      }
+    }
+  
     @media (min-width: 576px) {
     }
     @media (max-width: 990px) {
@@ -51,25 +89,5 @@ const FooterWrapper = styled.footer`
     }
   }
 `;
-
-const List = styled.ul``;
-
-const ListItem = styled.li`
-  a {
-    color: ${themeGet("colors.primary", "#13296C")};
-    font-size: 14px;
-    line-height: 36px;
-    transition: all 0.2s ease;
-    font-weight: 300;
-    &:hover,
-    &:focus {
-      outline: 0;
-      text-decoration: none;
-      color: #2345AB
-    }
-  }
-`;
-
-export { List, ListItem };
 
 export default FooterWrapper;
