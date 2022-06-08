@@ -17,6 +17,12 @@ interface IPoolGraphURLS {
   [index: string]: string;
 }
 
+// TODO: Switch when presale starts
+export const PRESALE_STARTED = true;
+
+// TODO: Switch when presale ends
+export const PRESALE_ENDED = true;
+
 export const POOL_GRAPH_URLS: IPoolGraphURLS = {
   4: "https://api.thegraph.com/subgraphs/name/pooltogether/rinkeby-v3_4_3",
   1: "https://api.thegraph.com/subgraphs/name/pooltogether/pooltogether-v3_4_3",
@@ -29,8 +35,14 @@ interface IAddresses {
 export const addresses: IAddresses = {
   97: {
     PLUS_ADDRESS: "0x1D7f64e2Fb2Be8c1eac6914f49Ca4E897F5d7539",
-    PRESALE_ADDRESS: "0x5B5609866ee78be882235eD1f0788c9691Df2353",
+    PRESALE_ADDRESS: "0x9876e02E92a742374e60FC8dbFD5ccE1FDd892BC",
     BUSD_ADDRESS: "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee",
+  },
+  56: {
+    // TODO: Update with address on launch
+    PLUS_ADDRESS: "0x00",
+    PRESALE_ADDRESS: "0x00",
+    BUSD_ADDRESS: "0x00",
   },
   4: {
     DAI_ADDRESS: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C", // duplicate
@@ -155,28 +167,7 @@ export const addresses: IAddresses = {
     // WSOHM_ADDRESS: "",
     // GOHM_ADDRESS: "",
     // MIGRATOR_ADDRESS: ""
-  }, // TODO: Avalanche Testnet addresses
-  43114: {
-    DAI_ADDRESS: "",
-    OHM_ADDRESS: "",
-    // STAKING_ADDRESS: "", // The new staking contract
-    STAKING_HELPER_ADDRESS: "", // Helper contract used for Staking only
-    OLD_STAKING_ADDRESS: "",
-    SOHM_ADDRESS: "",
-    OLD_SOHM_ADDRESS: "",
-    PRESALE_ADDRESS: "",
-    AOHM_ADDRESS: "",
-    MIGRATE_ADDRESS: "",
-    DISTRIBUTOR_ADDRESS: "",
-    BONDINGCALC_ADDRESS: "",
-    CIRCULATING_SUPPLY_ADDRESS: "",
-    TREASURY_ADDRESS: "",
-    PICKLE_OHM_LUSD_ADDRESS: "",
-    REDEEM_HELPER_ADDRESS: "",
-    WSOHM_ADDRESS: "0x8cd309e14575203535ef120b5b0ab4dded0c2073",
-    GOHM_ADDRESS: "0x321e7092a180bb43555132ec53aaa65a5bf84251",
-    MIGRATOR_ADDRESS: "0xB10209BFbb37d38EC1B5F0c964e489564e223ea7",
-  }, // TODO: Avalanche Mainnet addresses
+  },
 };
 
 /**
@@ -206,7 +197,7 @@ export const USER_SELECTABLE_NETWORKS = [1, 97];
 
 // Set this to the chain number of the most recently added network in order to enable the 'Now supporting X network'
 // message in the UI. Set to -1 if we don't want to display the message at the current time.
-export const NEWEST_NETWORK_ID = 43114;
+export const NEWEST_NETWORK_ID = -1;
 
 export const NETWORKS: { [key: number]: INetwork } = {
   1: {
@@ -236,6 +227,20 @@ export const NETWORKS: { [key: number]: INetwork } = {
     image: ethereum,
     imageAltText: "Ethereum Logo",
     uri: () => NodeHelper.getMainnetURI(4),
+  },
+  56: {
+    chainName: "Bsc",
+    chainId: 56,
+    nativeCurrency: {
+      name: "BNB",
+      symbol: "BNB",
+      decimals: 18,
+    },
+    rpcUrls: [],
+    blockExplorerUrls: ["https://bscscan.com/"],
+    image: bsc,
+    imageAltText: "Binance logo",
+    uri: () => NodeHelper.getMainnetURI(56),
   },
   97: {
     chainName: "Bsc testnet",
@@ -316,10 +321,9 @@ interface IViewsForNetwork {
   dashboard: boolean;
   stake: boolean;
   wrap: boolean;
-  zap: boolean;
-  threeTogether: boolean;
   bonds: boolean;
   network: boolean;
+  presale: boolean;
 }
 
 export const VIEWS_FOR_NETWORK: { [key: number]: IViewsForNetwork } = {
@@ -327,54 +331,24 @@ export const VIEWS_FOR_NETWORK: { [key: number]: IViewsForNetwork } = {
     dashboard: true,
     stake: true,
     wrap: true,
-    zap: true,
-    threeTogether: true,
     bonds: true,
     network: true,
+    presale: false,
   },
   4: {
     dashboard: true,
     stake: true,
     wrap: true,
-    zap: true,
-    threeTogether: true,
     bonds: true,
     network: true,
+    presale: false,
   },
-  42161: {
-    dashboard: true,
+  56: {
+    dashboard: false,
     stake: false,
-    wrap: true,
-    zap: false,
-    threeTogether: false,
-    bonds: false,
+    wrap: false,
+    bonds: true,
     network: true,
-  },
-  421611: {
-    dashboard: true,
-    stake: false,
-    wrap: true,
-    zap: false,
-    threeTogether: false,
-    bonds: false,
-    network: true,
-  },
-  43114: {
-    dashboard: true,
-    stake: false,
-    wrap: true,
-    zap: false,
-    threeTogether: false,
-    bonds: false,
-    network: true,
-  },
-  43113: {
-    dashboard: true,
-    stake: false,
-    wrap: true,
-    zap: false,
-    threeTogether: false,
-    bonds: false,
-    network: true,
+    presale: false,
   },
 };

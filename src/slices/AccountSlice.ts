@@ -1,15 +1,12 @@
 import { BigNumber, BigNumberish, ethers } from "ethers";
 import { addresses } from "../constants";
-import { abi as ierc20Abi } from "../abi/IERC20.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
-import { abi as fuseProxy } from "../abi/FuseProxy.json";
-import { abi as wsOHM } from "../abi/wsOHM.json";
-import { abi as fiatDAO } from "../abi/FiatDAOContract.json";
+import ierc20Contract from "../abi/IERC20.json";
+import sOHMv2 from "../abi/sOhmv2.json";
+import fuseProxy from "../abi/FuseProxy.json";
+import wsOHM from "../abi/wsOHM.json";
+import fiatDAO from "../abi/FiatDAOContract.json";
 
 import { setAll, handleContractError } from "../helpers";
-import { abi as OlympusGiving } from "../abi/OlympusGiving.json";
-import { abi as OlympusMockGiving } from "../abi/OlympusMockGiving.json";
-import { abi as MockSohm } from "../abi/MockSohm.json";
 
 import { getRedemptionBalancesAsync, getMockRedemptionBalancesAsync } from "../helpers/GiveRedemptionBalanceHelper";
 
@@ -99,7 +96,11 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
     try {
-      const wsohmContract = new ethers.Contract(addresses[networkID].WSOHM_ADDRESS as string, wsOHM, provider) as WsOHM;
+      const wsohmContract = new ethers.Contract(
+        addresses[networkID].WSOHM_ADDRESS as string,
+        wsOHM.abi,
+        provider,
+      ) as WsOHM;
       wsohmBalance = await wsohmContract.balanceOf(address);
     } catch (e) {
       handleContractError(e);
@@ -107,7 +108,7 @@ export const getBalances = createAsyncThunk(
     try {
       const ohmContract = new ethers.Contract(
         addresses[networkID].OHM_ADDRESS as string,
-        ierc20Abi,
+        ierc20Contract.abi,
         provider,
       ) as IERC20;
       ohmBalance = await ohmContract.balanceOf(address);
@@ -117,7 +118,7 @@ export const getBalances = createAsyncThunk(
     try {
       const sohmContract = new ethers.Contract(
         addresses[networkID].SOHM_ADDRESS as string,
-        ierc20Abi,
+        ierc20Contract.abi,
         provider,
       ) as IERC20;
       sohmBalance = await sohmContract.balanceOf(address);
@@ -125,13 +126,21 @@ export const getBalances = createAsyncThunk(
       handleContractError(e);
     }
     try {
-      const ohmV2Contract = new ethers.Contract(addresses[networkID].OHM_V2 as string, ierc20Abi, provider) as IERC20;
+      const ohmV2Contract = new ethers.Contract(
+        addresses[networkID].OHM_V2 as string,
+        ierc20Contract.abi,
+        provider,
+      ) as IERC20;
       ohmV2Balance = await ohmV2Contract.balanceOf(address);
     } catch (e) {
       handleContractError(e);
     }
     try {
-      const sohmV2Contract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Abi, provider) as IERC20;
+      const sohmV2Contract = new ethers.Contract(
+        addresses[networkID].SOHM_V2 as string,
+        ierc20Contract.abi,
+        provider,
+      ) as IERC20;
       sohmV2Balance = await sohmV2Contract.balanceOf(address);
     } catch (e) {
       handleContractError(e);
@@ -140,7 +149,7 @@ export const getBalances = createAsyncThunk(
     try {
       const poolTokenContract = new ethers.Contract(
         addresses[networkID].PT_TOKEN_ADDRESS as string,
-        ierc20Abi,
+        ierc20Contract.abi,
         provider,
       ) as IERC20;
       poolBalance = await poolTokenContract.balanceOf(address);
@@ -152,7 +161,7 @@ export const getBalances = createAsyncThunk(
         if (addresses[networkID][fuseAddressKey]) {
           const fsohmContract = new ethers.Contract(
             addresses[networkID][fuseAddressKey] as string,
-            fuseProxy,
+            fuseProxy.abi,
             provider.getSigner(),
           ) as FuseProxy;
           let balanceOfUnderlying = await fsohmContract.callStatic.balanceOfUnderlying(address);
@@ -173,7 +182,7 @@ export const getBalances = createAsyncThunk(
       if (addresses[networkID].FIATDAO_WSOHM_ADDRESS) {
         const fiatDaoContract = new ethers.Contract(
           addresses[networkID].FIATDAO_WSOHM_ADDRESS as string,
-          fiatDAO,
+          fiatDAO.abi,
           provider,
         ) as FiatDAOContract;
         fiatDaowsohmBalance = await fiatDaoContract.balanceOf(address, addresses[networkID].WSOHM_ADDRESS as string);
@@ -227,7 +236,7 @@ export const getDonationBalances = createAsyncThunk(
     let donationInfo: IUserDonationInfo = {};
 
     if (addresses[networkID] && addresses[networkID].GIVING_ADDRESS) {
-      const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Abi, provider);
+      const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, ierc20Contract, provider);
       giveAllowance = await sohmContract.allowance(address, addresses[networkID].GIVING_ADDRESS);
       const givingContract = new ethers.Contract(
         addresses[networkID].GIVING_ADDRESS as string,
@@ -369,7 +378,7 @@ export const loadAccountDetails = createAsyncThunk(
     try {
       const busdContract = new ethers.Contract(
         addresses[networkID].BUSD_ADDRESS as string,
-        ierc20Abi,
+        ierc20Contract.abi,
         provider,
       ) as IERC20;
 
@@ -387,12 +396,12 @@ export const loadAccountDetails = createAsyncThunk(
 
       const ohmContract = new ethers.Contract(
         addresses[networkID].OHM_ADDRESS as string,
-        ierc20Abi,
+        ierc20Contract.abi,
         provider,
       ) as IERC20;
       stakeAllowance = await ohmContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
 
-      const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, sOHMv2, provider) as SOhmv2;
+      const sohmContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, sOHMv2.abi, provider) as SOhmv2;
       unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
       poolAllowance = await sohmContract.allowance(address, addresses[networkID].PT_PRIZE_POOL_ADDRESS);
       wrapAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_V2);

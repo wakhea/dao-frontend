@@ -16,14 +16,14 @@ import { Skeleton } from "@material-ui/lab";
 import { Metric, MetricCollection } from "../../components/Metric";
 import { useWeb3Context } from "src/hooks/web3Context";
 import { useAppSelector } from "src/hooks";
-import { formatTimestamp } from "src/helpers";
+import { formatTimestamp, formatPercentage, formatToDecimals } from "src/helpers";
 import { error } from "../../slices/MessagesSlice";
 import { ethers } from "ethers";
 import { useDispatch } from "react-redux";
-import { NETWORKS } from "../../constants";
+import { NETWORKS, PRESALE_ENDED, PRESALE_STARTED } from "../../constants";
 
 import "./presale.scss";
-import { buyToken, changeApproval } from "src/slices/PresaleSlice";
+import { buyToken, changeApproval, redeemPlus } from "src/slices/PresaleSlice";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { switchNetwork } from "src/slices/NetworkSlice";
 import { loadAccountDetails } from "src/slices/AccountSlice";
@@ -75,11 +75,43 @@ const Presale = () => {
     return state.account.presale || 0;
   });
 
+  const percentReleased = useAppSelector(state => {
+    return formatPercentage(state.presale.info.percentReleased, 10000000) || "";
+  });
+
+  const vestingStartDate = useAppSelector(state => {
+    return formatTimestamp(state.presale.info.vestingStart, false);
+  });
+
+  const vestingEndDate = useAppSelector(state => {
+    return formatTimestamp(state.presale.info.vestingTime + state.presale.info.closingDate, false);
+  });
+
+  const plusClaimed = useAppSelector(state => {
+    return state.presale.info.plusClaimed;
+  });
+
+  const redeemablePlus = useAppSelector(state => {
+    // TODO: Handle floating numbers
+    let contribution = state.presale.info.contribution;
+    let percents = state.presale.info.percentReleased;
+
+    let totalToClaim = (parseFloat(contribution) / 5) * (percents / 10000000);
+
+    return totalToClaim - parseFloat(state.presale.info.plusClaimed);
+  });
+
+  const plusLocked = useAppSelector(state => {
+    let contribution = state.presale.info.contribution;
+    let percents = state.presale.info.percentReleased;
+
+    return (parseFloat(contribution) / 5) * (1 - percents / 10000000);
+  });
+
   const isSupportedNetwork = () => {
-    // TODO: Change that on presale lunch
-    return false;
-    //return networkId === 97 || networkId === 56;
+    return networkId === 97 || networkId === 56;
   };
+
   const isAllowanceDataLoading = busdAllowance == null;
 
   const setMax = () => {
@@ -106,10 +138,19 @@ const Presale = () => {
 
     let weiValue = ethers.utils.parseEther(quantity.toString());
     if (weiValue.gt(ethers.utils.parseEther(busdBalance))) {
-      return dispatch(error(`You cannot stake more than your BUSD balance.`));
+      return dispatch(error(`You cannot buy more than your BUSD balance.`));
     }
 
     await dispatch(buyToken({ address, value: await weiValue.toString(), provider, networkID: networkId }));
+  };
+
+  const onRedeemPlus = async () => {
+    // Check if everything is redeemed
+    if (redeemablePlus === 0) {
+      return dispatch(error(`No $PLUS to redeem !`));
+    }
+
+    await dispatch(redeemPlus({ address, provider, networkID: networkId }));
   };
 
   const handleSwitchChain = (id: any) => {
@@ -138,28 +179,54 @@ const Presale = () => {
           </Grid>
           <Grid item>
             {isSupportedNetwork() ? (
-              <MetricCollection>
-                <Metric
-                  className="plus-bought"
-                  label={`Total BUSD Raised`}
-                  metric={totalContribution}
-                  isLoading={totalContribution ? false : true}
-                />
-                <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
-                <Metric
-                  className="presale-end"
-                  label={`Presale End`}
-                  metric={closingDate}
-                  isLoading={closingDate ? false : true}
-                />
-              </MetricCollection>
+              !PRESALE_ENDED ? (
+                /* PRESALE HEADER */
+                <MetricCollection>
+                  <Metric
+                    className="plus-bought"
+                    label={`Total BUSD Raised`}
+                    metric={totalContribution}
+                    isLoading={totalContribution ? false : true}
+                  />
+                  <Metric className="plus-price" label={`Plus Token Price`} metric={"5 BUSD"} />
+                  <Metric
+                    className="presale-end"
+                    label={`Presale End`}
+                    metric={closingDate}
+                    isLoading={closingDate ? false : true}
+                  />
+                </MetricCollection>
+              ) : (
+                /* VESTING HEADER */
+                <MetricCollection>
+                  <Metric
+                    className="vesting-start"
+                    label={`Vesting Start`}
+                    metric={vestingStartDate}
+                    isLoading={vestingStartDate ? false : true}
+                  />
+                  <Metric
+                    className="percent-released"
+                    label={`Percent Released`}
+                    metric={percentReleased.toString()}
+                    isLoading={percentReleased ? false : true}
+                  />
+                  <Metric
+                    className="vesting-end"
+                    label={`Vesting End`}
+                    metric={vestingEndDate}
+                    isLoading={vestingEndDate ? false : true}
+                  />
+                </MetricCollection>
+              )
             ) : (
               <> </>
             )}
           </Grid>
           <div className="presale-area">
             {/*// TODO: Change that on presale lunch*/}
-            {true ? (
+            {!PRESALE_STARTED ? (
+              /* BEFORE PRESALE*/
               <Typography variant="h6" className="open-soon">
                 Presale releasing soon! Want to get in early? <br />
                 Follow our{" "}
@@ -173,6 +240,7 @@ const Presale = () => {
                 for the latest news.
               </Typography>
             ) : !address ? (
+              /* CONNECT PROMPT*/
               <div className="presale-wallet-notification">
                 <div className="wallet-menu" id="wallet-menu">
                   {modalButton}
@@ -182,6 +250,7 @@ const Presale = () => {
             ) : (
               <div className="presale-buy-area">
                 {!isSupportedNetwork() ? (
+                  /* SWITCH NETWORK PROMPT */
                   <Box width="100%" alignItems={"center"} display="flex" flexDirection="column" p={1}>
                     <Typography variant="h4" style={{ margin: "0 0 10px 0" }}>
                       Please switch to a supported network
@@ -190,14 +259,30 @@ const Presale = () => {
                     <Typography variant="h6" style={{ margin: "15px 0 10px 0" }}>
                       Back to BSC Mainnet
                     </Typography>
-                    <Button onClick={handleSwitchChain(97)} variant="outlined">
+                    {/* TODO: switch to bsc mainet */}
+                    <Button onClick={handleSwitchChain(bsc.chainId)} variant="outlined">
                       <img height="28px" width="28px" src={String(bsc.image)} alt={bsc.imageAltText} />
                       <Typography variant="h6" style={{ marginLeft: "8px" }}>
                         {bsc.chainName}
                       </Typography>
                     </Button>
                   </Box>
+                ) : address && PRESALE_ENDED ? (
+                  <Grid container direction="row" justifyContent="space-around" alignItems="center">
+                    <Grid item xl={5}>
+                      <Button
+                        className="stake-button"
+                        variant="contained"
+                        color="primary"
+                        disabled={isPendingTxn(pendingTransactions, "redeemPlus") || !percentReleased}
+                        onClick={onRedeemPlus}
+                      >
+                        {txnButtonText(pendingTransactions, "redeemPlus", `Redeem $PLUS`)}
+                      </Button>
+                    </Grid>
+                  </Grid>
                 ) : address && !isAllowanceDataLoading ? (
+                  /* APPROVE PROMPT */
                   busdAllowance == 0 ? (
                     <>
                       <Grid container direction="row" justifyContent="space-around" alignItems="center">
@@ -263,24 +348,62 @@ const Presale = () => {
                     <Skeleton width="250px" height="40px" />
                   </Grid>
                 )}
-                {isSupportedNetwork() ? (
+                {isSupportedNetwork() && !PRESALE_ENDED ? (
                   <Box className="presale-data">
                     <div className="data-row">
                       <Typography>PLUS balance</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !plusBalance ? <Skeleton width="80px" /> : <>{plusBalance} PLUS</>}
+                        {isAppLoading || !plusBalance ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(plusBalance), 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>Contribution</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contribution ? <Skeleton width="80px" /> : <>{contribution} BUSD</>}
+                        {isAppLoading || !contribution ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(contribution), 2)} BUSD</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>Max Contribution</Typography>
                       <Typography className="price-data">
-                        {isAppLoading || !contributionLimit ? <Skeleton width="80px" /> : <>{contributionLimit} BUSD</>}
+                        {isAppLoading || !contributionLimit ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(contributionLimit), 4)} BUSD</>
+                        )}
+                      </Typography>
+                    </div>
+                  </Box>
+                ) : isSupportedNetwork() && PRESALE_ENDED ? (
+                  /* VESTING METRICS */
+                  <Box className="presale-data">
+                    <div className="data-row">
+                      <Typography>PLUS redeemed</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(parseFloat(plusClaimed), 4)} PLUS</>
+                        )}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>PLUS available to redeem</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(redeemablePlus, 4)} PLUS</>}
+                      </Typography>
+                    </div>
+                    <div className="data-row">
+                      <Typography>PLUS Locked</Typography>
+                      <Typography className="price-data">
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(plusLocked, 4)} PLUS</>}
                       </Typography>
                     </div>
                   </Box>

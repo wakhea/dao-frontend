@@ -1,7 +1,7 @@
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
 import { ethers, BigNumber } from "ethers";
 
-import { abi as ierc20Abi } from "src/abi/IERC20.json";
+import ierc20Contract from "src/abi/IERC20.json";
 import { getTokenPrice } from "src/helpers";
 import { getBondCalculator } from "src/helpers/BondCalculator";
 import { EthContract, PairContract } from "src/typechain";
@@ -196,7 +196,7 @@ export class StableBond extends Bond {
     super(BondType.StableAsset, stableBondOpts);
     // For stable bonds the display units are the same as the actual token
     this.displayUnits = stableBondOpts.displayName;
-    this.reserveContract = ierc20Abi; // The Standard ierc20Abi since they're normal tokens
+    this.reserveContract = ierc20Contract.abi; // The Standard ierc20Abi since they're normal tokens
   }
 
   async getTreasuryBalance(networkID: NetworkID, provider: StaticJsonRpcProvider) {

@@ -1,14 +1,8 @@
 import { BigNumber, ethers } from "ethers";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { addresses } from "../constants";
-import {
-  IBaseAddressAsyncThunk,
-  IChangeApprovalAsyncThunk,
-  IChangeApprovalWithVersionAsyncThunk,
-  IJsonRPCError,
-  IValueAsyncThunk,
-} from "./interfaces";
-import { abi as ierc20Abi } from "../abi/IERC20.json";
+import { IBaseAddressAsyncThunk, IChangeApprovalAsyncThunk, IValueAsyncThunk } from "./interfaces";
+import ierc20Abi from "../abi/IERC20.json";
 import { PlutusERC20Token__factory } from "src/typechain/factories/PlutusERC20Token__factory";
 import { handleContractError, setAll } from "src/helpers";
 import { PlutusPresale__factory } from "src/typechain";
@@ -26,6 +20,10 @@ interface IPresaleData {
     cap: string;
     openingDate: string;
     closingDate: number;
+    percentReleased: number;
+    vestingTime: number;
+    vestingStart: number;
+    plusClaimed: string;
   };
 }
 
@@ -40,6 +38,12 @@ export const getPresaleInfo = createAsyncThunk(
     let openingDate = BigNumber.from("0");
     let closingDate = BigNumber.from("0");
 
+    // After presale
+    let percentReleased = BigNumber.from("0");
+    let vestingTime = BigNumber.from("0");
+    let plusClaimed = BigNumber.from("0");
+    let vestingStart = BigNumber.from("0");
+
     try {
       const plusContract = PlutusERC20Token__factory.connect(addresses[networkID].PLUS_ADDRESS, provider);
       plusBalance = await plusContract.balanceOf(address);
@@ -49,12 +53,16 @@ export const getPresaleInfo = createAsyncThunk(
 
     try {
       const presaleContract = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider);
-      contribution = await presaleContract.contributions(address);
+      contribution = (await presaleContract.preBuys(address))[0];
+      plusClaimed = (await presaleContract.preBuys(address))[1];
       contributionLimit = await presaleContract.individualCap();
       totalContribution = await presaleContract.weiRaised();
       cap = await presaleContract.cap();
       openingDate = await presaleContract.openingTime();
       closingDate = await presaleContract.closingTime();
+      percentReleased = await presaleContract.getPercentReleased();
+      vestingTime = await presaleContract.vestingTime();
+      vestingStart = await presaleContract.vestingStart();
     } catch (e) {
       handleContractError(e);
     }
@@ -68,6 +76,10 @@ export const getPresaleInfo = createAsyncThunk(
         cap: ethers.utils.formatEther(cap),
         openingDate: await openingDate.toString(),
         closingDate: await closingDate.toNumber(),
+        percentReleased: await percentReleased.toNumber(),
+        vestingTime: await vestingTime.toNumber(),
+        plusClaimed: await ethers.utils.formatUnits(plusClaimed, "gwei"),
+        vestingStart: await vestingStart.toNumber(),
       },
     };
   },
@@ -106,7 +118,7 @@ export const changeApproval = createAsyncThunk(
 
     const busdContract = new ethers.Contract(
       addresses[networkID].BUSD_ADDRESS as string,
-      ierc20Abi,
+      ierc20Abi.abi,
       provider.getSigner(),
     ) as IERC20;
 
@@ -152,6 +164,30 @@ export const changeApproval = createAsyncThunk(
   },
 );
 
+export const redeemPlus = createAsyncThunk(
+  "presale/redeemPlus",
+  async ({ address, provider, networkID }: IBaseAddressAsyncThunk, { dispatch }) => {
+    let redeemPlusTx;
+    try {
+      const presale = PlutusPresale__factory.connect(addresses[networkID].PRESALE_ADDRESS, provider.getSigner());
+
+      redeemPlusTx = await presale.redeemPlus(address);
+      dispatch(fetchPendingTxns({ txnHash: redeemPlusTx.hash, text: "Redeeming token", type: "redeemPlus" }));
+
+      await redeemPlusTx.wait();
+    } catch (e) {
+      dispatch(error("Error during contract interaction. Usually a network related issue"));
+      handleContractError(e);
+      return;
+    } finally {
+      if (redeemPlusTx) {
+        dispatch(clearPendingTxn(redeemPlusTx.hash));
+      }
+    }
+    dispatch(getPresaleInfo({ address, networkID, provider }));
+  },
+);
+
 export interface IPresaleSlice extends IPresaleData {
   loading: boolean;
   info: {
@@ -162,6 +198,10 @@ export interface IPresaleSlice extends IPresaleData {
     cap: string;
     openingDate: string;
     closingDate: number;
+    percentReleased: number;
+    vestingTime: number;
+    plusClaimed: string;
+    vestingStart: number;
   };
 }
 
@@ -175,6 +215,10 @@ const initialState: IPresaleSlice = {
     cap: "",
     openingDate: "",
     closingDate: 0,
+    percentReleased: 0,
+    vestingTime: 0,
+    plusClaimed: "",
+    vestingStart: 0,
   },
 };
 

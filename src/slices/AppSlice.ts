@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import sOHMv2 from "../abi/sOhmv2.json";
 import { setAll, getTokenPrice, getMarketPrice } from "../helpers";
 import { NodeHelper } from "src/helpers/NodeHelper";
 import apollo from "../lib/apolloClient";
@@ -95,7 +95,11 @@ export const loadAppDetails = createAsyncThunk(
     const stakingContract = OlympusStakingv2__factory.connect(addresses[networkID].STAKING_V2, provider);
     const stakingContractV1 = OlympusStaking__factory.connect(addresses[networkID].STAKING_ADDRESS, provider);
 
-    const sohmMainContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, sOHMv2, provider) as SOhmv2;
+    const sohmMainContract = new ethers.Contract(
+      addresses[networkID].SOHM_V2 as string,
+      sOHMv2.abi,
+      provider,
+    ) as SOhmv2;
 
     // Calculating staking
     const epoch = await stakingContract.epoch();
