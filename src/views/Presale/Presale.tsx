@@ -387,7 +387,7 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS redeemed</Typography>
                       <Typography className="price-data">
-                        {isAppLoading ? (
+                        {isAppLoading || !vestingStartDate ? (
                           <Skeleton width="80px" />
                         ) : (
                           <>{formatToDecimals(parseFloat(plusClaimed), 4)} PLUS</>
@@ -397,13 +397,21 @@ const Presale = () => {
                     <div className="data-row">
                       <Typography>PLUS available to redeem</Typography>
                       <Typography className="price-data">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(redeemablePlus, 4)} PLUS</>}
+                        {isAppLoading || !vestingStartDate ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(redeemablePlus, 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                     <div className="data-row">
                       <Typography>PLUS Locked</Typography>
                       <Typography className="price-data">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{formatToDecimals(plusLocked, 4)} PLUS</>}
+                        {isAppLoading || !vestingStartDate ? (
+                          <Skeleton width="80px" />
+                        ) : (
+                          <>{formatToDecimals(plusLocked, 4)} PLUS</>
+                        )}
                       </Typography>
                     </div>
                   </Box>
