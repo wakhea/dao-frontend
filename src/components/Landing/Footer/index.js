@@ -29,9 +29,39 @@ const Footer = ({
         <Box className="links">
           <Box className="community">
             <Text content="Community" className="section-title" />
+            <Link href="https://discord.gg/jjVSb8S3J3" underline="none" target="_blank">
+              <div className="link-row">
+                <NextImage className="social-icon" src={discord} />
+                <Text as="p" content="Discord" className="link-label" />
+              </div>
+            </Link>
+            <Link href="https://twitter.com/Plutus_Protocol" underline="none" target="_blank">
+              <div className="link-row">
+                <NextImage className="social-icon" src={twitter} />
+                <Text as="p" content="Twitter" className="link-label" />
+              </div>
+            </Link>
+            <Link href="https://discord.gg/jjVSb8S3J3" underline="none" target="_blank">
+              <div className="link-row">
+                <NextImage className="social-icon" src={discord} />
+                <Text as="p" content="Reddit" className="link-label" />
+              </div>
+            </Link>
           </Box>
           <Box className="resources">
             <Text content="Resources" className="section-title" />
+            <Link href="https://docs.plutusprotocol.io" underline="none" target="_blank">
+              <div className="link-row">
+                <NextImage className="social-icon" src={discord} />
+                <Text as="p" content="Docs" className="link-label" />
+              </div>
+            </Link>
+            <Link href="https://twitter.com/Plutus_Protocol" underline="none" target="_blank">
+              <div className="link-row">
+                <NextImage className="social-icon" src={twitter} />
+                <Text as="p" content="Medium" className="link-label" />
+              </div>
+            </Link>
           </Box>
         </Box>
         {/* <Box className="row" {...row}>

@@ -21,13 +21,10 @@ const FooterWrapper = styled.footer`
     }
   }
   .social-icon {
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
 
     border-radius: 50%;
-    &:hover {
-      box-shadow: rgba(75, 109, 235, 0.78) 0px 12px 24px -10px;
-    }
   }
 
   .dapp-icon {
@@ -56,14 +53,36 @@ const FooterWrapper = styled.footer`
         font-size: 26px;
         font-weight: normal;
       }
-    }
 
+    }
+    
     .links {
       width: 45%;
       
       display: flex;
       flex-direction: row;
       justify-content: center;
+      
+      .link-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 4px;
+
+        &:hover {
+          font-weight: bold;
+        }
+      }
+
+      .link-label {
+        font-size: 20px;
+        font-weight: ;
+        margin-bottom: 0;
+        margin-left: 8px;
+        text-decoration: none;
+
+        color: ${themeGet('colors.menu', '#3461E8')};
+      }
 
       .community {
         margin-right: 15px;
@@ -79,6 +98,7 @@ const FooterWrapper = styled.footer`
 
         font-size: 30px;
         font-weight: bold;
+        margin-bottom: 10px;
       }
     }
   
